@@ -1,0 +1,55 @@
+{
+  "id": "samosir",
+  "display_name": "Samosir Regency, Lake Toba, Indonesia",
+  "note": "First test profile. The pipeline reads everything region-specific from a file like this one.",
+  "country_code": "ID",
+  "phone_country_prefix": "+62",
+  "timezone": "Asia/Jakarta",
+  "osm": { "area_name": "Samosir", "admin_level": 5 },
+  "languages": {
+    "host": ["id"],
+    "host_stretch": ["bbc"],
+    "traveller": ["en"]
+  },
+  "currency": {
+    "code": "IDR",
+    "symbols": ["Rp", "IDR"],
+    "multipliers": { "rb": 1000, "ribu": 1000, "k": 1000, "jt": 1000000, "juta": 1000000 },
+    "plausible_range": { "food": [2000, 500000], "lodging": [50000, 5000000] }
+  },
+  "keywords": {
+    "food": ["MAKAN", "WARUNG", "RUMAH MAKAN"],
+    "lodging": ["INAP", "PENGINAPAN", "HOMESTAY", "KAMAR"],
+    "transport": ["OJEK", "SEWA", "KAPAL"],
+    "guide": ["PEMANDU", "GUIDE"],
+    "open_today": ["BUKA"],
+    "closed_today": ["TUTUP"],
+    "confirm_yes": ["1", "YA", "BENAR"],
+    "confirm_no": ["2", "TIDAK", "SALAH"],
+    "search": ["CARI"],
+    "help": ["BANTUAN", "INFO", "?"]
+  },
+  "gazetteer": {
+    "source": "data/real/osm/samosir/places.csv",
+    "note": "OpenStreetMap place points; replace with the official village list when available."
+  },
+  "templates": {
+    "id": {
+      "welcome": "Selamat datang! Kirim usaha Anda, contoh: MAKAN Warung Bu Sinaga di Garoga, nasi ikan 25rb, buka 7-21",
+      "ask_name": "Apa nama usaha Anda?",
+      "ask_village": "Usaha Anda di desa mana?",
+      "ask_offer": "Apa yang Anda tawarkan? (makanan, kamar, dll.)",
+      "ask_price": "Berapa harganya?",
+      "ask_hours": "Jam berapa buka dan tutup? Contoh: 7-21",
+      "ask_publish_phone": "Boleh nomor HP Anda ditampilkan untuk wisatawan? Balas YA atau TIDAK",
+      "confirm": "Kami catat: {summary}. Balas 1 jika benar, 2 jika salah.",
+      "confirmed": "Terima kasih! Usaha Anda sudah tampil untuk wisatawan.",
+      "rejected": "Maaf. Silakan kirim ulang informasi yang benar.",
+      "no_results": "Belum ada info untuk itu. Coba: CARI makan <nama desa>"
+    },
+    "en": {
+      "no_results": "No listings found. Try: SEARCH food <village name>",
+      "result_line": "{name} ({village}) {offer} {price} {hours} tel {phone}"
+    }
+  }
+}

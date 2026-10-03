@@ -1,0 +1,5245 @@
+{
+ "version": 0.6,
+ "generator": "Overpass API 0.7.62.11 87bfad18",
+ "osm3s": {
+  "timestamp_osm_base": "2026-10-03T19:40:01Z",
+  "timestamp_areas_base": "2026-10-03T02:09:07Z",
+  "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+ },
+ "elements": [
+  {
+   "type": "node",
+   "id": 665509631,
+   "lat": 2.6703178,
+   "lon": 98.8559701,
+   "tags": {
+    "name": "Tabo Cottages",
+    "tourism": "hotel",
+    "website": "http://www.tabocottages.com"
+   }
+  },
+  {
+   "type": "node",
+   "id": 806537081,
+   "lat": 2.6682229,
+   "lon": 98.8613111,
+   "tags": {
+    "name": "Carolina Hotel",
+    "tourism": "hotel"
+   }
+  },
+  {
+   "type": "node",
+   "id": 806537111,
+   "lat": 2.6712875,
+   "lon": 98.8614418,
+   "tags": {
+    "amenity": "restaurant",
+    "name": "Rumba Pizza"
+   }
+  },
+  {
+   "type": "node",
+   "id": 806537122,
+   "lat": 2.6702541,
+   "lon": 98.8619433,
+   "tags": {
+    "addr:housenumber": "5",
+    "addr:street": "Jalan Durian",
+    "name": "Hotel Silington",
+    "tourism": "hotel"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308283181,
+   "lat": 2.5544472,
+   "lon": 98.6632145,
+   "tags": {
+    "admin_level": "7",
+    "name": "Turpuk Sagala",
+    "place": "village",
+    "ref": "12.17.05.2009",
+    "wikidata": "Q12522801"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308283845,
+   "lat": 2.7154494,
+   "lon": 98.6939013,
+   "tags": {
+    "admin_level": "7",
+    "name": "Dosroha",
+    "place": "village",
+    "ref": "12.17.01.2004",
+    "wikidata": "Q13545462"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308291110,
+   "lat": 2.6073574,
+   "lon": 98.6974519,
+   "tags": {
+    "admin_level": "7",
+    "name": "Pasar Pangururan",
+    "place": "village",
+    "ref": "12.17.08.1026",
+    "wikidata": "Q12503465"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308292952,
+   "lat": 2.6246442,
+   "lon": 98.7618282,
+   "tags": {
+    "admin_level": "7",
+    "name": "Sijambur",
+    "place": "village",
+    "ref": "12.17.07.2008",
+    "wikidata": "Q13545475"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308294072,
+   "lat": 2.5558497,
+   "lon": 98.9137877,
+   "tags": {
+    "admin_level": "7",
+    "name": "Silima Lombu",
+    "place": "village",
+    "ref": "12.17.02.2010",
+    "wikidata": "Q12514797"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308296640,
+   "lat": 2.6145269,
+   "lon": 98.6194845,
+   "tags": {
+    "admin_level": "7",
+    "name": "Huta Gurgur",
+    "place": "village",
+    "ref": "12.17.06.2005",
+    "wikidata": "Q12486013"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308299798,
+   "lat": 2.4554763,
+   "lon": 98.9777534,
+   "tags": {
+    "admin_level": "7",
+    "name": "Onan Runggu",
+    "place": "village",
+    "ref": "12.17.02.2007",
+    "wikidata": "Q12501346"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308300992,
+   "lat": 2.4367885,
+   "lon": 98.8984644,
+   "tags": {
+    "name": "Sipinggan",
+    "place": "village"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308301718,
+   "lat": 2.5301994,
+   "lon": 98.7152045,
+   "tags": {
+    "admin_level": "7",
+    "name": "Sampur Toba",
+    "place": "village",
+    "ref": "12.17.05.2006",
+    "wikidata": "Q12511905"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308302345,
+   "lat": 2.6620714,
+   "lon": 98.6225664,
+   "tags": {
+    "admin_level": "7",
+    "name": "Hasinggaan",
+    "place": "village",
+    "ref": "12.17.06.2003",
+    "wikidata": "Q12485407"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308304296,
+   "lat": 2.5875686,
+   "lon": 98.7818372,
+   "tags": {
+    "admin_level": "7",
+    "name": "Ronggur Nihuta",
+    "place": "village",
+    "ref": "12.17.07.2005",
+    "wikidata": "Q12508901"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308304780,
+   "lat": 2.6464075,
+   "lon": 98.7171817,
+   "tags": {
+    "admin_level": "7",
+    "name": "Sinabulan",
+    "place": "village",
+    "ref": "12.17.08.2023",
+    "wikidata": "Q12515113"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308305961,
+   "lat": 2.6447836,
+   "lon": 98.719712,
+   "tags": {
+    "admin_level": "7",
+    "name": "Aek Nauli",
+    "place": "village",
+    "ref": "12.17.08.2024",
+    "wikidata": "Q12470833"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308309924,
+   "lat": 2.4594005,
+   "lon": 98.8420058,
+   "tags": {
+    "admin_level": "7",
+    "name": "Urat Timur",
+    "place": "village",
+    "ref": "12.17.04.2009",
+    "wikidata": "Q12523533"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308313630,
+   "lat": 2.5229349,
+   "lon": 98.7516678,
+   "tags": {
+    "admin_level": "7",
+    "name": "Sigaol Marbun",
+    "place": "village",
+    "ref": "12.17.04.2014",
+    "wikidata": "Q12514631"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308317327,
+   "lat": 2.4503373,
+   "lon": 98.9512566,
+   "tags": {
+    "admin_level": "7",
+    "name": "Sitinjak",
+    "place": "village",
+    "ref": "12.17.02.2003",
+    "wikidata": "Q12515530"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308318509,
+   "lat": 2.4695832,
+   "lon": 98.9064378,
+   "tags": {
+    "name": "Huta Rihit",
+    "place": "village"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308318761,
+   "lat": 2.7096713,
+   "lon": 98.810444,
+   "tags": {
+    "admin_level": "7",
+    "name": "Martoba",
+    "place": "village",
+    "ref": "12.17.01.2006",
+    "wikidata": "Q12497166"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308321463,
+   "lat": 2.579906,
+   "lon": 98.713393,
+   "tags": {
+    "admin_level": "7",
+    "name": "Pintu Sona",
+    "place": "village",
+    "ref": "12.17.08.1027",
+    "wikidata": "Q12505644"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308322572,
+   "lat": 2.6292079,
+   "lon": 98.7307372,
+   "tags": {
+    "admin_level": "7",
+    "name": "Salaon Toba",
+    "place": "village",
+    "ref": "12.17.07.2001",
+    "wikidata": "Q12511607"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308322893,
+   "lat": 2.4927013,
+   "lon": 98.7260526,
+   "tags": {
+    "admin_level": "7",
+    "name": "Tamba Dolok",
+    "place": "village",
+    "ref": "12.17.09.2005",
+    "wikidata": "Q14750291"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308326576,
+   "lat": 2.5858735,
+   "lon": 98.6402662,
+   "tags": {
+    "name": "Sarimarrihit",
+    "place": "village"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308330700,
+   "lat": 2.5429453,
+   "lon": 98.7484593,
+   "tags": {
+    "admin_level": "7",
+    "name": "Parmonangan",
+    "place": "village",
+    "ref": "12.17.08.2015",
+    "wikidata": "Q12503243"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308335066,
+   "lat": 2.5189098,
+   "lon": 98.8211035,
+   "tags": {
+    "name": "Pardomuan Nauli",
+    "place": "village"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308339131,
+   "lat": 2.4337394,
+   "lon": 98.8877452,
+   "tags": {
+    "admin_level": "7",
+    "name": "Sipinggan Lumban Siantar",
+    "place": "village",
+    "ref": "12.17.03.2007",
+    "wikidata": "Q12515355"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308340821,
+   "lat": 2.4340142,
+   "lon": 98.8849105,
+   "tags": {
+    "name": "Nainggolan",
+    "place": "town",
+    "wikidata": "Q12499902"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308341317,
+   "lat": 2.6705653,
+   "lon": 98.8608163,
+   "tags": {
+    "admin_level": "7",
+    "name": "Tuktuk Siadong",
+    "place": "village",
+    "ref": "12.17.01.1016",
+    "wikidata": "Q13545464"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308343060,
+   "lat": 2.626765,
+   "lon": 98.6948147,
+   "tags": {
+    "admin_level": "7",
+    "name": "Sianting Anting",
+    "place": "village",
+    "ref": "12.17.08.2018",
+    "wikidata": "Q12514219"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308343756,
+   "lat": 2.6343645,
+   "lon": 98.7715913,
+   "tags": {
+    "admin_level": "7",
+    "name": "Salaon Dolok",
+    "place": "village",
+    "ref": "12.17.07.2004",
+    "wikidata": "Q12511606"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308344138,
+   "lat": 2.6246444,
+   "lon": 98.6324943,
+   "tags": {
+    "admin_level": "7",
+    "name": "Siboro",
+    "place": "village",
+    "ref": "12.17.06.2008",
+    "wikidata": "Q13545484"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308345004,
+   "lat": 2.4756676,
+   "lon": 98.8136201,
+   "tags": {
+    "admin_level": "7",
+    "name": "Gorat Pallombuan",
+    "place": "village",
+    "ref": "12.17.04.2002",
+    "wikidata": "Q12484414"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308345380,
+   "lat": 2.5939552,
+   "lon": 98.6268456,
+   "tags": {
+    "name": "Sianjur Mulamula",
+    "place": "village"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308345994,
+   "lat": 2.4470139,
+   "lon": 98.8829643,
+   "tags": {
+    "admin_level": "7",
+    "name": "Parhusip III",
+    "place": "village",
+    "ref": "12.17.03.1011",
+    "wikidata": "Q12503173"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308349495,
+   "lat": 2.4755365,
+   "lon": 98.8074801,
+   "tags": {
+    "name": "Palombuan",
+    "place": "village"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308349568,
+   "lat": 2.7223449,
+   "lon": 98.7190441,
+   "tags": {
+    "admin_level": "7",
+    "name": "Sihusapi",
+    "place": "village",
+    "ref": "12.17.01.2002",
+    "wikidata": "Q13545463"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308349849,
+   "lat": 2.488559,
+   "lon": 98.9351864,
+   "tags": {
+    "admin_level": "7",
+    "name": "Rina Bolak",
+    "place": "village",
+    "ref": "18.04.04.2008",
+    "wikidata": "Q12508671"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308353399,
+   "lat": 2.6043574,
+   "lon": 98.7005067,
+   "tags": {
+    "admin_level": "7",
+    "name": "Pardomuan I",
+    "place": "village",
+    "ref": "12.17.08.2021",
+    "wikidata": "Q13545473"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308361119,
+   "lat": 2.5191704,
+   "lon": 98.7586551,
+   "tags": {
+    "admin_level": "7",
+    "name": "Sigaol Simbolon",
+    "place": "village",
+    "ref": "12.17.04.2008",
+    "wikidata": "Q12514633"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308363778,
+   "lat": 2.5810539,
+   "lon": 98.8968544,
+   "tags": {
+    "name": "Pardomuan",
+    "place": "village"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308364258,
+   "lat": 2.5733266,
+   "lon": 98.8993336,
+   "tags": {
+    "admin_level": "7",
+    "name": "Parbalohan",
+    "place": "village",
+    "ref": "12.17.01.2013",
+    "wikidata": "Q12503136"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308366492,
+   "lat": 2.4473277,
+   "lon": 98.8601761,
+   "tags": {
+    "admin_level": "7",
+    "name": "Pasaran I",
+    "place": "village",
+    "ref": "12.17.03.2010",
+    "wikidata": "Q12503506"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308367607,
+   "lat": 2.6673114,
+   "lon": 98.7029574,
+   "tags": {
+    "admin_level": "7",
+    "name": "Lumban Suhi Suhi Dolok",
+    "place": "village",
+    "ref": "12.17.08.2001",
+    "wikidata": "Q12495590"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308369706,
+   "lat": 2.5870723,
+   "lon": 98.7334726,
+   "tags": {
+    "admin_level": "7",
+    "name": "Sabungan Nihuta",
+    "place": "village",
+    "ref": "12.17.07.2006",
+    "wikidata": "Q12511420"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308371684,
+   "lat": 2.6509038,
+   "lon": 98.8634626,
+   "tags": {
+    "admin_level": "7",
+    "name": "Tomok",
+    "place": "village",
+    "ref": "12.17.01.2001",
+    "wikidata": "Q12521981"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308372125,
+   "lat": 2.6466369,
+   "lon": 98.688793,
+   "tags": {
+    "admin_level": "7",
+    "name": "Panampangan",
+    "place": "village",
+    "ref": "12.17.08.2010",
+    "wikidata": "Q13545468"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308373821,
+   "lat": 2.5650566,
+   "lon": 98.7190207,
+   "tags": {
+    "admin_level": "7",
+    "name": "Huta Namora",
+    "place": "village",
+    "ref": "12.17.08.2012",
+    "wikidata": "Q12486033"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308374888,
+   "lat": 2.465988,
+   "lon": 98.9901366,
+   "tags": {
+    "admin_level": "7",
+    "name": "Tambun Sungkean",
+    "place": "village",
+    "ref": "12.17.02.2005",
+    "wikidata": "Q12519038"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308375337,
+   "lat": 2.4740986,
+   "lon": 98.9206328,
+   "tags": {
+    "admin_level": "7",
+    "name": "Toguan Galung",
+    "place": "village",
+    "ref": "12.17.03.2004",
+    "wikidata": "Q12521859"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308375539,
+   "lat": 2.7330876,
+   "lon": 98.7547662,
+   "tags": {
+    "admin_level": "7",
+    "name": "Maduma",
+    "place": "village",
+    "ref": "12.17.01.2003",
+    "wikidata": "Q12496027"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308375835,
+   "lat": 2.4940702,
+   "lon": 98.9777764,
+   "tags": {
+    "admin_level": "7",
+    "name": "Sitamiang",
+    "place": "village",
+    "ref": "12.17.02.2008",
+    "wikidata": "Q13545482"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308378994,
+   "lat": 2.5721606,
+   "lon": 98.7587766,
+   "tags": {
+    "admin_level": "7",
+    "name": "Paraduan",
+    "place": "village",
+    "ref": "12.17.07.2007",
+    "wikidata": "Q13545476"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308379293,
+   "lat": 2.6598834,
+   "lon": 98.6905912,
+   "tags": {
+    "admin_level": "7",
+    "name": "Lumban Suhi Suhi Toruan",
+    "place": "village",
+    "ref": "12.17.08.2002",
+    "wikidata": "Q12495591"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308379665,
+   "lat": 2.5752228,
+   "lon": 98.6668841,
+   "tags": {
+    "admin_level": "7",
+    "name": "Boho",
+    "place": "village",
+    "ref": "12.17.06.2007",
+    "wikidata": "Q12476749"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308380820,
+   "lat": 2.6062556,
+   "lon": 98.6310138,
+   "tags": {
+    "admin_level": "7",
+    "name": "Ginolat",
+    "place": "village",
+    "ref": "12.17.06.2010",
+    "wikidata": "Q13545486"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308381935,
+   "lat": 2.5099436,
+   "lon": 98.7811845,
+   "tags": {
+    "admin_level": "7",
+    "name": "Saor Nauli Hatoguan",
+    "place": "village",
+    "ref": "12.17.04.2010",
+    "wikidata": "Q12512115"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308384041,
+   "lat": 2.4498238,
+   "lon": 98.9601894,
+   "tags": {
+    "admin_level": "7",
+    "name": "Pakpahan",
+    "place": "village",
+    "ref": "12.17.02.2001",
+    "wikidata": "Q12502153"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308388269,
+   "lat": 2.6693495,
+   "lon": 98.7334176,
+   "tags": {
+    "admin_level": "7",
+    "name": "Pardomuan Nauli",
+    "place": "village",
+    "ref": "12.17.08.2006",
+    "wikidata": "Q12503153"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308391050,
+   "lat": 2.6103582,
+   "lon": 98.7203799,
+   "tags": {
+    "name": "Huta Tinggi",
+    "place": "village"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308391574,
+   "lat": 2.6126284,
+   "lon": 98.6891631,
+   "tags": {
+    "admin_level": "7",
+    "name": "Siogung-Ogung",
+    "place": "village",
+    "ref": "12.17.08.1028",
+    "wikidata": "Q13545472"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308392524,
+   "lat": 2.5568741,
+   "lon": 98.6622873,
+   "tags": {
+    "admin_level": "7",
+    "name": "Turpuk Limbong",
+    "place": "village",
+    "ref": "12.17.05.2008",
+    "wikidata": "Q12522800"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308392799,
+   "lat": 2.6028682,
+   "lon": 98.6858898,
+   "tags": {
+    "admin_level": "7",
+    "name": "Tanjung Bunga",
+    "place": "village",
+    "ref": "12.17.08.2014",
+    "wikidata": "Q12519495"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308393365,
+   "lat": 2.5154243,
+   "lon": 98.7123965,
+   "tags": {
+    "admin_level": "7",
+    "name": "Siparmahan",
+    "place": "village",
+    "ref": "12.17.05.2007",
+    "wikidata": "Q12515344"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308393894,
+   "lat": 2.5447882,
+   "lon": 98.6741942,
+   "tags": {
+    "admin_level": "7",
+    "name": "Janji Martahan",
+    "place": "village",
+    "ref": "12.17.05.2012",
+    "wikidata": "Q12487350"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308393967,
+   "lat": 2.7069451,
+   "lon": 98.6927985,
+   "tags": {
+    "admin_level": "7",
+    "name": "Sialanguan",
+    "place": "village",
+    "ref": "12.17.08.2019",
+    "wikidata": "Q12514198"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308395294,
+   "lat": 2.6928747,
+   "lon": 98.6915527,
+   "tags": {
+    "admin_level": "7",
+    "name": "Situngkir",
+    "place": "village",
+    "ref": "12.17.08.2017",
+    "wikidata": "Q12515565"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308400662,
+   "lat": 2.6504275,
+   "lon": 98.6961005,
+   "tags": {
+    "admin_level": "7",
+    "name": "Sitoluhuta",
+    "place": "village",
+    "ref": "12.17.08.2022",
+    "wikidata": "Q12515545"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308402581,
+   "lat": 2.5513334,
+   "lon": 98.7256003,
+   "tags": {
+    "admin_level": "7",
+    "name": "Rianiate",
+    "place": "village",
+    "ref": "12.17.08.2008",
+    "wikidata": "Q12508581"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308402865,
+   "lat": 2.4366824,
+   "lon": 98.8660463,
+   "tags": {
+    "admin_level": "7",
+    "name": "Sibonor Ompuratus",
+    "place": "village",
+    "ref": "12.17.03.2008",
+    "wikidata": "Q12514278"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308404953,
+   "lat": 2.5454837,
+   "lon": 98.6497056,
+   "tags": {
+    "admin_level": "7",
+    "name": "Turpuk Malau",
+    "place": "village",
+    "ref": "12.17.05.2010",
+    "wikidata": "Q13545483"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308405230,
+   "lat": 2.7429577,
+   "lon": 98.7119976,
+   "tags": {
+    "admin_level": "7",
+    "name": "Simarmata",
+    "place": "village",
+    "ref": "12.17.01.2015",
+    "wikidata": "Q12514910"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308407100,
+   "lat": 2.6204679,
+   "lon": 98.6954863,
+   "tags": {
+    "admin_level": "7",
+    "name": "Saitnihuta",
+    "place": "village",
+    "ref": "12.17.08.2016",
+    "wikidata": "Q13545471"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308407359,
+   "lat": 2.6172963,
+   "lon": 98.6897114,
+   "tags": {
+    "admin_level": "7",
+    "name": "Parsaoran I",
+    "place": "village",
+    "ref": "12.17.08.2007",
+    "wikidata": "Q12503290"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308435103,
+   "lat": 2.6384125,
+   "lon": 98.6913456,
+   "tags": {
+    "admin_level": "7",
+    "name": "Pardugul",
+    "place": "village",
+    "ref": "12.17.08.2011",
+    "wikidata": "Q13545469"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308440208,
+   "lat": 2.5191655,
+   "lon": 98.9469891,
+   "tags": {
+    "admin_level": "7",
+    "name": "Huta Hotang",
+    "place": "village",
+    "ref": "12.17.02.2002",
+    "wikidata": "Q12486016"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308443526,
+   "lat": 2.5918354,
+   "lon": 98.8929034,
+   "tags": {
+    "admin_level": "7",
+    "name": "Parmonangan",
+    "place": "village",
+    "ref": "12.17.01.2012",
+    "wikidata": "Q12503244"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308446288,
+   "lat": 2.4414956,
+   "lon": 98.8675381,
+   "tags": {
+    "admin_level": "7",
+    "name": "Sinaga Uruk Pandiangan",
+    "place": "village",
+    "ref": "12.17.03.2003",
+    "wikidata": "Q12515116"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308449244,
+   "lat": 2.4375986,
+   "lon": 98.9316929,
+   "tags": {
+    "admin_level": "7",
+    "name": "Harian",
+    "place": "village",
+    "ref": "12.17.02.2012",
+    "wikidata": "Q12485308"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308450242,
+   "lat": 2.6885874,
+   "lon": 98.730611,
+   "tags": {
+    "admin_level": "7",
+    "name": "Parbaba Dolok",
+    "place": "village",
+    "ref": "12.17.08.2003",
+    "wikidata": "Q12503135"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308453308,
+   "lat": 2.4619216,
+   "lon": 98.8324771,
+   "tags": {
+    "admin_level": "7",
+    "name": "Suhut Nihuta Pardomuan",
+    "place": "village",
+    "ref": "12.17.04.2001",
+    "wikidata": "Q12516586"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308454091,
+   "lat": 2.6855051,
+   "lon": 98.6909875,
+   "tags": {
+    "admin_level": "7",
+    "name": "Siopat Sosor",
+    "place": "village",
+    "ref": "12.17.08.2025",
+    "wikidata": "Q12515331"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308463512,
+   "lat": 2.6597049,
+   "lon": 98.8514296,
+   "tags": {
+    "name": "Garoga",
+    "place": "village"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308468889,
+   "lat": 2.4741673,
+   "lon": 98.869464,
+   "tags": {
+    "name": "Pamanggangan",
+    "place": "village"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308469284,
+   "lat": 2.5467521,
+   "lon": 98.7661189,
+   "tags": {
+    "admin_level": "7",
+    "name": "Huta Ginjang",
+    "place": "village",
+    "ref": "12.17.04.2012",
+    "wikidata": "Q12486008"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308470011,
+   "lat": 2.4700447,
+   "lon": 98.8587059,
+   "tags": {
+    "admin_level": "7",
+    "name": "Pasaran Parsaoran",
+    "place": "village",
+    "ref": "12.17.03.2006",
+    "wikidata": "Q12503507"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308470084,
+   "lat": 2.7395243,
+   "lon": 98.759186,
+   "tags": {
+    "admin_level": "7",
+    "name": "Simanindo Sangkal",
+    "place": "village",
+    "ref": "12.17.01.2008",
+    "wikidata": "Q12514883"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308471602,
+   "lat": 2.6131625,
+   "lon": 98.6983208,
+   "tags": {
+    "admin_level": "7",
+    "name": "Lumban Pinggol",
+    "place": "village",
+    "ref": "12.17.08.2020",
+    "wikidata": "Q12495582"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308471866,
+   "lat": 2.5867194,
+   "lon": 98.766599,
+   "tags": {
+    "admin_level": "7",
+    "name": "Lintongnihuta",
+    "place": "village",
+    "ref": "12.17.07.2002",
+    "wikidata": "Q12494971"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308472070,
+   "lat": 2.6306389,
+   "lon": 98.7527658,
+   "tags": {
+    "admin_level": "7",
+    "name": "Salaon Tonga Tonga",
+    "place": "village",
+    "ref": "12.17.07.2003",
+    "wikidata": "Q13545474"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308472098,
+   "lat": 2.523034,
+   "lon": 98.7186844,
+   "tags": {
+    "admin_level": "7",
+    "name": "Dolok Raja",
+    "place": "village",
+    "ref": "12.17.05.2004",
+    "wikidata": "Q12481827"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308472699,
+   "lat": 2.5257823,
+   "lon": 98.9008235,
+   "tags": {
+    "admin_level": "7",
+    "name": "Sipira",
+    "place": "village",
+    "ref": "12.17.02.2011",
+    "wikidata": "Q13545481"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308473039,
+   "lat": 2.5689954,
+   "lon": 98.8881586,
+   "tags": {
+    "admin_level": "7",
+    "name": "Tanjungan",
+    "place": "village",
+    "ref": "12.17.01.2014",
+    "wikidata": "Q13545466"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308473240,
+   "lat": 2.5437427,
+   "lon": 98.648082,
+   "tags": {
+    "admin_level": "7",
+    "name": "Sosor Dolok",
+    "place": "village",
+    "ref": "12.17.05.2001",
+    "wikidata": "Q12515993"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308473431,
+   "lat": 2.4367235,
+   "lon": 98.9054497,
+   "tags": {
+    "admin_level": "7",
+    "name": "Pangaloan",
+    "place": "village",
+    "ref": "12.17.03.2001",
+    "wikidata": "Q13545480"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308474284,
+   "lat": 2.4749765,
+   "lon": 98.9597632,
+   "tags": {
+    "name": "Pardomuan",
+    "place": "village"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308474555,
+   "lat": 2.7584039,
+   "lon": 98.7258172,
+   "tags": {
+    "admin_level": "7",
+    "name": "Cinta Dame",
+    "place": "village",
+    "ref": "12.17.01.2009",
+    "wikidata": "Q12479120"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308475115,
+   "lat": 2.6310103,
+   "lon": 98.6931419,
+   "tags": {
+    "admin_level": "7",
+    "name": "Parlondut",
+    "place": "village",
+    "ref": "12.17.08.2013",
+    "wikidata": "Q13545470"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308475659,
+   "lat": 2.6419221,
+   "lon": 98.6172445,
+   "tags": {
+    "admin_level": "7",
+    "name": "Bonan Dolok",
+    "place": "village",
+    "ref": "12.17.06.2011",
+    "wikidata": "Q12476892"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308476321,
+   "lat": 2.4980558,
+   "lon": 98.7942738,
+   "tags": {
+    "admin_level": "7",
+    "name": "Hatoguan",
+    "place": "village",
+    "ref": "12.17.04.2006",
+    "wikidata": "Q13545478"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308476634,
+   "lat": 2.5300261,
+   "lon": 98.9306331,
+   "tags": {
+    "admin_level": "7",
+    "name": "Janji Matogu",
+    "place": "village",
+    "ref": "12.17.02.2009",
+    "wikidata": "Q12487352"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1308477340,
+   "lat": 2.5161624,
+   "lon": 98.7633506,
+   "tags": {
+    "admin_level": "7",
+    "name": "Simbolon Purba",
+    "place": "village",
+    "ref": "12.17.04.2007",
+    "wikidata": "Q13545477"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1871228091,
+   "lat": 2.6686491,
+   "lon": 98.8584953,
+   "tags": {
+    "name": "Duma Sari",
+    "tourism": "hotel"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1871228095,
+   "lat": 2.6759145,
+   "lon": 98.8566833,
+   "tags": {
+    "name": "Endy's",
+    "tourism": "hotel"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1871228099,
+   "lat": 2.6705614,
+   "lon": 98.8615704,
+   "tags": {
+    "name": "Lilis",
+    "tourism": "hotel"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1871228114,
+   "lat": 2.6775085,
+   "lon": 98.8544275,
+   "tags": {
+    "name": "Judita",
+    "tourism": "hotel"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1871228120,
+   "lat": 2.6747886,
+   "lon": 98.8582368,
+   "tags": {
+    "name": "Kennedy's",
+    "tourism": "hotel"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1871228124,
+   "lat": 2.6723426,
+   "lon": 98.8609158,
+   "tags": {
+    "name": "Rosita",
+    "tourism": "hotel"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1871228125,
+   "lat": 2.6774519,
+   "lon": 98.8517745,
+   "tags": {
+    "contact:facebook": "https://www.facebook.com/toledoinnhotel/",
+    "contact:instagram": "https://www.instagram.com/toledo.inn",
+    "image": "https://photos.app.goo.gl/bQ5JXGPRkAokbnQq8",
+    "name": "Toledo Inn",
+    "phone": "+62 812 6797 7789",
+    "tourism": "hotel",
+    "url": "https://www.tripadvisor.com/Hotel_Review-g303958-d1164487-Reviews-Toledo_Inn-Samosir_Island_North_Sumatra_Sumatra.html"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1871228127,
+   "lat": 2.6686807,
+   "lon": 98.8580166,
+   "tags": {
+    "name": "Linda's",
+    "tourism": "hotel"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1871228129,
+   "lat": 2.673411,
+   "lon": 98.8605641,
+   "tags": {
+    "name": "Romlan",
+    "tourism": "guest_house"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1871228137,
+   "lat": 2.6764767,
+   "lon": 98.8563067,
+   "tags": {
+    "name": "Toledo Inn 2",
+    "tourism": "hotel"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1871228140,
+   "lat": 2.6683482,
+   "lon": 98.8522651,
+   "tags": {
+    "name": "Smiley's",
+    "tourism": "hotel"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1871228148,
+   "lat": 2.6765576,
+   "lon": 98.8557954,
+   "tags": {
+    "name": "Lekjon Cottage & restaurant",
+    "tourism": "hotel"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1871228156,
+   "lat": 2.6775492,
+   "lon": 98.8538154,
+   "tags": {
+    "image": "https://photos.app.goo.gl/XCtPXHmfcwQJyk7S8",
+    "name": "Samosir Cottages",
+    "tourism": "hotel"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1871228158,
+   "lat": 2.6776616,
+   "lon": 98.8542766,
+   "tags": {
+    "image": "https://photos.app.goo.gl/MhfWWyDAe9xxnynk8",
+    "name": "Anju",
+    "tourism": "hotel"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1871228163,
+   "lat": 2.6717966,
+   "lon": 98.8608811,
+   "tags": {
+    "name": "Bernard's Guesthouse",
+    "tourism": "hotel"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1871228166,
+   "lat": 2.6753823,
+   "lon": 98.8566219,
+   "tags": {
+    "name": "RedDorz",
+    "tourism": "hotel"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1871228168,
+   "lat": 2.6688851,
+   "lon": 98.8578635,
+   "tags": {
+    "name": "Sahatma",
+    "tourism": "hotel"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1871228171,
+   "lat": 2.6703864,
+   "lon": 98.8550318,
+   "tags": {
+    "name": "Horas Family Home",
+    "tourism": "hotel"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1925503506,
+   "lat": 2.6759954,
+   "lon": 98.8513221,
+   "tags": {
+    "email": "visitlaketoba@gmail.com",
+    "name": "Sibayak",
+    "phone": "+62 812-6568-6890",
+    "tourism": "hostel",
+    "website": "http://www.visitlaketoba.com"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1925503510,
+   "lat": 2.6770996,
+   "lon": 98.8506524,
+   "tags": {
+    "name": "Bamboo",
+    "tourism": "hostel"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1925503511,
+   "lat": 2.675581,
+   "lon": 98.851643,
+   "tags": {
+    "name": "Laster Jony's",
+    "tourism": "guest_house"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1925503512,
+   "lat": 2.6751813,
+   "lon": 98.8577656,
+   "tags": {
+    "amenity": "restaurant",
+    "cuisine": "regional",
+    "name": "Maruba"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1925503513,
+   "lat": 2.6758564,
+   "lon": 98.8572614,
+   "tags": {
+    "amenity": "restaurant",
+    "name": "Marco Polo"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1925503514,
+   "lat": 2.6743668,
+   "lon": 98.8580446,
+   "tags": {
+    "name": "Rodeo",
+    "tourism": "hostel"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1925503515,
+   "lat": 2.6766014,
+   "lon": 98.8541283,
+   "tags": {
+    "name": "Endy's",
+    "tourism": "hostel"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1925503516,
+   "lat": 2.6764282,
+   "lon": 98.8538637,
+   "tags": {
+    "name": "Cotney",
+    "tourism": "hostel"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1925503517,
+   "lat": 2.6734772,
+   "lon": 98.859965,
+   "tags": {
+    "name": "Hotel Sumber Pulomas",
+    "tourism": "hotel"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1925503518,
+   "lat": 2.6740024,
+   "lon": 98.8587098,
+   "tags": {
+    "name": "Pandu Lakeside",
+    "tourism": "hotel"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1925503519,
+   "lat": 2.6762637,
+   "lon": 98.8509528,
+   "tags": {
+    "name": "Tony's",
+    "tourism": "hostel"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1925529911,
+   "lat": 2.6684904,
+   "lon": 98.859481,
+   "tags": {
+    "amenity": "restaurant",
+    "diet:vegan": "yes",
+    "name": "Juwita Cafe"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1925529916,
+   "lat": 2.6685721,
+   "lon": 98.8598939,
+   "tags": {
+    "amenity": "restaurant",
+    "name": "Juwita Cafe"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1925529931,
+   "lat": 2.6684348,
+   "lon": 98.8588305,
+   "tags": {
+    "name": "Elsina",
+    "tourism": "hostel"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1925531451,
+   "lat": 2.671382,
+   "lon": 98.8519881,
+   "tags": {
+    "amenity": "restaurant",
+    "name": "Hot chilli"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1926803245,
+   "lat": 2.6690189,
+   "lon": 98.8610916,
+   "tags": {
+    "amenity": "restaurant",
+    "name": "Rohanna's"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1926803246,
+   "lat": 2.6691046,
+   "lon": 98.8521437,
+   "tags": {
+    "name": "Theresya Appartment",
+    "tourism": "hostel"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1926803247,
+   "lat": 2.66936,
+   "lon": 98.8532437,
+   "tags": {
+    "name": "Toba Village Inn",
+    "tourism": "hostel"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1926803249,
+   "lat": 2.668826,
+   "lon": 98.8611667,
+   "tags": {
+    "name": "Ebikel",
+    "tourism": "hostel"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1926804787,
+   "lat": 2.6679684,
+   "lon": 98.860265,
+   "tags": {
+    "name": "Samosir Villas",
+    "tourism": "hotel"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1926813176,
+   "lat": 2.6770675,
+   "lon": 98.8530235,
+   "tags": {
+    "amenity": "restaurant",
+    "cuisine": "regional",
+    "name": "Jenny's"
+   }
+  },
+  {
+   "type": "node",
+   "id": 2170872868,
+   "lat": 2.6866346,
+   "lon": 98.822961,
+   "tags": {
+    "admin_level": "7",
+    "name": "Unjur",
+    "place": "village",
+    "ref": "12.17.01.2020",
+    "wikidata": "Q19744856"
+   }
+  },
+  {
+   "type": "node",
+   "id": 2170924262,
+   "lat": 2.6805874,
+   "lon": 98.8370292,
+   "tags": {
+    "amenity": "restaurant",
+    "name": "Rehandy Coffe Shop"
+   }
+  },
+  {
+   "type": "node",
+   "id": 2170948504,
+   "lat": 2.6794723,
+   "lon": 98.8309921,
+   "tags": {
+    "admin_level": "7",
+    "name": "Ambarita",
+    "place": "village",
+    "ref": "12.17.01.2005",
+    "wikidata": "Q12471758"
+   }
+  },
+  {
+   "type": "node",
+   "id": 2170992781,
+   "lat": 2.7064089,
+   "lon": 98.8104269,
+   "tags": {
+    "addr:city": "Tolping",
+    "addr:street": "Jalan Raya Ambarita",
+    "amenity": "restaurant",
+    "contact:instagram": "https://www.instagram.com/borobudurhouse_samosir",
+    "contact:phone": "+62 821 6073 0877",
+    "cuisine": "indonesian",
+    "diet:vegan": "only",
+    "name": "Vegan Cafe",
+    "name:en": "Borobudur House"
+   }
+  },
+  {
+   "type": "node",
+   "id": 2170996184,
+   "lat": 2.7419976,
+   "lon": 98.7744077,
+   "tags": {
+    "admin_level": "7",
+    "name": "Marlumba",
+    "place": "village",
+    "ref": "12.17.01.2018",
+    "wikidata": "Q19728916"
+   }
+  },
+  {
+   "type": "node",
+   "id": 2170996186,
+   "lat": 2.7079088,
+   "lon": 98.8112568,
+   "tags": {
+    "name": "Vanesha Inn Resort",
+    "tourism": "guest_house"
+   }
+  },
+  {
+   "type": "node",
+   "id": 2170997840,
+   "lat": 2.6719381,
+   "lon": 98.8529635,
+   "tags": {
+    "name": "Tuk Tuk",
+    "place": "village"
+   }
+  },
+  {
+   "type": "node",
+   "id": 2171164797,
+   "lat": 2.6739433,
+   "lon": 98.8589909,
+   "tags": {
+    "amenity": "restaurant"
+   }
+  },
+  {
+   "type": "node",
+   "id": 2356896424,
+   "lat": 2.6699066,
+   "lon": 98.854951,
+   "tags": {
+    "name": "Bagus Bay Homestay",
+    "phone": "+62 625 451287",
+    "source": "survey",
+    "tourism": "guest_house",
+    "website": "https://www.bagus-bay.page.tl/"
+   }
+  },
+  {
+   "type": "node",
+   "id": 2427525277,
+   "lat": 2.6276086,
+   "lon": 98.8820882,
+   "tags": {
+    "admin_level": "7",
+    "name": "Huta Ginjang",
+    "place": "village",
+    "ref": "12.17.01.2010",
+    "wikidata": "Q12486010"
+   }
+  },
+  {
+   "type": "node",
+   "id": 2813172909,
+   "lat": 2.5270632,
+   "lon": 98.6330444,
+   "tags": {
+    "name": "Tele",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 3398430449,
+   "lat": 2.6764208,
+   "lon": 98.8509953,
+   "tags": {
+    "name": "Abady Guesthouse",
+    "tourism": "guest_house"
+   }
+  },
+  {
+   "type": "node",
+   "id": 3398430452,
+   "lat": 2.67122,
+   "lon": 98.861474,
+   "tags": {
+    "amenity": "restaurant",
+    "name": "Franky Restaurant"
+   }
+  },
+  {
+   "type": "node",
+   "id": 3398430453,
+   "lat": 2.6687792,
+   "lon": 98.8584462,
+   "tags": {
+    "amenity": "restaurant",
+    "name": "Horas restaurant",
+    "name:en": "Horas Shugary"
+   }
+  },
+  {
+   "type": "node",
+   "id": 3398430454,
+   "lat": 2.6694231,
+   "lon": 98.8541128,
+   "tags": {
+    "name": "Liberta Homestay",
+    "tourism": "guest_house",
+    "wheelchair": "limited"
+   }
+  },
+  {
+   "type": "node",
+   "id": 3398430455,
+   "lat": 2.6715121,
+   "lon": 98.8613011,
+   "tags": {
+    "name": "Merlyn Guesthouse",
+    "tourism": "hotel"
+   }
+  },
+  {
+   "type": "node",
+   "id": 3398430458,
+   "lat": 2.6716553,
+   "lon": 98.8612466,
+   "tags": {
+    "name": "Leokap Homestay",
+    "tourism": "guest_house"
+   }
+  },
+  {
+   "type": "node",
+   "id": 3982075769,
+   "lat": 2.6713669,
+   "lon": 98.8519285,
+   "tags": {
+    "name": "Hot Chilli",
+    "note": "only one room, Homestay",
+    "tourism": "guest_house"
+   }
+  },
+  {
+   "type": "node",
+   "id": 4270685815,
+   "lat": 2.673485,
+   "lon": 98.8494715,
+   "tags": {
+    "name": "Christina Guesthouse",
+    "tourism": "guest_house"
+   }
+  },
+  {
+   "type": "node",
+   "id": 4270685816,
+   "lat": 2.6732441,
+   "lon": 98.8485405,
+   "tags": {
+    "amenity": "restaurant",
+    "name": "Donny's Rst & Homestay",
+    "tourism": "guest_house"
+   }
+  },
+  {
+   "type": "node",
+   "id": 4270685826,
+   "lat": 2.6732495,
+   "lon": 98.8489885,
+   "tags": {
+    "name": "Logan",
+    "tourism": "guest_house"
+   }
+  },
+  {
+   "type": "node",
+   "id": 4270685832,
+   "lat": 2.6731645,
+   "lon": 98.8498565,
+   "tags": {
+    "name": "Parnas",
+    "tourism": "guest_house"
+   }
+  },
+  {
+   "type": "node",
+   "id": 4270685843,
+   "lat": 2.6733017,
+   "lon": 98.8488463,
+   "tags": {
+    "amenity": "restaurant",
+    "name": "Yogis"
+   }
+  },
+  {
+   "type": "node",
+   "id": 4307231389,
+   "lat": 2.6571909,
+   "lon": 98.8154637,
+   "tags": {
+    "name": "john's home stay",
+    "phone": "+62 813-9788-7932",
+    "tourism": "guest_house"
+   }
+  },
+  {
+   "type": "node",
+   "id": 4397362437,
+   "lat": 2.752236,
+   "lon": 98.7441685,
+   "tags": {
+    "admin_level": "7",
+    "name": "Simanindo",
+    "place": "village",
+    "ref": "12.17.01.2019",
+    "wikidata": "Q19733938"
+   }
+  },
+  {
+   "type": "node",
+   "id": 4539695359,
+   "lat": 2.6192092,
+   "lon": 98.6748181,
+   "tags": {
+    "amenity": "restaurant",
+    "description": "Restaurant & hot springs",
+    "name": "Usaha Kita"
+   }
+  },
+  {
+   "type": "node",
+   "id": 4539697950,
+   "lat": 2.5928296,
+   "lon": 98.6877435,
+   "tags": {
+    "amenity": "restaurant"
+   }
+  },
+  {
+   "type": "node",
+   "id": 4539697953,
+   "lat": 2.5266625,
+   "lon": 98.9362288,
+   "tags": {
+    "amenity": "cafe",
+    "name": "warung"
+   }
+  },
+  {
+   "type": "node",
+   "id": 4539698039,
+   "lat": 2.5606953,
+   "lon": 98.8965314,
+   "tags": {
+    "amenity": "cafe",
+    "name": "Kedai Alex Sijabat"
+   }
+  },
+  {
+   "type": "node",
+   "id": 4754443625,
+   "lat": 2.6717177,
+   "lon": 98.8611562,
+   "tags": {
+    "name": "Matahari",
+    "tourism": "hotel"
+   }
+  },
+  {
+   "type": "node",
+   "id": 4809275821,
+   "lat": 2.6691655,
+   "lon": 98.8525558,
+   "tags": {
+    "addr:postcode": "22395",
+    "addr:street": "Jalan Lingkar",
+    "amenity": "restaurant",
+    "cuisine": "asian",
+    "email": "widyalaketobafood@gmail.com",
+    "name": "Widya",
+    "name:de": "Widya",
+    "name:en": "Widya",
+    "opening_hours": "Mo-Su 08:00-23:00",
+    "operator": "Ana Ambarita",
+    "phone": "+62 813 7513 3346"
+   }
+  },
+  {
+   "type": "node",
+   "id": 4834362923,
+   "lat": 2.6771011,
+   "lon": 98.8546851,
+   "tags": {
+    "addr:street": "Jalan Lingkar",
+    "amenity": "restaurant",
+    "cuisine": "local;indonesian",
+    "name": "The Orani Restaurant",
+    "name:en": "The Orari Restaurant"
+   }
+  },
+  {
+   "type": "node",
+   "id": 4845539640,
+   "lat": 2.7516551,
+   "lon": 98.7448694,
+   "tags": {
+    "amenity": "fast_food",
+    "name": "Gorengan"
+   }
+  },
+  {
+   "type": "node",
+   "id": 4845539641,
+   "lat": 2.697473,
+   "lon": 98.6903487,
+   "tags": {
+    "name": "Prima Hotel",
+    "tourism": "hotel"
+   }
+  },
+  {
+   "type": "node",
+   "id": 4845539642,
+   "lat": 2.6948844,
+   "lon": 98.6918683,
+   "tags": {
+    "amenity": "restaurant",
+    "name": "BPK Emiya"
+   }
+  },
+  {
+   "type": "node",
+   "id": 4845539645,
+   "lat": 2.6033667,
+   "lon": 98.7005023,
+   "tags": {
+    "name": "Hotel Dainang",
+    "name:en": "Hotel Dainang",
+    "tourism": "hotel"
+   }
+  },
+  {
+   "type": "node",
+   "id": 4938465677,
+   "lat": 2.6709178,
+   "lon": 98.8559211,
+   "tags": {
+    "addr:city": "PANGURURAN",
+    "addr:postcode": "22395",
+    "addr:street": "Jalan Lingkar",
+    "amenity": "restaurant",
+    "capacity": "50",
+    "cuisine": "american;asian;coffee_shop;fish_and_chips",
+    "name": "TUK-TUK SARAPAN Guesthouse & resto",
+    "smoking": "separated"
+   }
+  },
+  {
+   "type": "node",
+   "id": 4970955922,
+   "lat": 2.6958487,
+   "lon": 98.6900901,
+   "tags": {
+    "amenity": "restaurant",
+    "name": "Ibunda"
+   }
+  },
+  {
+   "type": "node",
+   "id": 5065479931,
+   "lat": 2.6449244,
+   "lon": 98.7415054,
+   "tags": {
+    "admin_level": "7",
+    "name": "Parhorasan",
+    "place": "village",
+    "ref": "12.17.08.2005",
+    "wikidata": "Q12503171"
+   }
+  },
+  {
+   "type": "node",
+   "id": 5162994221,
+   "lat": 2.6770115,
+   "lon": 98.8549836,
+   "tags": {
+    "internet_access": "wlan",
+    "name": "Hariara",
+    "name:en": "Hariara",
+    "tourism": "guest_house"
+   }
+  },
+  {
+   "type": "node",
+   "id": 5291631123,
+   "lat": 2.676608,
+   "lon": 98.8555491,
+   "tags": {
+    "name": "Tamado Cottages",
+    "tourism": "hotel"
+   }
+  },
+  {
+   "type": "node",
+   "id": 5321896323,
+   "lat": 2.6702658,
+   "lon": 98.8603165,
+   "tags": {
+    "name": "Tuktuk View Inn",
+    "tourism": "hotel"
+   }
+  },
+  {
+   "type": "node",
+   "id": 5344390422,
+   "lat": 2.5239011,
+   "lon": 98.742643,
+   "tags": {
+    "amenity": "restaurant"
+   }
+  },
+  {
+   "type": "node",
+   "id": 5358459523,
+   "lat": 2.673457,
+   "lon": 98.8523426,
+   "tags": {
+    "amenity": "restaurant",
+    "name": "Rohana's",
+    "opening_hours": "Mo-Su 08:00-22:00"
+   }
+  },
+  {
+   "type": "node",
+   "id": 5358466922,
+   "lat": 2.671095,
+   "lon": 98.861388,
+   "tags": {
+    "amenity": "restaurant",
+    "cuisine": "indonesian",
+    "name": "Lomak",
+    "name:en": "Lomak"
+   }
+  },
+  {
+   "type": "node",
+   "id": 5418160731,
+   "lat": 2.6536813,
+   "lon": 98.860361,
+   "tags": {
+    "name": "Tomokparsaroan",
+    "place": "village"
+   }
+  },
+  {
+   "type": "node",
+   "id": 5432970260,
+   "lat": 2.6508482,
+   "lon": 98.8636205,
+   "tags": {
+    "amenity": "cafe"
+   }
+  },
+  {
+   "type": "node",
+   "id": 5487608823,
+   "lat": 2.6688628,
+   "lon": 98.8602871,
+   "tags": {
+    "amenity": "restaurant",
+    "cuisine": "american;pizza",
+    "internet_access": "wlan",
+    "name": "Pizzeria Tuktuk"
+   }
+  },
+  {
+   "type": "node",
+   "id": 5529536013,
+   "lat": 2.6192379,
+   "lon": 98.6752587,
+   "tags": {
+    "addr:city": "Samosir",
+    "addr:street": "Aek Rangat Pangururan",
+    "name": "Hotel Sitio Tio",
+    "phone": "+62 626 20036",
+    "tourism": "hotel"
+   }
+  },
+  {
+   "type": "node",
+   "id": 5547411021,
+   "lat": 2.742353,
+   "lon": 98.7743704,
+   "tags": {
+    "amenity": "restaurant",
+    "name": "Warung"
+   }
+  },
+  {
+   "type": "node",
+   "id": 5558377448,
+   "lat": 2.6660214,
+   "lon": 98.848679,
+   "tags": {
+    "amenity": "cafe",
+    "name": "Marissa coffee shop"
+   }
+  },
+  {
+   "type": "node",
+   "id": 5558390621,
+   "lat": 2.6746222,
+   "lon": 98.8578599,
+   "tags": {
+    "name": "D'pos from lake homestay & restaurant",
+    "tourism": "guest_house"
+   }
+  },
+  {
+   "type": "node",
+   "id": 5645206123,
+   "lat": 2.676309,
+   "lon": 98.855626,
+   "tags": {
+    "name": "Lekjon Cottage",
+    "tourism": "hotel"
+   }
+  },
+  {
+   "type": "node",
+   "id": 5692007659,
+   "lat": 2.6074564,
+   "lon": 98.695933,
+   "tags": {
+    "alt_name:ar": "بانجوروران;بانغوروران",
+    "name": "Pangururan",
+    "name:ar": "بانقوروران",
+    "name:ko": "팡우루란",
+    "place": "town"
+   }
+  },
+  {
+   "type": "node",
+   "id": 5866043289,
+   "lat": 2.6770421,
+   "lon": 98.8544626,
+   "tags": {
+    "amenity": "restaurant",
+    "name": "Jenny's Restaurant",
+    "name:en": "Jenny's Restaurant"
+   }
+  },
+  {
+   "type": "node",
+   "id": 5880172885,
+   "lat": 2.6772974,
+   "lon": 98.8508225,
+   "tags": {
+    "amenity": "restaurant",
+    "cuisine": "regional",
+    "name": "Rahmat",
+    "name:en": "Jenny's"
+   }
+  },
+  {
+   "type": "node",
+   "id": 5917604685,
+   "lat": 2.6174014,
+   "lon": 98.8722283,
+   "tags": {
+    "amenity": "restaurant",
+    "name": "restaParhallow restaurant with beautiful viewpoint"
+   }
+  },
+  {
+   "type": "node",
+   "id": 6235385614,
+   "lat": 2.6482085,
+   "lon": 98.6893488,
+   "tags": {
+    "amenity": "restaurant",
+    "cuisine": "batak;indonesian",
+    "name": "Rumah Makan Khas Batak Hasian 2"
+   }
+  },
+  {
+   "type": "node",
+   "id": 6239519687,
+   "lat": 2.5937788,
+   "lon": 98.8172392,
+   "tags": {
+    "name": "Dolok Niapul",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 6249664548,
+   "lat": 2.6764053,
+   "lon": 98.8534186,
+   "tags": {
+    "amenity": "restaurant",
+    "name": "Samuel’s Restaurant",
+    "name:en": "Samuel’s Restaurant (Delicious food)",
+    "name:nl": "Samuel’s Restaurant (Overheerlijk eten)"
+   }
+  },
+  {
+   "type": "node",
+   "id": 6251401285,
+   "lat": 2.6571108,
+   "lon": 98.8555373,
+   "tags": {
+    "amenity": "cafe",
+    "cuisine": "indonesian;sandwich;pasta;italian_pizza;local",
+    "internet_access": "wlan",
+    "name": "El Tona Coffee House (Real cappucino)",
+    "name:nl": "El Tona Koffiehuis (Echte cappucino)",
+    "opening_hours": "Mo-Su 11:00-22:00"
+   }
+  },
+  {
+   "type": "node",
+   "id": 6296940188,
+   "lat": 2.6999832,
+   "lon": 98.6917056,
+   "tags": {
+    "amenity": "restaurant",
+    "cuisine": "indonesian",
+    "name": "small Streetfoodrestaurant"
+   }
+  },
+  {
+   "type": "node",
+   "id": 6366771086,
+   "lat": 2.5298202,
+   "lon": 98.7345688,
+   "tags": {
+    "amenity": "restaurant",
+    "name": "good view good food good price restaurant"
+   }
+  },
+  {
+   "type": "node",
+   "id": 6380387186,
+   "lat": 2.6731362,
+   "lon": 98.8505699,
+   "tags": {
+    "addr:street": "Jalan Lingkar",
+    "internet_access": "wlan",
+    "name": "Juma Cottages",
+    "opening_hours": "Mo-Su 07:00-22:00",
+    "phone": "+62 852-6242-0082",
+    "tourism": "guest_house"
+   }
+  },
+  {
+   "type": "node",
+   "id": 6387071086,
+   "lat": 2.7062977,
+   "lon": 98.8104382,
+   "tags": {
+    "addr:city": "Tolping",
+    "addr:street": "Jalan Raya Ambarita",
+    "amenity": "restaurant",
+    "contact:phone": "+62 813 7694 2477",
+    "contact:website": "https://www.happycow.net/reviews/buddha-cafe-sumatra-19974",
+    "diet:vegan": "only",
+    "name": "Buddha’s Cafe"
+   }
+  },
+  {
+   "type": "node",
+   "id": 6683439985,
+   "lat": 2.6515096,
+   "lon": 98.8628661,
+   "tags": {
+    "amenity": "restaurant",
+    "name": "Pansit Frensin",
+    "opening_hours": "Mo-Su 06:00-20:00"
+   }
+  },
+  {
+   "type": "node",
+   "id": 6684313585,
+   "lat": 2.655105,
+   "lon": 98.8580072,
+   "tags": {
+    "amenity": "restaurant",
+    "name": "Family Restaurant - Chinese",
+    "opening_hours": "Mo-Su 12:00-22:00"
+   }
+  },
+  {
+   "type": "node",
+   "id": 6691037085,
+   "lat": 2.6601758,
+   "lon": 98.8454367,
+   "tags": {
+    "amenity": "restaurant",
+    "name": "BPK",
+    "opening_hours": "24/7"
+   }
+  },
+  {
+   "type": "node",
+   "id": 6709044385,
+   "lat": 2.6685391,
+   "lon": 98.8592307,
+   "tags": {
+    "amenity": "cafe",
+    "cuisine": "indonesian",
+    "email": "coffee2go@tabocottages.com",
+    "internet_access": "wlan",
+    "name": "Coffee2go",
+    "phone": "+62 813-7574-8172"
+   }
+  },
+  {
+   "type": "node",
+   "id": 6709476385,
+   "lat": 2.6528522,
+   "lon": 98.8613475,
+   "tags": {
+    "amenity": "restaurant",
+    "name": "New Tomok restaurant"
+   }
+  },
+  {
+   "type": "node",
+   "id": 6714546986,
+   "lat": 2.6770251,
+   "lon": 98.8524824,
+   "tags": {
+    "amenity": "cafe",
+    "name": "Karaoke & coffee shop"
+   }
+  },
+  {
+   "type": "node",
+   "id": 7095593885,
+   "lat": 2.5242943,
+   "lon": 98.9429628,
+   "tags": {
+    "amenity": "cafe",
+    "name": "Warung"
+   }
+  },
+  {
+   "type": "node",
+   "id": 7099284185,
+   "lat": 2.677324,
+   "lon": 98.8440259,
+   "tags": {
+    "amenity": "restaurant",
+    "cuisine": "local;indonesian;italian",
+    "internet_access": "wlan",
+    "name": "Joe’s restaurant",
+    "phone": "+6281362172110"
+   }
+  },
+  {
+   "type": "node",
+   "id": 7399790985,
+   "lat": 2.6690316,
+   "lon": 98.8621033,
+   "tags": {
+    "addr:street": "Jalan Lingkar",
+    "internet_access": "wlan",
+    "name": "Sibigo Guest House",
+    "name:ru": "Сибиго отель",
+    "phone": "+62 813-7531-8783",
+    "tourism": "hotel"
+   }
+  },
+  {
+   "type": "node",
+   "id": 7723766587,
+   "lat": 2.6035951,
+   "lon": 98.704843,
+   "tags": {
+    "amenity": "cafe",
+    "cuisine": "asian",
+    "name": "Radero cafe. Couchsurfing place.",
+    "opening_hours": "Mo-Su 09:00-22:00",
+    "operator": "Pana"
+   }
+  },
+  {
+   "type": "node",
+   "id": 7728025885,
+   "lat": 2.6297199,
+   "lon": 98.8646315,
+   "tags": {
+    "addr:street": "Samosir jalan lintas",
+    "email": "panamotan.sidabutar@gmail.com",
+    "name": "Sidabutar's Homestay",
+    "opening_hours": "24/7",
+    "operator": "Marisi Situmorang",
+    "phone": "+62 813-7713-1503",
+    "tourism": "guest_house"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8626135718,
+   "lat": 2.5803324,
+   "lon": 98.6434641,
+   "tags": {
+    "admin_level": "7",
+    "name": "Habeahan Naburahan",
+    "place": "village",
+    "ref": "12.17.06.2012",
+    "wikidata": "Q19726127"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8626135719,
+   "lat": 2.5802279,
+   "lon": 98.6263919,
+   "tags": {
+    "admin_level": "7",
+    "name": "Singkam",
+    "place": "village",
+    "ref": "12.17.06.2002",
+    "wikidata": "Q12515253"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8626135720,
+   "lat": 2.615811,
+   "lon": 98.6432469,
+   "tags": {
+    "admin_level": "7",
+    "name": "Huta Ginjang",
+    "place": "village",
+    "ref": "12.17.06.2001",
+    "wikidata": "Q13545485"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8626135721,
+   "lat": 2.5804316,
+   "lon": 98.6467391,
+   "tags": {
+    "admin_level": "7",
+    "name": "Aek Sipitudai",
+    "place": "village",
+    "ref": "12.17.06.2004",
+    "wikidata": "Q12470850"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8628730008,
+   "lat": 2.4756539,
+   "lon": 98.7306493,
+   "tags": {
+    "name": "Janji Maria",
+    "place": "village"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8628730009,
+   "lat": 2.4941812,
+   "lon": 98.748486,
+   "tags": {
+    "admin_level": "7",
+    "name": "Parsaoran",
+    "place": "village",
+    "ref": "12.17.09.2007",
+    "wikidata": "Q19730377"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8628730010,
+   "lat": 2.5013628,
+   "lon": 98.7374352,
+   "tags": {
+    "admin_level": "7",
+    "name": "Cinta Maju",
+    "place": "village",
+    "ref": "12.17.09.2006",
+    "wikidata": "Q12479135"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8628730011,
+   "lat": 2.3864543,
+   "lon": 98.8167428,
+   "tags": {
+    "admin_level": "7",
+    "name": "Janji Raja",
+    "place": "village",
+    "ref": "12.17.09.2002",
+    "wikidata": "Q12487358"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8628730012,
+   "lat": 2.3995535,
+   "lon": 98.8073444,
+   "tags": {
+    "admin_level": "7",
+    "name": "Holbung",
+    "place": "village",
+    "ref": "12.17.09.2001",
+    "wikidata": "Q14631491"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8628730013,
+   "lat": 2.4364708,
+   "lon": 98.7834405,
+   "tags": {
+    "admin_level": "7",
+    "name": "Sabulan",
+    "place": "village",
+    "ref": "12.17.09.2003",
+    "wikidata": "Q12511416"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8628730014,
+   "lat": 2.4775673,
+   "lon": 98.7663602,
+   "tags": {
+    "admin_level": "7",
+    "name": "Buntu Mauli",
+    "place": "village",
+    "ref": "12.17.09.2004",
+    "wikidata": "Q12477967"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8628730015,
+   "lat": 2.5255223,
+   "lon": 98.7027168,
+   "tags": {
+    "admin_level": "7",
+    "name": "Hariara Pohan",
+    "place": "village",
+    "ref": "12.17.05.2003",
+    "wikidata": "Q12485314"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8628730016,
+   "lat": 2.5540276,
+   "lon": 98.664388,
+   "tags": {
+    "admin_level": "7",
+    "name": "Turpuk Sihotang",
+    "place": "village",
+    "ref": "12.17.05.2011",
+    "wikidata": "Q12522802"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8628730017,
+   "lat": 2.5508229,
+   "lon": 98.666059,
+   "tags": {
+    "name": "Harian Boho",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672064412,
+   "lat": 2.5925213,
+   "lon": 98.6748111,
+   "tags": {
+    "name": "Sitao-Tao",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672064413,
+   "lat": 2.5915996,
+   "lon": 98.6721611,
+   "tags": {
+    "name": "Peabang",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672064414,
+   "lat": 2.5862192,
+   "lon": 98.663739,
+   "tags": {
+    "name": "Aek Baringin",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672064415,
+   "lat": 2.5789953,
+   "lon": 98.6469591,
+   "tags": {
+    "name": "Aek Limbong",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672064416,
+   "lat": 2.5810318,
+   "lon": 98.642056,
+   "tags": {
+    "name": "Simarihit",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672154717,
+   "lat": 2.5816802,
+   "lon": 98.6449474,
+   "tags": {
+    "name": "Aek Tin-Tin",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672154718,
+   "lat": 2.5862567,
+   "lon": 98.6397332,
+   "tags": {
+    "name": "Limbong",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672154719,
+   "lat": 2.5664553,
+   "lon": 98.6319119,
+   "tags": {
+    "name": "Sosor Nangka",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672154720,
+   "lat": 2.5687168,
+   "lon": 98.631767,
+   "tags": {
+    "name": "Sisakolak",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672154721,
+   "lat": 2.5679987,
+   "lon": 98.6272556,
+   "tags": {
+    "name": "Aek Mual",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672154722,
+   "lat": 2.5766267,
+   "lon": 98.6251527,
+   "tags": {
+    "name": "Pandan",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672154723,
+   "lat": 2.594046,
+   "lon": 98.626416,
+   "tags": {
+    "name": "Batu-Batu",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672154724,
+   "lat": 2.60131,
+   "lon": 98.6202174,
+   "tags": {
+    "name": "Hutabalian",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672154725,
+   "lat": 2.5990431,
+   "lon": 98.6178678,
+   "tags": {
+    "name": "Hutaorat",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672154726,
+   "lat": 2.6273217,
+   "lon": 98.6190104,
+   "tags": {
+    "name": "Janji Martobu",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672154727,
+   "lat": 2.6119312,
+   "lon": 98.6251044,
+   "tags": {
+    "name": "Hobon Pardomuan",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672154728,
+   "lat": 2.6183833,
+   "lon": 98.6221111,
+   "tags": {
+    "name": "Batu Bolon",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672154729,
+   "lat": 2.6041609,
+   "lon": 98.6308765,
+   "tags": {
+    "name": "Sagala",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672154730,
+   "lat": 2.611106,
+   "lon": 98.6310375,
+   "tags": {
+    "name": "Simanggiring",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672154746,
+   "lat": 2.6163362,
+   "lon": 98.6413479,
+   "tags": {
+    "name": "Nahula-Hula",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672154747,
+   "lat": 2.6149536,
+   "lon": 98.6328184,
+   "tags": {
+    "name": "Ruma-Ruma",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672154748,
+   "lat": 2.619873,
+   "lon": 98.6327541,
+   "tags": {
+    "name": "Panjaitan II",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672154749,
+   "lat": 2.6201517,
+   "lon": 98.6288166,
+   "tags": {
+    "name": "Panjaitan III",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672154750,
+   "lat": 2.6238385,
+   "lon": 98.6330008,
+   "tags": {
+    "name": "Panjaitan",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672154794,
+   "lat": 2.6674235,
+   "lon": 98.6201316,
+   "tags": {
+    "name": "Susapi",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672154795,
+   "lat": 2.6644254,
+   "lon": 98.6244151,
+   "tags": {
+    "name": "Sosor",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672154796,
+   "lat": 2.6593132,
+   "lon": 98.6200511,
+   "tags": {
+    "name": "Huta Dolok",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672154799,
+   "lat": 2.6473527,
+   "lon": 98.6137104,
+   "tags": {
+    "name": "Lumban Batu-Batu",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672154801,
+   "lat": 2.6457933,
+   "lon": 98.6141235,
+   "tags": {
+    "name": "Sitabu",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672154802,
+   "lat": 2.6429854,
+   "lon": 98.6129004,
+   "tags": {
+    "name": "Sosor Nabolah",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672154803,
+   "lat": 2.6415706,
+   "lon": 98.6125892,
+   "tags": {
+    "name": "Lumban Boga",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672154804,
+   "lat": 2.6421815,
+   "lon": 98.61422,
+   "tags": {
+    "name": "Sepingan",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672154805,
+   "lat": 2.6421119,
+   "lon": 98.6171919,
+   "tags": {
+    "name": "Siboro",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672154829,
+   "lat": 2.6435962,
+   "lon": 98.62504,
+   "tags": {
+    "name": "Sapura",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672154832,
+   "lat": 2.6331199,
+   "lon": 98.6375499,
+   "tags": {
+    "name": "Tulas",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672154862,
+   "lat": 2.6279434,
+   "lon": 98.6475277,
+   "tags": {
+    "name": "Pandulangan",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672154864,
+   "lat": 2.6277987,
+   "lon": 98.6596486,
+   "tags": {
+    "name": "Jangak",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672154865,
+   "lat": 2.6251568,
+   "lon": 98.6658096,
+   "tags": {
+    "name": "Sigorak",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672154867,
+   "lat": 2.6257302,
+   "lon": 98.6716998,
+   "tags": {
+    "name": "Lumban Bulu",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672154868,
+   "lat": 2.6203607,
+   "lon": 98.673749,
+   "tags": {
+    "name": "Daihang",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672154869,
+   "lat": 2.6188066,
+   "lon": 98.6744088,
+   "tags": {
+    "name": "Aek Rangat",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672154870,
+   "lat": 2.6148893,
+   "lon": 98.6859798,
+   "tags": {
+    "name": "Lumban Sosor",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672154871,
+   "lat": 2.6122849,
+   "lon": 98.689456,
+   "tags": {
+    "name": "Lumban Tonga-Tonga",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672154872,
+   "lat": 2.6103343,
+   "lon": 98.6913121,
+   "tags": {
+    "name": "Hutaparik",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672154873,
+   "lat": 2.6090482,
+   "lon": 98.6898422,
+   "tags": {
+    "name": "Simagonding",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672154874,
+   "lat": 2.6068189,
+   "lon": 98.688662,
+   "tags": {
+    "name": "Lumban Butar-Butar",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672154875,
+   "lat": 2.5999059,
+   "lon": 98.6850893,
+   "tags": {
+    "name": "Naibo",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672154877,
+   "lat": 2.595876,
+   "lon": 98.68613,
+   "tags": {
+    "name": "Batu Hapur",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672154879,
+   "lat": 2.5747725,
+   "lon": 98.6648655,
+   "tags": {
+    "name": "Pardugul",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672154880,
+   "lat": 2.5776985,
+   "lon": 98.6702835,
+   "tags": {
+    "name": "Parpasir",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672154885,
+   "lat": 2.5458549,
+   "lon": 98.6498773,
+   "tags": {
+    "name": "Tumpak Malau",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672154886,
+   "lat": 2.541857,
+   "lon": 98.6447757,
+   "tags": {
+    "name": "Lumban Sinaga",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672154887,
+   "lat": 2.540528,
+   "lon": 98.6409938,
+   "tags": {
+    "name": "Padamuhan",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672154888,
+   "lat": 2.5389953,
+   "lon": 98.6383545,
+   "tags": {
+    "name": "Sampuran Efrata",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672154889,
+   "lat": 2.5568733,
+   "lon": 98.6621725,
+   "tags": {
+    "name": "Lumban Guru",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672154891,
+   "lat": 2.5359084,
+   "lon": 98.6799127,
+   "tags": {
+    "name": "Holbung",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672154892,
+   "lat": 2.5423608,
+   "lon": 98.6827826,
+   "tags": {
+    "name": "Siganjang",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672154927,
+   "lat": 2.5283412,
+   "lon": 98.7095833,
+   "tags": {
+    "name": "Sampurnapitu",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672154928,
+   "lat": 2.5243111,
+   "lon": 98.6992621,
+   "tags": {
+    "name": "Sitoba-Toba",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672154929,
+   "lat": 2.5323177,
+   "lon": 98.7199902,
+   "tags": {
+    "name": "Sihotang",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672154930,
+   "lat": 2.5125315,
+   "lon": 98.7106937,
+   "tags": {
+    "name": "Hariara Pohan",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672154931,
+   "lat": 2.5156774,
+   "lon": 98.7121743,
+   "tags": {
+    "name": "Sipardabahan",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672154932,
+   "lat": 2.5234965,
+   "lon": 98.7156129,
+   "tags": {
+    "name": "Hutasuhut Nihuta",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672154935,
+   "lat": 2.5057788,
+   "lon": 98.7478048,
+   "tags": {
+    "name": "Tamba",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672154937,
+   "lat": 2.4879644,
+   "lon": 98.7558246,
+   "tags": {
+    "name": "Saitnihuta",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672154938,
+   "lat": 2.4708626,
+   "lon": 98.7688333,
+   "tags": {
+    "name": "Hadorassa",
+    "tourism": "hotel"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672155034,
+   "lat": 2.456108,
+   "lon": 98.77482,
+   "tags": {
+    "name": "Huta Gondang",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672155036,
+   "lat": 2.4416051,
+   "lon": 98.7771159,
+   "tags": {
+    "name": "Sitio-Tio",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672155148,
+   "lat": 2.379851,
+   "lon": 98.8211417,
+   "tags": {
+    "name": "Rapusan",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672155149,
+   "lat": 2.3814482,
+   "lon": 98.8126659,
+   "tags": {
+    "name": "Sosorpea",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672155150,
+   "lat": 2.3891341,
+   "lon": 98.8115555,
+   "tags": {
+    "name": "Bagasan",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672155151,
+   "lat": 2.3899863,
+   "lon": 98.8140553,
+   "tags": {
+    "name": "Uparangit",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672155153,
+   "lat": 2.3975168,
+   "lon": 98.8020873,
+   "tags": {
+    "name": "Sibuhamata",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672155155,
+   "lat": 2.400068,
+   "lon": 98.8072157,
+   "tags": {
+    "name": "Lumban Sirango-Rango",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672155156,
+   "lat": 2.4013061,
+   "lon": 98.8050002,
+   "tags": {
+    "name": "Aritonang",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672155158,
+   "lat": 2.402855,
+   "lon": 98.8042116,
+   "tags": {
+    "name": "Partungkoan",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672155159,
+   "lat": 2.4027586,
+   "lon": 98.7999952,
+   "tags": {
+    "name": "Lumban Raja",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672155160,
+   "lat": 2.4029515,
+   "lon": 98.8081652,
+   "tags": {
+    "name": "Apadatu",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672155193,
+   "lat": 2.4233182,
+   "lon": 98.7836552,
+   "tags": {
+    "name": "Parlumbanan",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672155254,
+   "lat": 2.4319579,
+   "lon": 98.7788701,
+   "tags": {
+    "name": "Pagaronan",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672155255,
+   "lat": 2.4344126,
+   "lon": 98.7815845,
+   "tags": {
+    "name": "Lumban Nahor",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672155256,
+   "lat": 2.4368458,
+   "lon": 98.7824857,
+   "tags": {
+    "name": "Pandiangan",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672155257,
+   "lat": 2.4587984,
+   "lon": 98.7741172,
+   "tags": {
+    "name": "Toguan",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672155258,
+   "lat": 2.4626305,
+   "lon": 98.7744445,
+   "tags": {
+    "name": "Ransang Bosi",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672155259,
+   "lat": 2.4965126,
+   "lon": 98.7357187,
+   "tags": {
+    "name": "Gambiri",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672155260,
+   "lat": 2.4919303,
+   "lon": 98.7427783,
+   "tags": {
+    "name": "Sigasio",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672155261,
+   "lat": 2.4716986,
+   "lon": 98.7289542,
+   "tags": {
+    "name": "Sitonggor",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672155262,
+   "lat": 2.4753055,
+   "lon": 98.7270337,
+   "tags": {
+    "name": "Pagar Batu",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672155263,
+   "lat": 2.4758736,
+   "lon": 98.7305367,
+   "tags": {
+    "name": "Sosor Toruan",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672155264,
+   "lat": 2.5024132,
+   "lon": 98.7455034,
+   "tags": {
+    "name": "Sitinjak",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672155265,
+   "lat": 2.5006553,
+   "lon": 98.7359977,
+   "tags": {
+    "name": "Tambana Godang",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672155266,
+   "lat": 2.4946958,
+   "lon": 98.7259018,
+   "tags": {
+    "name": "Pamonangan",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672155267,
+   "lat": 2.4942241,
+   "lon": 98.7226832,
+   "tags": {
+    "name": "Sosor Galung",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672155268,
+   "lat": 2.4949744,
+   "lon": 98.719368,
+   "tags": {
+    "name": "Sisanang",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672155269,
+   "lat": 2.4864263,
+   "lon": 98.7257141,
+   "tags": {
+    "name": "Siopatbahal",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672155270,
+   "lat": 2.4822192,
+   "lon": 98.7197435,
+   "tags": {
+    "name": "Sipitor",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672155271,
+   "lat": 2.487943,
+   "lon": 98.7197059,
+   "tags": {
+    "name": "Lumban Haro",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672576484,
+   "lat": 2.6800939,
+   "lon": 98.6246994,
+   "tags": {
+    "name": "Lagundi",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672576485,
+   "lat": 2.6966838,
+   "lon": 98.6159635,
+   "tags": {
+    "name": "Bahal-Bahal",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672576487,
+   "lat": 2.711291,
+   "lon": 98.6035448,
+   "tags": {
+    "name": "Pinal",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8672576489,
+   "lat": 2.7343212,
+   "lon": 98.5826611,
+   "tags": {
+    "name": "Binangara",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 9807788157,
+   "lat": 2.6031949,
+   "lon": 98.7001278,
+   "tags": {
+    "amenity": "cafe"
+   }
+  },
+  {
+   "type": "node",
+   "id": 10164962921,
+   "lat": 2.6778723,
+   "lon": 98.8328036,
+   "tags": {
+    "amenity": "restaurant"
+   }
+  },
+  {
+   "type": "node",
+   "id": 10696432860,
+   "lat": 2.6773927,
+   "lon": 98.8507817,
+   "tags": {
+    "name": "Reggae",
+    "tourism": "guest_house"
+   }
+  },
+  {
+   "type": "node",
+   "id": 10696432861,
+   "lat": 2.6772762,
+   "lon": 98.8509314,
+   "tags": {
+    "amenity": "restaurant",
+    "name": "Corner Cuisine Tuk Tuk"
+   }
+  },
+  {
+   "type": "node",
+   "id": 10696432862,
+   "lat": 2.6760719,
+   "lon": 98.8514838,
+   "tags": {
+    "name": "Penginapan Tamaview",
+    "tourism": "guest_house"
+   }
+  },
+  {
+   "type": "node",
+   "id": 10696432863,
+   "lat": 2.6756773,
+   "lon": 98.8518065,
+   "tags": {
+    "name": "Tony's Guesthouse",
+    "tourism": "guest_house"
+   }
+  },
+  {
+   "type": "node",
+   "id": 10696432864,
+   "lat": 2.6751432,
+   "lon": 98.8522302,
+   "tags": {
+    "name": "Murni's Guesthouse",
+    "tourism": "guest_house"
+   }
+  },
+  {
+   "type": "node",
+   "id": 10696432865,
+   "lat": 2.6747303,
+   "lon": 98.8526253,
+   "tags": {
+    "amenity": "restaurant",
+    "name": "Warmindo \"Jo & Jo\""
+   }
+  },
+  {
+   "type": "node",
+   "id": 10696432867,
+   "lat": 2.6708904,
+   "lon": 98.8525713,
+   "tags": {
+    "name": "Batak villa Ingot & Kiran",
+    "tourism": "guest_house"
+   }
+  },
+  {
+   "type": "node",
+   "id": 10696432868,
+   "lat": 2.6697099,
+   "lon": 98.852872,
+   "tags": {
+    "amenity": "restaurant",
+    "diet:halal": "yes",
+    "name": "Andria Rumah Makan national"
+   }
+  },
+  {
+   "type": "node",
+   "id": 10696432869,
+   "lat": 2.669897,
+   "lon": 98.8532756,
+   "tags": {
+    "amenity": "restaurant",
+    "name": "Warung Warkop martin"
+   }
+  },
+  {
+   "type": "node",
+   "id": 10696481922,
+   "lat": 2.670095,
+   "lon": 98.8542283,
+   "tags": {
+    "amenity": "restaurant"
+   }
+  },
+  {
+   "type": "node",
+   "id": 10696481924,
+   "lat": 2.6702587,
+   "lon": 98.8548977,
+   "tags": {
+    "amenity": "restaurant",
+    "name": "Tnang"
+   }
+  },
+  {
+   "type": "node",
+   "id": 10696481925,
+   "lat": 2.6710415,
+   "lon": 98.8557562,
+   "tags": {
+    "name": "Sarapan Guesthouse",
+    "tourism": "guest_house"
+   }
+  },
+  {
+   "type": "node",
+   "id": 10696481926,
+   "lat": 2.6704606,
+   "lon": 98.8567307,
+   "tags": {
+    "amenity": "restaurant",
+    "name": "Holong Di Dainang"
+   }
+  },
+  {
+   "type": "node",
+   "id": 10696481927,
+   "lat": 2.670316,
+   "lon": 98.8568568,
+   "tags": {
+    "name": "Sophie's Appartment Guesthouse",
+    "tourism": "guest_house"
+   }
+  },
+  {
+   "type": "node",
+   "id": 10696481930,
+   "lat": 2.6698307,
+   "lon": 98.8570531,
+   "tags": {
+    "name": "Zoé's Paradise Guesthouse",
+    "tourism": "hotel"
+   }
+  },
+  {
+   "type": "node",
+   "id": 10696481931,
+   "lat": 2.669821,
+   "lon": 98.857278,
+   "tags": {
+    "name": "Duramasi",
+    "tourism": "hotel"
+   }
+  },
+  {
+   "type": "node",
+   "id": 10696481932,
+   "lat": 2.6689888,
+   "lon": 98.8585412,
+   "tags": {
+    "amenity": "restaurant",
+    "name": "Sekapur Sirih"
+   }
+  },
+  {
+   "type": "node",
+   "id": 10696481935,
+   "lat": 2.6689374,
+   "lon": 98.8601794,
+   "tags": {
+    "amenity": "restaurant",
+    "name": "Today's Cafe"
+   }
+  },
+  {
+   "type": "node",
+   "id": 10696481936,
+   "lat": 2.6692889,
+   "lon": 98.8606874,
+   "tags": {
+    "amenity": "restaurant",
+    "name": "Rosalie Beer Garden",
+    "opening_hours": "Mo-Su 15:00-23:00"
+   }
+  },
+  {
+   "type": "node",
+   "id": 10696481938,
+   "lat": 2.6700432,
+   "lon": 98.8607845,
+   "tags": {
+    "amenity": "restaurant",
+    "cuisine": "chinese"
+   }
+  },
+  {
+   "type": "node",
+   "id": 10696481939,
+   "lat": 2.6708496,
+   "lon": 98.861444,
+   "tags": {
+    "amenity": "restaurant",
+    "name": "Elios"
+   }
+  },
+  {
+   "type": "node",
+   "id": 10696481941,
+   "lat": 2.6721874,
+   "lon": 98.8605729,
+   "tags": {
+    "amenity": "restaurant",
+    "name": "Warung Pecel Lele"
+   }
+  },
+  {
+   "type": "node",
+   "id": 10696481942,
+   "lat": 2.6725977,
+   "lon": 98.8605478,
+   "tags": {
+    "name": "Marroan 2",
+    "tourism": "hotel"
+   }
+  },
+  {
+   "type": "node",
+   "id": 10696481943,
+   "lat": 2.6729691,
+   "lon": 98.8602186,
+   "tags": {
+    "name": "Marroan",
+    "tourism": "hotel"
+   }
+  },
+  {
+   "type": "node",
+   "id": 10696481944,
+   "lat": 2.6750206,
+   "lon": 98.8578365,
+   "tags": {
+    "amenity": "restaurant",
+    "name": "Domu restaurant"
+   }
+  },
+  {
+   "type": "node",
+   "id": 10696481973,
+   "lat": 2.6760051,
+   "lon": 98.8564694,
+   "tags": {
+    "amenity": "restaurant",
+    "name": "Warung Monggo"
+   }
+  },
+  {
+   "type": "node",
+   "id": 10696481974,
+   "lat": 2.676425,
+   "lon": 98.8560275,
+   "tags": {
+    "amenity": "restaurant",
+    "name": "Warung Ginger"
+   }
+  },
+  {
+   "type": "node",
+   "id": 10696481975,
+   "lat": 2.6768881,
+   "lon": 98.8541223,
+   "tags": {
+    "name": "Anju Cottages",
+    "tourism": "hotel"
+   }
+  },
+  {
+   "type": "node",
+   "id": 10696481976,
+   "lat": 2.6766127,
+   "lon": 98.8531878,
+   "tags": {
+    "amenity": "restaurant",
+    "name": "Brando's Bar & Resto"
+   }
+  },
+  {
+   "type": "node",
+   "id": 10696481977,
+   "lat": 2.6767592,
+   "lon": 98.8530094,
+   "tags": {
+    "amenity": "restaurant",
+    "name": "Léo's Resto"
+   }
+  },
+  {
+   "type": "node",
+   "id": 10696838459,
+   "lat": 2.6734681,
+   "lon": 98.8513097,
+   "tags": {
+    "name": "Toba Sunset Guesthouse",
+    "tourism": "hostel"
+   }
+  },
+  {
+   "type": "node",
+   "id": 10696838461,
+   "lat": 2.672781,
+   "lon": 98.8512298,
+   "tags": {
+    "name": "Martha Guesthouse & Restaurant",
+    "tourism": "hostel"
+   }
+  },
+  {
+   "type": "node",
+   "id": 10696838462,
+   "lat": 2.6726899,
+   "lon": 98.8510233,
+   "tags": {
+    "amenity": "restaurant",
+    "cuisine": "fish",
+    "name": "Arian"
+   }
+  },
+  {
+   "type": "node",
+   "id": 10696838472,
+   "lat": 2.6737879,
+   "lon": 98.8471051,
+   "tags": {
+    "amenity": "restaurant",
+    "name": "Warung Grace"
+   }
+  },
+  {
+   "type": "node",
+   "id": 10696851415,
+   "lat": 2.6681536,
+   "lon": 98.8517682,
+   "tags": {
+    "name": "Marianna Hotel Ressort",
+    "tourism": "hotel"
+   }
+  },
+  {
+   "type": "node",
+   "id": 10696851416,
+   "lat": 2.6684653,
+   "lon": 98.8520768,
+   "tags": {
+    "amenity": "cafe",
+    "name": "KopiH"
+   }
+  },
+  {
+   "type": "node",
+   "id": 10699261123,
+   "lat": 2.6786812,
+   "lon": 98.8434424,
+   "tags": {
+    "name": "Mas Cottages & Restaurant",
+    "tourism": "hotel"
+   }
+  },
+  {
+   "type": "node",
+   "id": 10699261124,
+   "lat": 2.6787309,
+   "lon": 98.8422884,
+   "tags": {
+    "amenity": "restaurant",
+    "name": "Yolanda"
+   }
+  },
+  {
+   "type": "node",
+   "id": 10699261125,
+   "lat": 2.680342,
+   "lon": 98.8405076,
+   "tags": {
+    "name": "Timbul Bungalows",
+    "tourism": "hotel"
+   }
+  },
+  {
+   "type": "node",
+   "id": 10701166692,
+   "lat": 2.6689778,
+   "lon": 98.8590126,
+   "tags": {
+    "amenity": "restaurant",
+    "name": "Smiley restaurant"
+   }
+  },
+  {
+   "type": "node",
+   "id": 10706294858,
+   "lat": 2.6685021,
+   "lon": 98.8519541,
+   "tags": {
+    "amenity": "restaurant",
+    "name": "Casa di Manurung"
+   }
+  },
+  {
+   "type": "node",
+   "id": 10709046471,
+   "lat": 2.6409704,
+   "lon": 98.8579298,
+   "tags": {
+    "amenity": "cafe"
+   }
+  },
+  {
+   "type": "node",
+   "id": 10709046495,
+   "lat": 2.6488341,
+   "lon": 98.8625937,
+   "tags": {
+    "name": "Lumban Sijabat",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 11029511005,
+   "lat": 2.6686868,
+   "lon": 98.8584173,
+   "tags": {
+    "internet_access": "wlan",
+    "name": "Mario Lakeside Apartments",
+    "opening_hours": "24/7",
+    "tourism": "apartment",
+    "website": "https://www.booking.com/Share-pARNO2"
+   }
+  },
+  {
+   "type": "node",
+   "id": 11431954469,
+   "lat": 2.6769918,
+   "lon": 98.8396573,
+   "tags": {
+    "addr:street": "Jalan Lingkar",
+    "internet_access": "wlan",
+    "name": "OASIS",
+    "name:de": "OASIS Samosir",
+    "opening_hours": "24/7",
+    "phone": "+62 821-6625-1096",
+    "tourism": "guest_house",
+    "website": "https://oasis-samosir.com"
+   }
+  },
+  {
+   "type": "node",
+   "id": 11635009719,
+   "lat": 2.6772075,
+   "lon": 98.8508132,
+   "tags": {
+    "addr:city": "Tuktuk",
+    "addr:postcode": "22395",
+    "addr:street": "Jalan Lingkar Tuktuk",
+    "guest_house": "bed_and_breakfast",
+    "name": "Hub Tata Cafe & gusthouse",
+    "tourism": "guest_house"
+   }
+  },
+  {
+   "type": "node",
+   "id": 11944591668,
+   "lat": 2.6931668,
+   "lon": 98.8212153,
+   "tags": {
+    "name": "Barbara Hotel",
+    "tourism": "hotel"
+   }
+  },
+  {
+   "type": "node",
+   "id": 13136011229,
+   "lat": 2.6499916,
+   "lon": 98.8644844,
+   "tags": {
+    "amenity": "restaurant",
+    "name": "Rumah Makan Anggita"
+   }
+  },
+  {
+   "type": "node",
+   "id": 13136234402,
+   "lat": 2.7013113,
+   "lon": 98.6920917,
+   "tags": {
+    "internet_access": "wlan",
+    "name": "Antonys Homestay",
+    "tourism": "hotel"
+   }
+  },
+  {
+   "type": "node",
+   "id": 13340121981,
+   "lat": 2.6974233,
+   "lon": 98.6904108,
+   "tags": {
+    "admin_level": "7",
+    "name": "Situngkir",
+    "place": "village",
+    "ref": "12.17.08.2017",
+    "wikidata": "Q12515565"
+   }
+  },
+  {
+   "type": "node",
+   "id": 13340121982,
+   "lat": 2.4734298,
+   "lon": 98.8193607,
+   "tags": {
+    "admin_level": "7",
+    "name": "Urat II",
+    "place": "village",
+    "ref": "12.17.04.2003",
+    "wikidata": "Q12523534"
+   }
+  },
+  {
+   "type": "node",
+   "id": 13340121983,
+   "lat": 2.4844916,
+   "lon": 98.8027095,
+   "tags": {
+    "admin_level": "7",
+    "name": "Palipi",
+    "place": "village",
+    "ref": "12.17.04.2003",
+    "wikidata": "Q12523534"
+   }
+  },
+  {
+   "type": "node",
+   "id": 13340121984,
+   "lat": 2.4962821,
+   "lon": 98.8373852,
+   "tags": {
+    "admin_level": "7",
+    "name": "Sideak",
+    "place": "village",
+    "ref": "12.17.04.2021",
+    "wikidata": "Q19733519"
+   }
+  },
+  {
+   "type": "node",
+   "id": 13340121985,
+   "lat": 2.4671271,
+   "lon": 98.8321065,
+   "tags": {
+    "name": "parsaoram",
+    "place": "village"
+   }
+  },
+  {
+   "type": "node",
+   "id": 13340121986,
+   "lat": 2.4789607,
+   "lon": 98.8885402,
+   "tags": {
+    "name": "Janjimarapot",
+    "place": "village"
+   }
+  },
+  {
+   "type": "node",
+   "id": 13340121987,
+   "lat": 2.5166045,
+   "lon": 98.8700437,
+   "tags": {
+    "admin_level": "7",
+    "name": "Pananggangan II",
+    "place": "village",
+    "ref": "12.17.03.2013",
+    "wikidata": "Q19730117"
+   }
+  },
+  {
+   "type": "node",
+   "id": 13340121988,
+   "lat": 2.4370388,
+   "lon": 98.8786268,
+   "tags": {
+    "admin_level": "7",
+    "name": "Nainggolan",
+    "place": "village",
+    "ref": "12.17.03.2009",
+    "wikidata": "Q12499902"
+   }
+  },
+  {
+   "type": "node",
+   "id": 13341732654,
+   "lat": 2.5095303,
+   "lon": 98.6459398,
+   "tags": {
+    "name": "Partongkinan Ginjang",
+    "place": "village"
+   }
+  },
+  {
+   "type": "node",
+   "id": 13341732658,
+   "lat": 2.4328691,
+   "lon": 98.6562824,
+   "tags": {
+    "admin_level": "7",
+    "name": "Hutagalung",
+    "place": "village",
+    "ref": "12.17.05.2014",
+    "wikidata": "Q19726374"
+   }
+  },
+  {
+   "type": "node",
+   "id": 13343716211,
+   "lat": 2.4876964,
+   "lon": 98.8530439,
+   "tags": {
+    "admin_level": "7",
+    "name": "Pamutaran",
+    "place": "village",
+    "ref": "12.17.04.2020",
+    "wikidata": "Q19730334"
+   }
+  },
+  {
+   "type": "node",
+   "id": 13343716212,
+   "lat": 2.558824,
+   "lon": 98.5943448,
+   "tags": {
+    "name": "Harianpintu",
+    "place": "village"
+   }
+  },
+  {
+   "type": "node",
+   "id": 13358725204,
+   "lat": 2.6549191,
+   "lon": 98.8113785,
+   "tags": {
+    "name": "KAT Partonkuan",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 13358725205,
+   "lat": 2.6571912,
+   "lon": 98.8152033,
+   "tags": {
+    "name": "Partonkuan Saloan Dolok",
+    "place": "hamlet"
+   }
+  },
+  {
+   "type": "node",
+   "id": 13532048501,
+   "lat": 2.6698171,
+   "lon": 98.8607387,
+   "tags": {
+    "amenity": "cafe",
+    "name": "Muslim warung"
+   }
+  },
+  {
+   "type": "node",
+   "id": 13965110495,
+   "lat": 2.6722281,
+   "lon": 98.8611105,
+   "tags": {
+    "internet_access": "wlan",
+    "internet_access:fee": "no",
+    "name": "Hisar Guest House",
+    "phone": "+62 852 6452 8008",
+    "rooms": "13",
+    "tourism": "guest_house"
+   }
+  },
+  {
+   "type": "node",
+   "id": 14100917165,
+   "lat": 2.5085201,
+   "lon": 98.6459517,
+   "tags": {
+    "source": "survey",
+    "survey:date": "2026",
+    "tourism": "guest_house"
+   }
+  },
+  {
+   "type": "node",
+   "id": 14100932754,
+   "lat": 2.6538764,
+   "lon": 98.6899118,
+   "tags": {
+    "source": "survey",
+    "survey:date": "2026",
+    "tourism": "guest_house"
+   }
+  },
+  {
+   "type": "node",
+   "id": 14100939356,
+   "lat": 2.6193353,
+   "lon": 98.6947341,
+   "tags": {
+    "source": "survey",
+    "survey:date": "2026",
+    "tourism": "guest_house"
+   }
+  },
+  {
+   "type": "node",
+   "id": 14100939357,
+   "lat": 2.6592429,
+   "lon": 98.6877649,
+   "tags": {
+    "source": "survey",
+    "survey:date": "2026",
+    "tourism": "guest_house"
+   }
+  },
+  {
+   "type": "node",
+   "id": 14100941348,
+   "lat": 2.6829478,
+   "lon": 98.691325,
+   "tags": {
+    "source": "survey",
+    "survey:date": "2026",
+    "tourism": "guest_house"
+   }
+  },
+  {
+   "type": "node",
+   "id": 14100941848,
+   "lat": 2.6118557,
+   "lon": 98.6943506,
+   "tags": {
+    "source": "survey",
+    "survey:date": "2026",
+    "tourism": "guest_house"
+   }
+  },
+  {
+   "type": "node",
+   "id": 14100941849,
+   "lat": 2.6188992,
+   "lon": 98.6948378,
+   "tags": {
+    "source": "survey",
+    "survey:date": "2026",
+    "tourism": "guest_house"
+   }
+  },
+  {
+   "type": "node",
+   "id": 14100942465,
+   "lat": 2.75656,
+   "lon": 98.723884,
+   "tags": {
+    "source": "survey",
+    "survey:date": "2026",
+    "tourism": "guest_house"
+   }
+  },
+  {
+   "type": "node",
+   "id": 14100943419,
+   "lat": 2.6144408,
+   "lon": 98.6948839,
+   "tags": {
+    "source": "survey",
+    "survey:date": "2026",
+    "tourism": "guest_house"
+   }
+  },
+  {
+   "type": "node",
+   "id": 14100943420,
+   "lat": 2.6856487,
+   "lon": 98.6904881,
+   "tags": {
+    "source": "survey",
+    "survey:date": "2026",
+    "tourism": "guest_house"
+   }
+  },
+  {
+   "type": "node",
+   "id": 14100953994,
+   "lat": 2.6214095,
+   "lon": 98.6942451,
+   "tags": {
+    "source": "survey",
+    "survey:date": "2026",
+    "tourism": "guest_house"
+   }
+  },
+  {
+   "type": "node",
+   "id": 14100953995,
+   "lat": 2.630618,
+   "lon": 98.6931985,
+   "tags": {
+    "source": "survey",
+    "survey:date": "2026",
+    "tourism": "guest_house"
+   }
+  },
+  {
+   "type": "node",
+   "id": 14100954719,
+   "lat": 2.6179077,
+   "lon": 98.6950026,
+   "tags": {
+    "source": "survey",
+    "survey:date": "2026",
+    "tourism": "guest_house"
+   }
+  },
+  {
+   "type": "node",
+   "id": 14100956406,
+   "lat": 2.6140629,
+   "lon": 98.6948702,
+   "tags": {
+    "source": "survey",
+    "survey:date": "2026",
+    "tourism": "guest_house"
+   }
+  },
+  {
+   "type": "node",
+   "id": 14100957662,
+   "lat": 2.6311993,
+   "lon": 98.6930223,
+   "tags": {
+    "source": "survey",
+    "survey:date": "2026",
+    "tourism": "guest_house"
+   }
+  },
+  {
+   "type": "node",
+   "id": 14100959148,
+   "lat": 2.6247664,
+   "lon": 98.6941287,
+   "tags": {
+    "source": "survey",
+    "survey:date": "2026",
+    "tourism": "guest_house"
+   }
+  },
+  {
+   "type": "node",
+   "id": 14100960868,
+   "lat": 2.6183101,
+   "lon": 98.6949564,
+   "tags": {
+    "source": "survey",
+    "survey:date": "2026",
+    "tourism": "guest_house"
+   }
+  },
+  {
+   "type": "node",
+   "id": 14100964467,
+   "lat": 2.6820027,
+   "lon": 98.6908584,
+   "tags": {
+    "source": "survey",
+    "survey:date": "2026",
+    "tourism": "guest_house"
+   }
+  },
+  {
+   "type": "node",
+   "id": 14100964712,
+   "lat": 2.6533107,
+   "lon": 98.6898598,
+   "tags": {
+    "source": "survey",
+    "survey:date": "2026",
+    "tourism": "guest_house"
+   }
+  },
+  {
+   "type": "node",
+   "id": 14100965876,
+   "lat": 2.62358,
+   "lon": 98.6940734,
+   "tags": {
+    "source": "survey",
+    "survey:date": "2026",
+    "tourism": "guest_house"
+   }
+  },
+  {
+   "type": "node",
+   "id": 14100967306,
+   "lat": 2.6408424,
+   "lon": 98.6899887,
+   "tags": {
+    "source": "survey",
+    "survey:date": "2026",
+    "tourism": "guest_house"
+   }
+  },
+  {
+   "type": "node",
+   "id": 14100967704,
+   "lat": 2.657776,
+   "lon": 98.6899017,
+   "tags": {
+    "source": "survey",
+    "survey:date": "2026",
+    "tourism": "guest_house"
+   }
+  },
+  {
+   "type": "node",
+   "id": 14100967705,
+   "lat": 2.6850292,
+   "lon": 98.6909587,
+   "tags": {
+    "source": "survey",
+    "survey:date": "2026",
+    "tourism": "guest_house"
+   }
+  },
+  {
+   "type": "node",
+   "id": 14100970156,
+   "lat": 2.6077769,
+   "lon": 98.6894662,
+   "tags": {
+    "source": "survey",
+    "survey:date": "2026",
+    "tourism": "guest_house"
+   }
+  },
+  {
+   "type": "node",
+   "id": 14100970157,
+   "lat": 2.6427482,
+   "lon": 98.6896273,
+   "tags": {
+    "source": "survey",
+    "survey:date": "2026",
+    "tourism": "guest_house"
+   }
+  },
+  {
+   "type": "node",
+   "id": 14100970158,
+   "lat": 2.6565686,
+   "lon": 98.6899542,
+   "tags": {
+    "source": "survey",
+    "survey:date": "2026",
+    "tourism": "guest_house"
+   }
+  },
+  {
+   "type": "node",
+   "id": 14102739789,
+   "lat": 2.6210806,
+   "lon": 98.6732705,
+   "tags": {
+    "name": "RedDoors",
+    "source": "survey",
+    "survey:date": "2026",
+    "tourism": "hotel"
+   }
+  },
+  {
+   "type": "node",
+   "id": 14102743405,
+   "lat": 2.5565718,
+   "lon": 98.6621265,
+   "tags": {
+    "source": "survey",
+    "survey:date": "2026",
+    "tourism": "guest_house"
+   }
+  },
+  {
+   "type": "node",
+   "id": 14102744562,
+   "lat": 2.5532825,
+   "lon": 98.6646519,
+   "tags": {
+    "source": "survey",
+    "survey:date": "2026",
+    "tourism": "guest_house"
+   }
+  },
+  {
+   "type": "node",
+   "id": 14102745015,
+   "lat": 2.5559193,
+   "lon": 98.662773,
+   "tags": {
+    "source": "survey",
+    "survey:date": "2026",
+    "tourism": "guest_house"
+   }
+  },
+  {
+   "type": "node",
+   "id": 14102745016,
+   "lat": 2.6227781,
+   "lon": 98.6718667,
+   "tags": {
+    "source": "survey",
+    "survey:date": "2026",
+    "tourism": "guest_house"
+   }
+  },
+  {
+   "type": "node",
+   "id": 14102745582,
+   "lat": 2.6116214,
+   "lon": 98.6943572,
+   "tags": {
+    "source": "survey",
+    "survey:date": "2026",
+    "tourism": "guest_house"
+   }
+  },
+  {
+   "type": "node",
+   "id": 14102753272,
+   "lat": 2.6181183,
+   "lon": 98.6736595,
+   "tags": {
+    "source": "survey",
+    "survey:date": "2026",
+    "tourism": "guest_house"
+   }
+  },
+  {
+   "type": "node",
+   "id": 14102753858,
+   "lat": 2.5189326,
+   "lon": 98.7157792,
+   "tags": {
+    "source": "survey",
+    "survey:date": "2026",
+    "tourism": "guest_house"
+   }
+  },
+  {
+   "type": "node",
+   "id": 14102755767,
+   "lat": 2.5391187,
+   "lon": 98.645256,
+   "tags": {
+    "source": "survey",
+    "survey:date": "2026",
+    "tourism": "guest_house"
+   }
+  },
+  {
+   "type": "node",
+   "id": 14102757309,
+   "lat": 2.515595,
+   "lon": 98.7188937,
+   "tags": {
+    "source": "survey",
+    "survey:date": "2026",
+    "tourism": "guest_house"
+   }
+  },
+  {
+   "type": "node",
+   "id": 14102758191,
+   "lat": 2.5573876,
+   "lon": 98.6607386,
+   "tags": {
+    "source": "survey",
+    "survey:date": "2026",
+    "tourism": "guest_house"
+   }
+  },
+  {
+   "type": "node",
+   "id": 14102758192,
+   "lat": 2.5518806,
+   "lon": 98.6659962,
+   "tags": {
+    "source": "survey",
+    "survey:date": "2026",
+    "tourism": "guest_house"
+   }
+  },
+  {
+   "type": "node",
+   "id": 14102760045,
+   "lat": 2.5781463,
+   "lon": 98.6516583,
+   "tags": {
+    "source": "survey",
+    "survey:date": "2026",
+    "tourism": "guest_house"
+   }
+  },
+  {
+   "type": "node",
+   "id": 14102765972,
+   "lat": 2.5517354,
+   "lon": 98.6664267,
+   "tags": {
+    "name": "150",
+    "source": "survey",
+    "survey:date": "2026",
+    "tourism": "guest_house"
+   }
+  },
+  {
+   "type": "node",
+   "id": 14102765973,
+   "lat": 2.619053,
+   "lon": 98.6738381,
+   "tags": {
+    "source": "survey",
+    "survey:date": "2026",
+    "tourism": "guest_house"
+   }
+  },
+  {
+   "type": "node",
+   "id": 14102767917,
+   "lat": 2.6254649,
+   "lon": 98.6630212,
+   "tags": {
+    "source": "survey",
+    "survey:date": "2026",
+    "tourism": "guest_house"
+   }
+  },
+  {
+   "type": "node",
+   "id": 14102768502,
+   "lat": 2.5353634,
+   "lon": 98.6883655,
+   "tags": {
+    "source": "survey",
+    "survey:date": "2026",
+    "tourism": "guest_house"
+   }
+  },
+  {
+   "type": "node",
+   "id": 14102768503,
+   "lat": 2.6208146,
+   "lon": 98.6732621,
+   "tags": {
+    "source": "survey",
+    "survey:date": "2026",
+    "tourism": "guest_house"
+   }
+  },
+  {
+   "type": "node",
+   "id": 14102769002,
+   "lat": 2.5516269,
+   "lon": 98.666189,
+   "tags": {
+    "source": "survey",
+    "survey:date": "2026",
+    "tourism": "guest_house"
+   }
+  },
+  {
+   "type": "node",
+   "id": 14102769804,
+   "lat": 2.5304408,
+   "lon": 98.6964614,
+   "tags": {
+    "source": "survey",
+    "survey:date": "2026",
+    "tourism": "guest_house"
+   }
+  },
+  {
+   "type": "node",
+   "id": 14102769805,
+   "lat": 2.621536,
+   "lon": 98.6722995,
+   "tags": {
+    "source": "survey",
+    "survey:date": "2026",
+    "tourism": "guest_house"
+   }
+  },
+  {
+   "type": "node",
+   "id": 14103080856,
+   "lat": 2.5614638,
+   "lon": 98.6514739,
+   "tags": {
+    "amenity": "cafe"
+   }
+  },
+  {
+   "type": "node",
+   "id": 14103105133,
+   "lat": 2.5518243,
+   "lon": 98.6393988,
+   "tags": {
+    "amenity": "restaurant"
+   }
+  },
+  {
+   "type": "node",
+   "id": 14103105137,
+   "lat": 2.5517868,
+   "lon": 98.6393288,
+   "tags": {
+    "amenity": "cafe"
+   }
+  },
+  {
+   "type": "node",
+   "id": 14103468551,
+   "lat": 2.6193694,
+   "lon": 98.673776,
+   "tags": {
+    "source": "survey",
+    "survey:date": "2026",
+    "tourism": "guest_house"
+   }
+  },
+  {
+   "type": "node",
+   "id": 14103468552,
+   "lat": 2.6189704,
+   "lon": 98.6740986,
+   "tags": {
+    "source": "survey",
+    "survey:date": "2026",
+    "tourism": "hotel"
+   }
+  },
+  {
+   "type": "node",
+   "id": 14103468569,
+   "lat": 2.6178946,
+   "lon": 98.6731712,
+   "tags": {
+    "source": "survey",
+    "survey:date": "2026",
+    "tourism": "guest_house"
+   }
+  },
+  {
+   "type": "node",
+   "id": 14103468593,
+   "lat": 2.6186124,
+   "lon": 98.6734409,
+   "tags": {
+    "source": "survey",
+    "survey:date": "2026",
+    "tourism": "guest_house"
+   }
+  },
+  {
+   "type": "node",
+   "id": 14103470019,
+   "lat": 2.6198736,
+   "lon": 98.6733621,
+   "tags": {
+    "source": "survey",
+    "survey:date": "2026",
+    "tourism": "guest_house"
+   }
+  },
+  {
+   "type": "node",
+   "id": 14105004231,
+   "lat": 2.5934077,
+   "lon": 98.6876172,
+   "tags": {
+    "source": "survey",
+    "survey:date": "2026",
+    "tourism": "guest_house"
+   }
+  },
+  {
+   "type": "node",
+   "id": 14105005894,
+   "lat": 2.6120019,
+   "lon": 98.69076,
+   "tags": {
+    "source": "survey",
+    "survey:date": "2026",
+    "tourism": "guest_house"
+   }
+  },
+  {
+   "type": "node",
+   "id": 14105038823,
+   "lat": 2.6022246,
+   "lon": 98.6858938,
+   "tags": {
+    "source": "survey",
+    "survey:date": "2026",
+    "tourism": "guest_house"
+   }
+  },
+  {
+   "type": "way",
+   "id": 330624967,
+   "center": {
+    "lat": 2.6774377,
+    "lon": 98.8522349
+   },
+   "tags": {
+    "building": "hotel",
+    "contact:facebook": "https://www.facebook.com/toledoinnhotel/",
+    "contact:instagram": "https://www.instagram.com/toledo.inn",
+    "image": "https://photos.app.goo.gl/bQ5JXGPRkAokbnQq8",
+    "name": "Toledo Inn",
+    "phone": "+62 812 6797 7789",
+    "tourism": "hotel",
+    "url": "https://www.tripadvisor.com/Hotel_Review-g303958-d1164487-Reviews-Toledo_Inn-Samosir_Island_North_Sumatra_Sumatra.html"
+   }
+  },
+  {
+   "type": "way",
+   "id": 398460886,
+   "center": {
+    "lat": 2.6781926,
+    "lon": 98.8325017
+   },
+   "tags": {
+    "beds": "5",
+    "internet_access": "yes",
+    "internet_access:fee": "no",
+    "name": "Rumah Buting Butar-butar",
+    "operator": "Kri Putri Butar-butar",
+    "rooms": "1",
+    "smoking": "no",
+    "stars": "5",
+    "tourism": "guest_house"
+   }
+  },
+  {
+   "type": "way",
+   "id": 563824681,
+   "center": {
+    "lat": 2.6757353,
+    "lon": 98.8514449
+   },
+   "tags": {
+    "building": "yes",
+    "name": "Aman's Guesthouse",
+    "tourism": "guest_house"
+   }
+  },
+  {
+   "type": "way",
+   "id": 604604070,
+   "center": {
+    "lat": 2.6710696,
+    "lon": 98.8560546
+   },
+   "tags": {
+    "amenity": "restaurant",
+    "building": "yes",
+    "name": "Alissa"
+   }
+  },
+  {
+   "type": "way",
+   "id": 604604075,
+   "center": {
+    "lat": 2.6707169,
+    "lon": 98.8550795
+   },
+   "tags": {
+    "building": "yes",
+    "name": "Emmanuel Guesthouse",
+    "tourism": "guest_house"
+   }
+  },
+  {
+   "type": "way",
+   "id": 666486858,
+   "center": {
+    "lat": 2.5940861,
+    "lon": 98.8171899
+   },
+   "tags": {
+    "amenity": "cafe",
+    "building": "house"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1149825628,
+   "center": {
+    "lat": 2.6756985,
+    "lon": 98.8571583
+   },
+   "tags": {
+    "building": "yes",
+    "name": "Ambaroba Resort Hotel",
+    "tourism": "hotel"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1149825629,
+   "center": {
+    "lat": 2.6752088,
+    "lon": 98.8573138
+   },
+   "tags": {
+    "building": "no",
+    "name": "AmbarobaRessort",
+    "tourism": "hotel"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1355338527,
+   "center": {
+    "lat": 2.6732915,
+    "lon": 98.8520574
+   },
+   "tags": {
+    "amenity": "restaurant",
+    "building": "yes",
+    "name": "Tataring Coffee & Resto",
+    "phone": "+6282165404737"
+   }
+  }
+ ]
+}

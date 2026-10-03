@@ -1,0 +1,57 @@
+{
+  "area_name": "Samosir",
+  "admin_level": 5,
+  "radius_km": 2.0,
+  "osm_snapshot": "2026-10-03T19:40:01Z",
+  "food_places": 84,
+  "lodging_places": 144,
+  "places_with_phone": 17,
+  "places_with_opening_hours": 12,
+  "place_points": 240,
+  "village_points": 132,
+  "villages_with_zero_food_and_lodging_within_r": 76,
+  "busiest_village": "Tuk Tuk",
+  "places_within_hub_radius": 141,
+  "top_places": [
+    {
+      "name": "Tuk Tuk",
+      "place": "village",
+      "lat": 2.67194,
+      "lon": 98.85296,
+      "food_within_r": 55,
+      "lodging_within_r": 79
+    },
+    {
+      "name": "Garoga",
+      "place": "village",
+      "lat": 2.6597,
+      "lon": 98.85143,
+      "food_within_r": 57,
+      "lodging_within_r": 73
+    },
+    {
+      "name": "Tuktuk Siadong",
+      "place": "village",
+      "lat": 2.67057,
+      "lon": 98.86082,
+      "food_within_r": 53,
+      "lodging_within_r": 76
+    },
+    {
+      "name": "Tomokparsaroan",
+      "place": "village",
+      "lat": 2.65368,
+      "lon": 98.86036,
+      "food_within_r": 35,
+      "lodging_within_r": 26
+    },
+    {
+      "name": "Parsaoran I",
+      "place": "village",
+      "lat": 2.6173,
+      "lon": 98.68971,
+      "food_within_r": 2,
+      "lodging_within_r": 28
+    }
+  ]
+}

@@ -1,0 +1,241 @@
+name,place,lat,lon,food_within_r,lodging_within_r
+Tuk Tuk,village,2.67194,98.85296,55,79
+Garoga,village,2.6597,98.85143,57,73
+Tuktuk Siadong,village,2.67057,98.86082,53,76
+Tomokparsaroan,village,2.65368,98.86036,35,26
+Parsaoran I,village,2.6173,98.68971,2,28
+Lumban Sosor,hamlet,2.61489,98.68598,1,28
+Siogung-Ogung,village,2.61263,98.68916,2,25
+Lumban Tonga-Tonga,hamlet,2.61228,98.68946,3,23
+Simagonding,hamlet,2.60905,98.68984,3,17
+Pasar Pangururan,village,2.60736,98.69745,3,16
+Pangururan,town,2.60746,98.69593,3,16
+Hutaparik,hamlet,2.61033,98.69131,3,16
+Lumban Butar-Butar,hamlet,2.60682,98.68866,3,15
+Saitnihuta,village,2.62047,98.69549,1,16
+Lumban Pinggol,village,2.61316,98.69832,2,15
+Sianting Anting,village,2.62676,98.69481,0,16
+Pardomuan I,village,2.60436,98.70051,3,13
+Aek Rangat,hamlet,2.61881,98.67441,1,14
+Parlondut,village,2.63101,98.69314,1,13
+Jangak,hamlet,2.6278,98.65965,1,13
+Sigorak,hamlet,2.62516,98.66581,1,13
+Lumban Bulu,hamlet,2.62573,98.6717,1,13
+Daihang,hamlet,2.62036,98.67375,1,13
+Tanjung Bunga,village,2.60287,98.68589,2,11
+Turpuk Malau,village,2.54548,98.64971,3,8
+Naibo,hamlet,2.59991,98.68509,2,9
+Tumpak Malau,hamlet,2.54585,98.64988,3,8
+Panampangan,village,2.64664,98.68879,1,9
+Pardugul,village,2.63841,98.69135,1,9
+Ambarita,village,2.67947,98.83099,5,5
+Tomok,village,2.6509,98.86346,7,2
+Situngkir,village,2.69287,98.69155,3,6
+Siopat Sosor,village,2.68551,98.69099,3,6
+Batu Hapur,hamlet,2.59588,98.68613,2,7
+Situngkir,village,2.69742,98.69041,3,6
+Turpuk Sagala,village,2.55445,98.66321,1,7
+Turpuk Limbong,village,2.55687,98.66229,1,7
+Sitoluhuta,village,2.65043,98.6961,1,7
+Turpuk Sihotang,village,2.55403,98.66439,1,7
+Lumban Guru,hamlet,2.55687,98.66217,1,7
+Lumban Suhi Suhi Toruan,village,2.65988,98.69059,1,6
+Janji Martahan,village,2.54479,98.67419,0,7
+Harian Boho,hamlet,2.55082,98.66606,0,7
+Lumban Sijabat,hamlet,2.64883,98.86259,7,0
+Sialanguan,village,2.70695,98.6928,3,2
+Unjur,village,2.68663,98.82296,2,2
+Martoba,village,2.70967,98.81044,2,1
+Lumban Suhi Suhi Dolok,village,2.66731,98.70296,0,3
+Dolok Raja,village,2.52303,98.71868,1,2
+Sosor Dolok,village,2.54374,98.64808,2,1
+Hariara Pohan,village,2.52552,98.70272,0,3
+Sitao-Tao,hamlet,2.59252,98.67481,1,2
+Peabang,hamlet,2.5916,98.67216,1,2
+Lumban Sinaga,hamlet,2.54186,98.64478,2,1
+Padamuhan,hamlet,2.54053,98.64099,2,1
+Sampuran Efrata,hamlet,2.539,98.63835,2,1
+Sampurnapitu,hamlet,2.52834,98.70958,0,3
+Sitoba-Toba,hamlet,2.52431,98.69926,0,3
+Sihotang,hamlet,2.53232,98.71999,1,2
+Dosroha,village,2.71545,98.6939,1,1
+Sampur Toba,village,2.5302,98.7152,0,2
+Siparmahan,village,2.51542,98.7124,0,2
+Huta Hotang,village,2.51917,98.94699,2,0
+Janji Matogu,village,2.53003,98.93063,2,0
+Huta Ginjang,village,2.62761,98.88209,1,1
+Sosor Nangka,hamlet,2.56646,98.63191,2,0
+Pardugul,hamlet,2.57477,98.66487,0,2
+Holbung,hamlet,2.53591,98.67991,0,2
+Hariara Pohan,hamlet,2.51253,98.71069,0,2
+Sipardabahan,hamlet,2.51568,98.71217,0,2
+Hutasuhut Nihuta,hamlet,2.5235,98.71561,0,2
+Silima Lombu,village,2.55585,98.91379,1,0
+Sigaol Marbun,village,2.52293,98.75167,1,0
+Sarimarrihit,village,2.58587,98.64027,0,1
+Sigaol Simbolon,village,2.51917,98.75866,1,0
+Parbalohan,village,2.57333,98.89933,1,0
+Boho,village,2.57522,98.66688,0,1
+Huta Tinggi,village,2.61036,98.72038,1,0
+Simanindo Sangkal,village,2.73952,98.75919,1,0
+Tanjungan,village,2.569,98.88816,1,0
+Cinta Dame,village,2.7584,98.72582,0,1
+Marlumba,village,2.742,98.77441,1,0
+Tele,hamlet,2.52706,98.63304,0,1
+Simanindo,village,2.75224,98.74417,1,0
+Dolok Niapul,hamlet,2.59378,98.81724,1,0
+Habeahan Naburahan,village,2.58033,98.64346,0,1
+Aek Sipitudai,village,2.58043,98.64674,0,1
+Buntu Mauli,village,2.47757,98.76636,0,1
+Aek Baringin,hamlet,2.58622,98.66374,0,1
+Aek Limbong,hamlet,2.579,98.64696,0,1
+Simarihit,hamlet,2.58103,98.64206,0,1
+Aek Tin-Tin,hamlet,2.58168,98.64495,0,1
+Limbong,hamlet,2.58626,98.63973,0,1
+Pandulangan,hamlet,2.62794,98.64753,0,1
+Siganjang,hamlet,2.54236,98.68278,0,1
+Huta Gondang,hamlet,2.45611,98.77482,0,1
+Toguan,hamlet,2.4588,98.77412,0,1
+Ransang Bosi,hamlet,2.46263,98.77444,0,1
+Partongkinan Ginjang,village,2.50953,98.64594,0,1
+KAT Partonkuan,hamlet,2.65492,98.81138,0,1
+Partonkuan Saloan Dolok,hamlet,2.65719,98.8152,0,1
+Sijambur,village,2.62464,98.76183,0,0
+Huta Gurgur,village,2.61453,98.61948,0,0
+Onan Runggu,village,2.45548,98.97775,0,0
+Sipinggan,village,2.43679,98.89846,0,0
+Hasinggaan,village,2.66207,98.62257,0,0
+Ronggur Nihuta,village,2.58757,98.78184,0,0
+Sinabulan,village,2.64641,98.71718,0,0
+Aek Nauli,village,2.64478,98.71971,0,0
+Urat Timur,village,2.4594,98.84201,0,0
+Sitinjak,village,2.45034,98.95126,0,0
+Huta Rihit,village,2.46958,98.90644,0,0
+Pintu Sona,village,2.57991,98.71339,0,0
+Salaon Toba,village,2.62921,98.73074,0,0
+Tamba Dolok,village,2.4927,98.72605,0,0
+Parmonangan,village,2.54295,98.74846,0,0
+Pardomuan Nauli,village,2.51891,98.8211,0,0
+Sipinggan Lumban Siantar,village,2.43374,98.88775,0,0
+Nainggolan,town,2.43401,98.88491,0,0
+Salaon Dolok,village,2.63436,98.77159,0,0
+Siboro,village,2.62464,98.63249,0,0
+Gorat Pallombuan,village,2.47567,98.81362,0,0
+Sianjur Mulamula,village,2.59396,98.62685,0,0
+Parhusip III,village,2.44701,98.88296,0,0
+Palombuan,village,2.47554,98.80748,0,0
+Sihusapi,village,2.72234,98.71904,0,0
+Rina Bolak,village,2.48856,98.93519,0,0
+Pardomuan,village,2.58105,98.89685,0,0
+Pasaran I,village,2.44733,98.86018,0,0
+Sabungan Nihuta,village,2.58707,98.73347,0,0
+Huta Namora,village,2.56506,98.71902,0,0
+Tambun Sungkean,village,2.46599,98.99014,0,0
+Toguan Galung,village,2.4741,98.92063,0,0
+Maduma,village,2.73309,98.75477,0,0
+Sitamiang,village,2.49407,98.97778,0,0
+Paraduan,village,2.57216,98.75878,0,0
+Ginolat,village,2.60626,98.63101,0,0
+Saor Nauli Hatoguan,village,2.50994,98.78118,0,0
+Pakpahan,village,2.44982,98.96019,0,0
+Pardomuan Nauli,village,2.66935,98.73342,0,0
+Rianiate,village,2.55133,98.7256,0,0
+Sibonor Ompuratus,village,2.43668,98.86605,0,0
+Simarmata,village,2.74296,98.712,0,0
+Parmonangan,village,2.59184,98.8929,0,0
+Sinaga Uruk Pandiangan,village,2.4415,98.86754,0,0
+Harian,village,2.4376,98.93169,0,0
+Parbaba Dolok,village,2.68859,98.73061,0,0
+Suhut Nihuta Pardomuan,village,2.46192,98.83248,0,0
+Pamanggangan,village,2.47417,98.86946,0,0
+Huta Ginjang,village,2.54675,98.76612,0,0
+Pasaran Parsaoran,village,2.47004,98.85871,0,0
+Lintongnihuta,village,2.58672,98.7666,0,0
+Salaon Tonga Tonga,village,2.63064,98.75277,0,0
+Sipira,village,2.52578,98.90082,0,0
+Pangaloan,village,2.43672,98.90545,0,0
+Pardomuan,village,2.47498,98.95976,0,0
+Bonan Dolok,village,2.64192,98.61724,0,0
+Hatoguan,village,2.49806,98.79427,0,0
+Simbolon Purba,village,2.51616,98.76335,0,0
+Parhorasan,village,2.64492,98.74151,0,0
+Singkam,village,2.58023,98.62639,0,0
+Huta Ginjang,village,2.61581,98.64325,0,0
+Janji Maria,village,2.47565,98.73065,0,0
+Parsaoran,village,2.49418,98.74849,0,0
+Cinta Maju,village,2.50136,98.73744,0,0
+Janji Raja,village,2.38645,98.81674,0,0
+Holbung,village,2.39955,98.80734,0,0
+Sabulan,village,2.43647,98.78344,0,0
+Sisakolak,hamlet,2.56872,98.63177,0,0
+Aek Mual,hamlet,2.568,98.62726,0,0
+Pandan,hamlet,2.57663,98.62515,0,0
+Batu-Batu,hamlet,2.59405,98.62642,0,0
+Hutabalian,hamlet,2.60131,98.62022,0,0
+Hutaorat,hamlet,2.59904,98.61787,0,0
+Janji Martobu,hamlet,2.62732,98.61901,0,0
+Hobon Pardomuan,hamlet,2.61193,98.6251,0,0
+Batu Bolon,hamlet,2.61838,98.62211,0,0
+Sagala,hamlet,2.60416,98.63088,0,0
+Simanggiring,hamlet,2.61111,98.63104,0,0
+Nahula-Hula,hamlet,2.61634,98.64135,0,0
+Ruma-Ruma,hamlet,2.61495,98.63282,0,0
+Panjaitan II,hamlet,2.61987,98.63275,0,0
+Panjaitan III,hamlet,2.62015,98.62882,0,0
+Panjaitan,hamlet,2.62384,98.633,0,0
+Susapi,hamlet,2.66742,98.62013,0,0
+Sosor,hamlet,2.66443,98.62442,0,0
+Huta Dolok,hamlet,2.65931,98.62005,0,0
+Lumban Batu-Batu,hamlet,2.64735,98.61371,0,0
+Sitabu,hamlet,2.64579,98.61412,0,0
+Sosor Nabolah,hamlet,2.64299,98.6129,0,0
+Lumban Boga,hamlet,2.64157,98.61259,0,0
+Sepingan,hamlet,2.64218,98.61422,0,0
+Siboro,hamlet,2.64211,98.61719,0,0
+Sapura,hamlet,2.6436,98.62504,0,0
+Tulas,hamlet,2.63312,98.63755,0,0
+Parpasir,hamlet,2.5777,98.67028,0,0
+Tamba,hamlet,2.50578,98.7478,0,0
+Saitnihuta,hamlet,2.48796,98.75582,0,0
+Sitio-Tio,hamlet,2.44161,98.77712,0,0
+Rapusan,hamlet,2.37985,98.82114,0,0
+Sosorpea,hamlet,2.38145,98.81267,0,0
+Bagasan,hamlet,2.38913,98.81156,0,0
+Uparangit,hamlet,2.38999,98.81406,0,0
+Sibuhamata,hamlet,2.39752,98.80209,0,0
+Lumban Sirango-Rango,hamlet,2.40007,98.80722,0,0
+Aritonang,hamlet,2.40131,98.805,0,0
+Partungkoan,hamlet,2.40286,98.80421,0,0
+Lumban Raja,hamlet,2.40276,98.8,0,0
+Apadatu,hamlet,2.40295,98.80817,0,0
+Parlumbanan,hamlet,2.42332,98.78366,0,0
+Pagaronan,hamlet,2.43196,98.77887,0,0
+Lumban Nahor,hamlet,2.43441,98.78158,0,0
+Pandiangan,hamlet,2.43685,98.78249,0,0
+Gambiri,hamlet,2.49651,98.73572,0,0
+Sigasio,hamlet,2.49193,98.74278,0,0
+Sitonggor,hamlet,2.4717,98.72895,0,0
+Pagar Batu,hamlet,2.47531,98.72703,0,0
+Sosor Toruan,hamlet,2.47587,98.73054,0,0
+Sitinjak,hamlet,2.50241,98.7455,0,0
+Tambana Godang,hamlet,2.50066,98.736,0,0
+Pamonangan,hamlet,2.4947,98.7259,0,0
+Sosor Galung,hamlet,2.49422,98.72268,0,0
+Sisanang,hamlet,2.49497,98.71937,0,0
+Siopatbahal,hamlet,2.48643,98.72571,0,0
+Sipitor,hamlet,2.48222,98.71974,0,0
+Lumban Haro,hamlet,2.48794,98.71971,0,0
+Lagundi,hamlet,2.68009,98.6247,0,0
+Bahal-Bahal,hamlet,2.69668,98.61596,0,0
+Pinal,hamlet,2.71129,98.60354,0,0
+Binangara,hamlet,2.73432,98.58266,0,0
+Urat II,village,2.47343,98.81936,0,0
+Palipi,village,2.48449,98.80271,0,0
+Sideak,village,2.49628,98.83739,0,0
+parsaoram,village,2.46713,98.83211,0,0
+Janjimarapot,village,2.47896,98.88854,0,0
+Pananggangan II,village,2.5166,98.87004,0,0
+Nainggolan,village,2.43704,98.87863,0,0
+Hutagalung,village,2.43287,98.65628,0,0
+Pamutaran,village,2.4877,98.85304,0,0
+Harianpintu,village,2.55882,98.59434,0,0

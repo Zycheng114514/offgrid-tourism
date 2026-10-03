@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+
+# Node / Flutter / Android build output
+node_modules/
+build/
+.dart_tool/
+*.apk
+
+# Secrets and local state
+.env
+*.sqlite
+*.db
+
+# OS
+.DS_Store

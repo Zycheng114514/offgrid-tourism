@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Zycheng114514/offgrid-tourism/schemas/listing.schema.json",
+  "title": "Listing",
+  "description": "One food, lodging or other service offered by a local host. Region-independent: language, currency and village names come from the region profile.",
+  "type": "object",
+  "required": ["id", "region_id", "category", "name", "village", "offer_original", "source", "status", "extraction"],
+  "additionalProperties": false,
+  "properties": {
+    "id": { "type": "string", "description": "Stable listing ID, e.g. 'samosir-0042'." },
+    "region_id": { "type": "string", "description": "ID of the region profile, e.g. 'samosir'." },
+    "category": { "enum": ["food", "lodging", "transport", "guide", "other"] },
+    "name": { "type": "string", "description": "Business or host name as given by the host." },
+    "village": { "type": "string", "description": "Village name matched to the region gazetteer." },
+    "landmark": { "type": ["string", "null"], "description": "How to find it, in the host's words, e.g. 'near the church'." },
+    "location": {
+      "type": ["object", "null"],
+      "description": "Coordinates if known; otherwise the village point is used.",
+      "properties": {
+        "lat": { "type": "number", "minimum": -90, "maximum": 90 },
+        "lon": { "type": "number", "minimum": -180, "maximum": 180 },
+        "precision": { "enum": ["exact", "village"] }
+      },
+      "required": ["lat", "lon", "precision"],
+      "additionalProperties": false
+    },
+    "offer_original": { "type": "string", "description": "What is offered, in the host's language, as written or spoken." },
+    "offer_en": { "type": ["string", "null"], "description": "English translation; null if no translator is configured." },
+    "language": { "type": "string", "description": "BCP 47 code of the original text, e.g. 'id'." },
+    "price": {
+      "type": ["object", "null"],
+      "properties": {
+        "min": { "type": "number", "minimum": 0 },
+        "max": { "type": "number", "minimum": 0 },
+        "currency": { "type": "string", "pattern": "^[A-Z]{3}$" },
+        "unit": { "enum": ["per_meal", "per_item", "per_night", "per_person", "per_trip", "other"] }
+      },
+      "required": ["min", "currency"],
+      "additionalProperties": false
+    },
+    "hours": {
+      "type": ["object", "null"],
+      "properties": {
+        "open": { "type": "string", "pattern": "^([01][0-9]|2[0-3]):[0-5][0-9]$" },
+        "close": { "type": "string", "pattern": "^([01][0-9]|2[0-4]):[0-5][0-9]$" },
+        "days": { "type": "array", "items": { "enum": ["mon", "tue", "wed", "thu", "fri", "sat", "sun"] } },
+        "note": { "type": ["string", "null"] }
+      },
+      "additionalProperties": false
+    },
+    "capacity": { "type": ["integer", "null"], "minimum": 0, "description": "Rooms or beds for lodging; seats or people otherwise." },
+    "contact": {
+      "type": "object",
+      "properties": {
+        "phone": { "type": ["string", "null"], "description": "E.164 number. Exported to travellers only if publish_phone is true." },
+        "publish_phone": { "type": "boolean" },
+        "consent_at": { "type": ["string", "null"], "format": "date-time" }
+      },
+      "required": ["publish_phone"],
+      "additionalProperties": false
+    },
+    "source": {
+      "type": "object",
+      "properties": {
+        "channel": { "enum": ["sms", "voice", "whatsapp", "web", "seed"] },
+        "host_id": { "type": "string", "description": "Internal host ID; the raw phone number is not stored here." },
+        "message_ids": { "type": "array", "items": { "type": "string" } },
+        "received_at": { "type": "string", "format": "date-time" },
+        "data_origin": { "enum": ["real", "synthetic"] }
+      },
+      "required": ["channel", "host_id", "received_at", "data_origin"],
+      "additionalProperties": false
+    },
+    "status": {
+      "type": "object",
+      "properties": {
+        "state": { "enum": ["draft", "awaiting_confirmation", "confirmed", "closed"] },
+        "open_today": { "type": ["boolean", "null"], "description": "Set by OPEN/CLOSED keywords; null if not reported today." },
+        "last_confirmed_at": { "type": ["string", "null"], "format": "date-time" }
+      },
+      "required": ["state"],
+      "additionalProperties": false
+    },
+    "extraction": {
+      "type": "object",
+      "description": "How the fields were produced, for evaluation and debugging.",
+      "properties": {
+        "method": { "enum": ["rules", "llm", "rules+llm", "manual"] },
+        "model": { "type": ["string", "null"] },
+        "missing_fields_asked": { "type": "array", "items": { "type": "string" } }
+      },
+      "required": ["method"],
+      "additionalProperties": false
+    }
+  }
+}

@@ -11,9 +11,7 @@ words gets the top results. Replies use the sender's language (region profile).
 
 from __future__ import annotations
 
-from datetime import datetime
 from typing import Callable
-from zoneinfo import ZoneInfo
 
 from . import rules
 from .extract import Extraction, extract
@@ -261,7 +259,7 @@ class Dialog:
         mine = [l for l in self.store.listings(host_id=host["id"]) if l["status"]["state"] == "confirmed"]
         if not mine:
             return self.reply(phone, self.region.template("no_listing", hl))
-        today = datetime.now(ZoneInfo(self.region.timezone)).date().isoformat()
+        today = self.region.now().date().isoformat()
         for l in mine:
             l["status"].update(open_today=is_open, open_today_date=today, last_confirmed_at=now())
             self.store.save_listing(l)

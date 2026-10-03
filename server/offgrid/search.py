@@ -7,7 +7,6 @@ runs the same logic in JavaScript on the downloaded pack.
 from __future__ import annotations
 
 from datetime import datetime
-from zoneinfo import ZoneInfo
 
 from .region import Region, km, norm
 from .store import Store
@@ -17,7 +16,7 @@ NEARBY_KM = 15
 
 
 def is_open_now(listing: dict, region: Region, when: datetime | None = None) -> bool | None:
-    local = when or datetime.now(ZoneInfo(region.timezone))
+    local = when or region.now()
     status = listing.get("status", {})
     if status.get("open_today_date") == local.date().isoformat() and status.get("open_today") is not None:
         if status["open_today"] is False:

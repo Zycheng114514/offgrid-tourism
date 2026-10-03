@@ -12,6 +12,7 @@ fallback named in the profile (e.g. Batak Toba -> Indonesian).
 from __future__ import annotations
 
 import csv
+import datetime as dt
 import difflib
 import json
 import math
@@ -263,6 +264,14 @@ class Region:
             if text:
                 return text.format(**values)
         raise KeyError(key)
+
+    def now(self) -> dt.datetime:
+        """Local time in the region. Falls back to the profile's fixed UTC offset where no time zone data is installed."""
+        try:
+            from zoneinfo import ZoneInfo
+            return dt.datetime.now(ZoneInfo(self.timezone))
+        except Exception:
+            return dt.datetime.now(dt.timezone(dt.timedelta(hours=float(self.data.get("utc_offset_hours", 0)))))
 
     def language_name(self, lang: str | None) -> str:
         return self.language_names.get(lang or "", lang or "unknown")

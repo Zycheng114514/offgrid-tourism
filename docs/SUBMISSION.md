@@ -7,7 +7,7 @@ Deadline: 2026-10-04 9:00 AM ET. Upload everything to **app.hack-nation.ai** and
 | Item | Format | Status | Who | Notes |
 |---|---|---|---|---|
 | GitHub repo | Public link | Done | Claude | https://github.com/Zycheng114514/offgrid-tourism |
-| Live demo | Stable public link | Temporary link only | Claude + one teammate | Current link changes when the server restarts. Plan: a permanent link (see "Live demo" below) |
+| Live demo | Stable public link | Vercel version built; waiting for the first deploy | Chris (Vercel sign-in), Claude | Steps in docs/RUNBOOK.md → Vercel |
 | Demo video | Video | To do | Team records; Claude wrote the script | Script below |
 | Tech video | Video | To do | Team records; Claude wrote the script | Script below |
 | Team video | Video | To do | Team | Outline below |
@@ -26,7 +26,7 @@ The slide lists Vercel, Replit or Lovable. Options:
 | Replit | Runs our server as it is | An always-on deployment needs a paid plan; the free version sleeps |
 | Keep the current link | Already works | Address can change; no guarantee during judging |
 
-Recommendation: Vercel as the main link, the current link as a backup in the README.
+Decided (D18): Vercel for the landing page, pipeline walkthrough and traveller app; the host demo and SMS simulator stay on our own server, linked from the Vercel pages.
 
 ## Submission text (draft)
 

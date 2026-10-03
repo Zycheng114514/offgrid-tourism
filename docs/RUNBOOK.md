@@ -43,3 +43,19 @@ A teammate does this on an Android phone with a SIM that can stay on and online.
 4. Text the phone from another phone: `CARI makan Garoga` should come back with three listings.
 
 If the tunnel restarts, its URL changes: register the webhook again with the new URL.
+
+## Vercel (permanent link for the parts that keep no state)
+
+Files: `vercel.json` (sends every request to `api/index.py`), `api/index.py`, `server/offgrid/wsgi.py`. No build step and no dependencies.
+
+Local test of the same app: `cd server && PORT=8791 python -m offgrid.wsgi`, then open http://127.0.0.1:8791/.
+
+First deploy (done once, by the GitHub account that owns the repo):
+
+1. Sign in at vercel.com with GitHub (free Hobby plan).
+2. Add New → Project → import `Zycheng114514/offgrid-tourism`. If the repo is not listed, use "Adjust GitHub App Permissions" to give Vercel access to it.
+3. Framework Preset: **Other**. Leave Root Directory, build and output settings, and environment variables empty. Deploy.
+4. Use the address under **Domains** (e.g. `offgrid-tourism.vercel.app`); the long per-deployment addresses may ask visitors to log in.
+
+After that, every push to `main` redeploys automatically. When our own server's tunnel address changes, update `deploy/live_server_url.txt` and push, so `/host` on Vercel points to the new address.
+

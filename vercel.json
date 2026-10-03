@@ -1,0 +1,9 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "rewrites": [{ "source": "/(.*)", "destination": "/api/index" }],
+  "functions": {
+    "api/index.py": {
+      "excludeFiles": "{docs/**,server/tests/**,data/real/osm/**/raw.json,deploy/*.sh}"
+    }
+  }
+}

@@ -1,5 +1,5 @@
 // Keeps the app and the last downloaded listings available with no connection.
-const CACHE = "offgrid-v3";
+const CACHE = "offgrid-v4";
 const SHELL = ["./", "index.html", "app.css", "app.js", "manifest.webmanifest", "icon.svg"];
 
 self.addEventListener("install", e => {

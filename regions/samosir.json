@@ -653,5 +653,6 @@
   "language_fallback": {
     "bbc": "id",
     "zh": "en"
-  }
+  },
+  "utc_offset_hours": 7
 }

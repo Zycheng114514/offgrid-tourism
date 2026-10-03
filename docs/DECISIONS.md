@@ -28,6 +28,7 @@ When a decision changes, edit its entry and add a line to its history; do not de
 | D15 | Web demo | Decided | Host side (`/host`), pipeline walkthrough (`/pipeline`), traveller side (`/app/`), landing page |
 | D16 | Languages | Decided | Hosts: Indonesian, Batak Toba, English; travellers: English, Indonesian, Chinese; replies in the sender's language |
 | D17 | Messages that are not reports | Decided | Classified first; chit-chat and questions never create a listing |
+| D18 | Permanent live demo | Decided | Vercel for the parts that keep no state; host demo and SMS simulator stay on our own server |
 | D13 | Listing trust rules | Default | Host confirms by SMS; last-confirmed date; owner-only edits; phone shown only with consent |
 | D14 | Which small model | Decided | Qwen3-1.7B named for later; not run in the demo (simulated outputs) |
 
@@ -147,4 +148,12 @@ Host confirms each listing by replying `1`; each listing shows the last-confirme
 - Before anything is stored, each message is classified by fixed rules: command word; business report (it has a price, opening hours, rooms/people, or a business word in a message of five words or more); traveller search (a question mark, a question word, or a short message naming what or where with no price); otherwise not understood.
 - Chit-chat and questions never create a listing. A question with nothing searchable gets the help text in the sender's language; a message in no recognised language gets the help text in Indonesian and English.
 - Found when a test message ("what are you doing") was taken as a business report and the server asked for its category (2026-10-03).
+
+## D18. Permanent live demo — Decided
+
+- The submission asks for a live demo on a host such as Vercel, Replit or Lovable. Our own server's address changes whenever its tunnel restarts.
+- **Vercel** hosts the parts that keep no state: landing page, pipeline walkthrough, traveller app, region pack, examples (`api/index.py` → `server/offgrid/wsgi.py`, `vercel.json`). The demo listings are loaded into memory at start-up and only read.
+- The **host demo and the SMS simulator** keep conversations, so they stay on our own server. On Vercel, `/host` redirects there (address in `deploy/live_server_url.txt`), the landing page says so, and the app's "Ask by SMS" tab shows a link instead of the simulator.
+- Time zones: Vercel may lack time zone data, so the region profile has a fixed UTC offset as a fallback.
+- Decided by Chris, 2026-10-03 ("首页、管道演示页、游客端离线应用、数据包 … use vercel").
 

@@ -28,6 +28,7 @@ const STR = {
     hostWords: "Host's words", online: "Online", offline: "Offline",
     smsIntro: "With phone signal but no mobile data, a traveller texts the service number and gets the top 3 listings back by SMS, in English, Indonesian or Chinese. In this demo the page stands in for the phone's SMS app, so it needs a connection.",
     smsPlaceholder: "SEARCH food Garoga", send: "Send", smsOffline: "(The demo needs a connection for the SMS simulator.)",
+    smsElsewhere: "The SMS simulator keeps conversations, so it runs on our own server, not on this host.", open: "Open it",
   },
   id: {
     banner: "Demo: semua usaha dan nomor telepon adalah rekaan; nama desa asli.",
@@ -45,6 +46,7 @@ const STR = {
     hostWords: "Kata pemilik", online: "Online", offline: "Offline",
     smsIntro: "Ada sinyal tapi tidak ada data? Kirim SMS ke nomor layanan dan dapatkan 3 hasil teratas lewat SMS. Di demo ini halaman ini menggantikan aplikasi SMS, jadi perlu koneksi.",
     smsPlaceholder: "CARI makan Garoga", send: "Kirim", smsOffline: "(Simulator SMS di demo ini perlu koneksi.)",
+    smsElsewhere: "Simulator SMS menyimpan percakapan, jadi berjalan di server kami sendiri, bukan di sini.", open: "Buka",
   },
   zh: {
     banner: "演示：所有商户和电话号码都是虚构的；村名是真实的。",
@@ -62,6 +64,7 @@ const STR = {
     hostWords: "店主原话", online: "在线", offline: "离线",
     smsIntro: "有手机信号但没有流量时，游客可以发短信到服务号码，收到前 3 条结果。演示里这个页面代替手机短信，所以需要联网。",
     smsPlaceholder: "搜索 吃 Garoga", send: "发送", smsOffline: "（演示的短信模拟需要联网。）",
+    smsElsewhere: "短信模拟需要保存对话，所以放在我们自己的服务器上，不在这个网站。", open: "打开",
   },
 };
 const t = (key, vars = {}) => (STR[ui][key] ?? STR.en[key] ?? key).replace(/\{(\w+)\}/g, (_, k) => vars[k] ?? "");
@@ -70,7 +73,19 @@ function applyText() {
   document.documentElement.lang = ui;
   document.querySelectorAll("[data-t]").forEach(el => { el.textContent = t(el.dataset.t); });
   $("q").placeholder = t("placeholder"); $("smsText").placeholder = t("smsPlaceholder");
-  $("uiLang").value = ui; setNet(); showPack(); renderCats(); render();
+  $("uiLang").value = ui; setNet(); showPack(); renderCats(); render(); smsAvailability();
+}
+
+// On hosts that keep no state (e.g. Vercel) the SMS simulator is not available here; point to our own server.
+function smsAvailability() {
+  const off = config && config.simulator === false;
+  ["thread", "smsExamples"].forEach(id => { $(id).hidden = off; });
+  document.querySelector("#paneSms .compose").hidden = off;
+  $("smsElsewhere").hidden = !off;
+  if (off) {
+    const live = config.live_server_url;
+    $("smsElsewhere").innerHTML = esc(t("smsElsewhere")) + (live ? ` <a href="${esc(live)}/app/">${esc(t("open"))}</a>` : "");
+  }
 }
 
 // ---- text helpers (same rules as the server) ------------------------------------
@@ -283,6 +298,7 @@ async function init() {
   applyText();
   try { config = await (await fetch("/api/config", { cache: "no-store" })).json(); } catch (e) { config = null; }
   if (config && !pack) $("regionName").textContent = config.display_name;
+  smsAvailability();
   let ex = { sms: [], offline: [] };
   try { ex = (await (await fetch("/api/examples")).json()).traveller_examples || ex; store.set("examples", JSON.stringify(ex)); }
   catch (e) { try { ex = JSON.parse(store.get("examples")) || ex; } catch (e2) {} }

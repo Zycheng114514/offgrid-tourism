@@ -21,6 +21,7 @@
       <p>A host with a basic phone reports what they offer by SMS, in their own language. The server reads the
          message, asks for anything missing, and lists the business once the host confirms.</p>
       <a class="big" href="/host">Open the host demo</a>
+      <p class="small muted" id="hostNote" hidden style="margin-top:8px">The host demo keeps conversations, so it runs on our own server; its address can change.</p>
     </div>
     <div class="card">
       <h2>The pipeline, step by step</h2>
@@ -40,6 +41,7 @@
 <script>
 fetch("/api/config").then(r => r.json()).then(c => {
   document.getElementById("region").textContent = `Test region: ${c.display_name}. Same pipeline for any region.`;
+  if (c.stateless) document.getElementById("hostNote").hidden = false;
 }).catch(() => {});
 </script>
 </body>

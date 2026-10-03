@@ -17,7 +17,8 @@ Small food and lodging businesses in places with weak connectivity are often mis
 4. **Ask instead of guessing.** If a required field is missing, the server asks the host one short SMS question, like a survey, rather than letting a model fill it in.
 5. **Every listing is confirmed by its host.** The server texts back a summary; the host replies `1` to confirm. Each listing shows when it was last confirmed. A phone number can only edit its own listings.
 6. **Consent before publishing.** A host's phone number is shown to travellers only if the host agreed.
-7. **Claims are measured or labelled.** Every number in the pitch is either measured by a script in this repo or marked as an estimate.
+7. **Any model can be plugged in.** The server reaches language models through one interface; the default is a small open model on our own GPU server, and a hosted API can replace it by changing settings (D5).
+8. **Claims are measured or labelled.** Every number in the pitch is either measured by a script in this repo or marked as an estimate.
 
 ## 3. Region profiles
 
@@ -48,8 +49,8 @@ SMS gateway (Twilio or an Android phone gateway, D4) ──► POST /webhooks/sm
 1. Identify sender      phone number → host record (create on first message)
 2. Detect intent        keyword rules (MAKAN / INAP / TUTUP / 1 / CARI …) from the region profile
 3. Parse fields         rules first: price, hours, phone, village name (fuzzy match to gazetteer)
-4. Extract the rest     LLM fills remaining fields from free text into the listing schema;
-                        if no LLM is configured, rules only (D5)
+4. Extract the rest     LLM fills remaining fields from free text into the listing schema,
+                        through the LLM port (§4.5); with no model configured, rules only
 5. Validate             JSON Schema + checks (price range, village exists, hours valid)
 6. Ask if missing       one SMS question per missing required field (name, village, what, price)
 7. Translate            keep original text; add English (LLM, or a translation model)
@@ -89,12 +90,24 @@ Optional, last (D7): a small on-device model that only turns a free-text questio
 | Online chat | LLM over listing rows | Yes | Not available; offline search still works |
 | Offline search | Filters on the pack | No | Same |
 
+### 4.5 The LLM port
+
+All model calls go through one function: `complete_json(task, text, schema) -> dict`. Behind it:
+
+| Provider setting | Talks to | Use |
+|---|---|---|
+| `openai_compatible` | Any server that speaks the OpenAI API format: Ollama, vLLM, llama.cpp on our GPU server; most hosted APIs | Default: a small open model on theubuntu (D5, D14) |
+| `anthropic` | Anthropic API | Optional hosted alternative |
+| `none` | Nothing | Rules plus SMS follow-up questions |
+
+Settings live in `.env` (`LLM_PROVIDER`, `LLM_BASE_URL`, `LLM_MODEL`, `LLM_API_KEY`). Prompts are files in `models/prompts/`, one per task (extract listing, translate, parse traveller question, answer from rows), so they can be changed and re-scored without touching code.
+
 ## 5. Hackathon scope
 
 **P0, the core demo (must have):**
 - Server: SMS webhook, rules + LLM extraction, follow-up questions, confirmation, SQLite, traveller SMS search, region pack export.
 - A web page that simulates a phone sending SMS, so the demo works even if the SMS gateway fails.
-- Traveller app: download a pack, search offline, call or SMS a host.
+- Traveller app as an offline web app (PWA): download a pack, search offline, call or SMS a host. A native Android app comes after the hackathon (D6).
 - Seed data for the test region: real village names and landmarks, invented businesses and phone numbers.
 - Region profile for the test region.
 
@@ -111,13 +124,13 @@ Optional, last (D7): a small on-device model that only turns a free-text questio
 
 ## 6. Timeline
 
-The cut-off is not yet confirmed (D1). Hours count from the start of the build.
+Cut-off: 2026-10-04 9:00 AM ET (D1), so the 17-hour column applies. The 8-hour column is kept as the fallback if we fall behind. Hours count from the start of the build.
 
 | Hours | Deadline 9:00 AM ET Oct 4 (≈17 h) | If only ≈8 h are left |
 |---|---|---|
-| 0–3 | Server P0 + simulator page; SMS gateway account; app skeleton | Server P0 + simulator |
-| 3–6 | Real SMS working end to end; app offline search; seed data | App offline search; seed data |
-| 6–9 | Test sets written and labelled; accuracy numbers | Slides + video from the simulator |
+| 0–3 | Server P0 + simulator page; SMS gateway account; wake the GPU server and start the model | Server P0 + simulator |
+| 3–6 | Real SMS working end to end; PWA offline search; seed data | PWA offline search; seed data |
+| 6–9 | Test sets written and labelled; accuracy numbers for two models | Slides + video from the simulator |
 | 9–12 | Slides, demo video, README for judges | Submit |
 | 12–15 | P2 items if P0/P1 are done | — |
 | 15–17 | Buffer, submit | — |
@@ -126,9 +139,10 @@ The cut-off is not yet confirmed (D1). Hours count from the start of the build.
 
 | Person | Work |
 |---|---|
-| A | SMS gateway account and number, run the server and tunnel (Claude writes the server) |
-| B | Traveller app on a real phone (Claude writes starter code) |
-| C | Real-world data: run `scripts/osm_gap.py`, write 15–20 host messages and 15 traveller questions in the local language with gold answers, contact 2–3 real hosts if possible (D11) |
+| Claude | Server, LLM port, extraction prompts, region pack export, PWA, test messages (synthetic, AI-written), scoring scripts |
+| A | SMS gateway account and number; wake the GPU server and run the sudo fix (D8); keep the tunnel running |
+| B | Test the PWA on real phones, including airplane mode; record the demo |
+| C | Real-world data: check the OpenStreetMap numbers, find connectivity and visitor data (REAL_WORLD_DATA.md §2–3); find an Indonesian speaker to spot-check test messages; contact real hosts if possible (D11) |
 | D | Slides and demo video |
 
 ## 8. Demo script (about 3 minutes)
@@ -156,7 +170,9 @@ Test messages written by the team are labelled synthetic. Messages from real hos
 |---|---|
 | SMS replies blocked (e.g., US numbers need A2P 10DLC registration) | Test a reply in the first 30 minutes; fall back to an Android phone gateway (D4) or the simulator |
 | No LLM key | Rules + follow-up questions still produce listings (D5) |
-| Nobody on the team reads the test language | Ask native-speaker contacts to write and check the test messages; otherwise report results as limited |
+| Nobody on the team reads Indonesian (D2) | Score only fields that can be checked without reading it; label test messages as AI-written; get a spot-check from any Indonesian speaker if possible |
+| GPU server offline or suspends overnight (it is offline now) | Wake it and apply the sudo fix (D8); fall back to a smaller model on the Mac, or rules only |
+| Small model returns broken JSON or wrong fields | Constrain output with the JSON schema; validate; ask the host by SMS when a field fails |
 | Laptop sleeps or tunnel URL changes | Keep the lid open; update the webhook URL after restarts |
 | Wrong or stale listings | Host confirmation, last-confirmed date, only the owner's number can edit |
 

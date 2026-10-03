@@ -7,7 +7,7 @@ Deadline: 2026-10-04 9:00 AM ET. Upload everything to **app.hack-nation.ai** and
 | Item | Format | Status | Who | Notes |
 |---|---|---|---|---|
 | GitHub repo | Public link | Done | Claude | https://github.com/Zycheng114514/offgrid-tourism |
-| Live demo | Stable public link | Vercel version built; waiting for the first deploy | Chris (Vercel sign-in), Claude | Steps in docs/RUNBOOK.md → Vercel |
+| Live demo | Stable public link | Done | Chris (Vercel), Claude | https://offgrid-tourism.vercel.app (host demo and SMS simulator on our own server, linked from it) |
 | Demo video | Video | To do | Team records; Claude wrote the script | Script below |
 | Tech video | Video | To do | Team records; Claude wrote the script | Script below |
 | Team video | Video | To do | Team | Outline below |
@@ -16,7 +16,9 @@ Deadline: 2026-10-04 9:00 AM ET. Upload everything to **app.hack-nation.ai** and
 
 ## Live demo
 
-The current demo runs on our own small server behind a Cloudflare quick tunnel: https://emotions-auburn-carried-divide.trycloudflare.com. It works, but the address changes whenever the server or tunnel restarts, and quick tunnels are meant for testing, so it may not survive the judging period.
+**Live demo link to submit: https://offgrid-tourism.vercel.app**
+
+Before the Vercel deploy, the demo ran only on our own small server behind a Cloudflare quick tunnel: https://emotions-auburn-carried-divide.trycloudflare.com. It works, but the address changes whenever the server or tunnel restarts, and quick tunnels are meant for testing, so it may not survive the judging period.
 
 The slide lists Vercel, Replit or Lovable. Options:
 

@@ -4,13 +4,13 @@ Local food and lodging information for places with weak connectivity. Small busi
 
 Built for the World Bank **Small AI for Development** hackathon, tourism track (3–4 October 2026).
 
-**Live demo:** https://emotions-auburn-carried-divide.trycloudflare.com. This is a temporary address that changes whenever the demo server restarts.
+**Live demo:** https://offgrid-tourism.vercel.app (permanent, on Vercel). The host demo and the SMS simulator keep conversations, so they run on our own server; `/host` on Vercel forwards there (https://emotions-auburn-carried-divide.trycloudflare.com, a temporary address that changes when that server restarts).
 
 | Page | What it shows |
 |---|---|
-| [`/pipeline`](https://emotions-auburn-carried-divide.trycloudflare.com/pipeline) | One SMS followed through every step of the pipeline, computed live by the server |
-| [`/host`](https://emotions-auburn-carried-divide.trycloudflare.com/host) | The host side: a basic phone, and what the server did with each message |
-| [`/app/`](https://emotions-auburn-carried-divide.trycloudflare.com/app/) | The traveller app: download once, then search offline; or ask by SMS |
+| [`/pipeline`](https://offgrid-tourism.vercel.app/pipeline) | One SMS followed through every step of the pipeline, computed live by the server |
+| [`/host`](https://offgrid-tourism.vercel.app/host) | The host side: a basic phone, and what the server did with each message |
+| [`/app/`](https://offgrid-tourism.vercel.app/app/) | The traveller app: download once, then search offline; or ask by SMS |
 
 > **Demo data.** Every business, price and phone number is invented; village names are real (OpenStreetMap). **No language model runs in the demo**: for the example messages, the model's output was written in advance, and the pages say so wherever it appears. Any other message is handled by fixed rules and follow-up questions only.
 
@@ -60,7 +60,7 @@ traveller with signal but no data ──SMS──► same server ──SMS──
 | Confirmation and consent | Host replies `1`; the phone number is shown only with consent | No |
 | Region pack and search | Confirmed listings only; search runs on the phone | No |
 
-The [`/pipeline`](https://emotions-auburn-carried-divide.trycloudflare.com/pipeline) page runs any message through these steps with the real server code and shows each step's output, without saving anything. One example shows the model inventing a business name and the check rejecting it.
+The [`/pipeline`](https://offgrid-tourism.vercel.app/pipeline) page runs any message through these steps with the real server code and shows each step's output, without saving anything. One example shows the model inventing a business name and the check rejecting it.
 
 ![Pipeline walkthrough: the 11 steps for a message in Batak Toba](docs/img/pipeline-steps.jpg)
 
@@ -115,6 +115,7 @@ scripts/          osm_gap.py: OpenStreetMap gap measurement for any region
 data/real/        OpenStreetMap extract for the test region (ODbL)
 data/synthetic/   invented seed listings, labelled as such
 deploy/           deploy.sh: copy to a server over SSH, start the app and a Cloudflare quick tunnel
+api/, vercel.json  Vercel entry point for the parts that keep no state (server/offgrid/wsgi.py)
 docs/             plan, decisions, real-world data, runbook
 ```
 

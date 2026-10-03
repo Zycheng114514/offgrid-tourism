@@ -13,30 +13,37 @@
 <header class="top">
   <div>
     <strong>Offgrid Travel</strong>
-    <div class="small muted" id="regionName">Loading…</div>
+    <div class="small muted" id="regionName">…</div>
   </div>
-  <span class="badge" id="net">…</span>
+  <div class="topright">
+    <select id="uiLang" aria-label="Language">
+      <option value="en">English</option>
+      <option value="id">Bahasa Indonesia</option>
+      <option value="zh">中文</option>
+    </select>
+    <span class="badge" id="net">…</span>
+  </div>
 </header>
 
 <main>
-  <div class="banner small">Demo: every business and phone number is invented; village names are real.</div>
+  <div class="banner small" data-t="banner"></div>
 
   <section class="packbar">
-    <div id="packInfo" class="small">No listings downloaded yet.</div>
-    <button id="update" class="primary">Download listings</button>
+    <div id="packInfo" class="small"></div>
+    <button id="update" class="primary"></button>
   </section>
 
   <nav class="tabs" role="tablist">
-    <button role="tab" id="tabSearch" aria-selected="true">Search (works offline)</button>
-    <button role="tab" id="tabSms" aria-selected="false">Ask by SMS</button>
+    <button role="tab" id="tabSearch" aria-selected="true" data-t="tabSearch"></button>
+    <button role="tab" id="tabSms" aria-selected="false" data-t="tabSms"></button>
   </nav>
 
   <section id="paneSearch">
-    <input id="q" type="search" placeholder="e.g. cheap room Tomok" autocomplete="off">
+    <input id="q" type="search" autocomplete="off">
     <div class="chips" id="cats"></div>
     <div class="toggles">
-      <label><input type="checkbox" id="openNow"> Open now</label>
-      <label><input type="checkbox" id="cheap"> Cheapest first</label>
+      <label><input type="checkbox" id="openNow"> <span data-t="openNow"></span></label>
+      <label><input type="checkbox" id="cheap"> <span data-t="cheapest"></span></label>
     </div>
     <div class="chips" id="qExamples"></div>
     <div id="count" class="small muted"></div>
@@ -44,12 +51,11 @@
   </section>
 
   <section id="paneSms" hidden>
-    <p class="small muted">With phone signal but no mobile data, a traveller texts the service number and gets the top 3
-      listings back by SMS. In this demo the page stands in for the phone's SMS app, so it needs a connection.</p>
+    <p class="small muted" data-t="smsIntro"></p>
     <div class="thread" id="thread"></div>
     <div class="compose">
-      <input id="smsText" placeholder="SEARCH food Garoga" autocomplete="off">
-      <button class="primary" id="smsSend">Send</button>
+      <input id="smsText" autocomplete="off">
+      <button class="primary" id="smsSend" data-t="send"></button>
     </div>
     <div class="chips" id="smsExamples"></div>
   </section>

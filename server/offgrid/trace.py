@@ -9,14 +9,16 @@ from __future__ import annotations
 
 from datetime import datetime, timezone
 
-from .dialog import ASK, Dialog, listing_from_extraction, missing_fields
+from .dialog import ASK, Dialog, classify, listing_from_extraction, missing_fields
 from .extract import extract, system_prompt
 from .llm import LLM
 from .pack import public_listing
 from .region import Region
-from .search import find, result_line
+from .search import find, result_line, searchable, relevance
 from .store import Store
 
+ROUTE_NAMES = {"report": "new business report", "search": "traveller search", "help": "help",
+               "status": "status update (open or closed today)", "answer": "yes/no answer", "unclear": "not understood"}
 GSM7 = set("@£$¥èéùìòÇ\nØø\rÅåΔ_ΦΓΛΩΠΨΣΘΞÆæßÉ !\"#¤%&'()*+,-./0123456789:;<=>?¡ABCDEFGHIJKLMNOPQRSTUVWXYZÄÖÑÜ§"
            "¿abcdefghijklmnopqrstuvwxyzäöñüà")
 GSM7_EXT = set("^{}\\[~]|€")
@@ -32,8 +34,12 @@ def sms_parts(text: str) -> dict:
 
 def trace(text: str, region: Region, llm: LLM, store: Store, phone: str = "+620000000999") -> dict:
     text = (text or "").strip()
-    cmd, lang, rest = region.command(text)
-    route = _route(cmd, rest)
+    c = classify(text, region)
+    lang = c["language"]
+    route = ROUTE_NAMES[c["route"]]
+    host_lang = lang if lang in region.host_langs else region.host_lang
+    reply_lang = region.reply_lang(host_lang if c["route"] == "report" else (lang or region.traveller_lang),
+                                   "confirm" if c["route"] == "report" else "results_header")
     steps: list[dict] = []
     steps.append({"id": "sms", "title": "SMS arrives", "data": {"from": phone, "text": text, **sms_parts(text)}})
     steps.append({"id": "gateway", "title": "Gateway phone forwards it", "data": {
@@ -41,17 +47,29 @@ def trace(text: str, region: Region, llm: LLM, store: Store, phone: str = "+6200
         "body": {"event": "sms:received", "payload": {"messageId": "(set by the phone)", "message": text,
                                                        "sender": phone, "receivedAt": datetime.now(timezone.utc).isoformat(timespec="seconds")}},
         "note": "Body format from the SMS Gateway for Android documentation. The server answers at once and works on the message in the background."}})
-    steps.append({"id": "route", "title": "What kind of message", "data": {
-        "first_word_command": cmd, "language": lang, "route": route}})
+    steps.append({"id": "route", "title": "What kind of message, which language", "data": {
+        "first_word_command": c["command"], "route": route, "reason": c["reason"],
+        "language": lang, "language_name": region.language_name(lang) if lang else "not recognised",
+        "language_scores": {region.language_name(l): n for l, n in c["language_scores"].items()},
+        "reply_language": region.language_name(reply_lang)}})
     result = {"region": {"id": region.id, "display_name": region.display_name, "host_language": region.host_lang,
                          "currency": region.currency["code"], "places_in_gazetteer": len(region.places)},
               "route": route, "steps": steps}
-    if route != "new report":
+    if c["route"] != "report":
         result["note"] = ("This message is not a new business report, so the listing steps do not run. "
                           "Try one of the example reports.")
-        if route == "traveller search":
-            steps.append({"id": "search", "title": "Search reply", "data": {
-                "reply": _search_text(rest, lang or region.traveller_lang, region, store.listings(region.id, state="confirmed"))}})
+        listings = store.listings(region.id, state="confirmed")
+        if c["route"] == "search":
+            reply = _search_text(c["query"], lang or region.traveller_lang, region, listings)
+        elif c["route"] == "help":
+            reply = region.template("help", lang or region.traveller_lang)
+        elif c["route"] == "unclear":
+            reply = region.template("not_understood", lang) if lang else "\n".join(
+                region.template("not_understood", l) for l in dict.fromkeys([region.host_lang, region.traveller_lang]))
+        else:
+            reply = None
+        if reply:
+            steps.append({"id": "search", "title": "Reply by SMS", "data": {"reply": reply, **sms_parts(reply)}})
         return result
 
     ex = extract(text, region, llm)
@@ -71,7 +89,7 @@ def trace(text: str, region: Region, llm: LLM, store: Store, phone: str = "+6200
         "output": ex.model_output, "error": ex.llm_error}})
     steps.append({"id": "checks", "title": "Checks against the message", "data": {"checks": ex.checks}})
 
-    listing = listing_from_extraction(ex, f"{region.id}-preview", region, {"id": "h-preview"}, phone, text)
+    listing = listing_from_extraction(ex, f"{region.id}-preview", region, {"id": "h-preview"}, phone, text, host_lang)
     fields = {k: listing.get(k) for k in ("category", "name", "village", "landmark", "offer_original", "offer_en",
                                          "price", "hours", "capacity")}
     steps.append({"id": "merge", "title": "Listing fields and where each came from", "data": {
@@ -80,14 +98,17 @@ def trace(text: str, region: Region, llm: LLM, store: Store, phone: str = "+6200
     dialog = Dialog(region, store, llm, lambda *_: None)
     missing = missing_fields(listing)
     if missing:
-        sms = [{"to": "host", "text": region.template(ASK[missing[0]]), "why": f"missing: {missing[0]}"}]
-        sms += [{"to": "host", "text": region.template(ASK[m]), "why": f"then, if still missing: {m}"} for m in missing[1:]]
-        sms.append({"to": "host", "text": region.template("confirm", summary="…"), "why": "after all answers: summary to confirm"})
+        sms = [{"to": "host", "text": region.template(ASK[missing[0]], host_lang), "why": f"missing: {missing[0]}"}]
+        sms += [{"to": "host", "text": region.template(ASK[m], host_lang), "why": f"then, if still missing: {m}"} for m in missing[1:]]
+        sms.append({"to": "host", "text": region.template("confirm", host_lang, summary="…"), "why": "after all answers: summary to confirm"})
     else:
-        sms = [{"to": "host", "text": region.template("confirm", summary=dialog.summary(listing)), "why": "nothing missing: summary to confirm"}]
+        sms = [{"to": "host", "text": region.template("confirm", host_lang, summary=dialog.summary(listing, host_lang)),
+                "why": "nothing missing: summary to confirm"}]
     sms += [{"to": "service", "text": "1", "why": "host confirms"},
-            {"to": "host", "text": region.template("ask_publish_phone"), "why": "first listing from this number: ask consent"},
-            {"to": "host", "text": region.template("confirmed", name=listing.get("name") or "…"), "why": "listing goes live"}]
+            {"to": "host", "text": region.template("ask_publish_phone", host_lang), "why": "first listing from this number: ask consent"},
+            {"to": "host", "text": region.template("confirmed", host_lang, name=listing.get("name") or "…"), "why": "listing goes live"}]
+    for m in sms:
+        m["chars"] = len(m["text"])
     steps.append({"id": "ask", "title": "Follow-up questions and confirmation by SMS", "data": {"sms": sms}})
 
     preview = dict(listing)
@@ -113,19 +134,9 @@ def trace(text: str, region: Region, llm: LLM, store: Store, phone: str = "+6200
     return result
 
 
-def _route(cmd: str | None, rest: str) -> str:
-    if cmd == "search":
-        return "traveller search"
-    if cmd == "help" and not rest:
-        return "help"
-    if cmd in ("open_today", "closed_today") and len(rest.split()) <= 2:
-        return "status update (open or closed today)"
-    if cmd in ("confirm_yes", "confirm_no"):
-        return "answer to a question"
-    return "new report"
-
-
 def _search_text(query: str, lang: str, region: Region, listings: list[dict]) -> str:
+    if not searchable(query, region) and not any(relevance(query, l) for l in listings):
+        return region.template("help", lang)
     items = find(query, region, listings)[:3]
     if not items:
         return region.template("no_results", lang)

@@ -1,7 +1,7 @@
 {
   "id": "samosir",
   "display_name": "Samosir Regency, Lake Toba, Indonesia",
-  "note": "First test profile. Everything region-specific the pipeline needs is in this file; the code has no place names, languages or currencies in it.",
+  "note": "First test profile. Everything region-specific the pipeline needs is in this file; the code has no place names, languages or currencies in it. Batak Toba words were written from general knowledge and have not been checked by a native speaker.",
   "country_code": "ID",
   "phone_country_prefix": "+62",
   "timezone": "Asia/Jakarta",
@@ -10,12 +10,24 @@
     "admin_level": 5
   },
   "languages": {
-    "host": "id",
-    "traveller": "en"
+    "host": [
+      "id",
+      "bbc",
+      "en"
+    ],
+    "traveller": [
+      "en",
+      "id",
+      "zh"
+    ],
+    "default_host": "id",
+    "default_traveller": "en"
   },
   "language_names": {
     "id": "Indonesian",
-    "en": "English"
+    "bbc": "Batak Toba",
+    "en": "English",
+    "zh": "Chinese"
   },
   "currency": {
     "code": "IDR",
@@ -200,35 +212,111 @@
       ],
       "price_unit_prefix": [
         "per"
+      ],
+      "detect": [
+        "ada",
+        "di",
+        "dan",
+        "yang",
+        "sy",
+        "saya",
+        "kami",
+        "jual",
+        "harga",
+        "dekat",
+        "dkt",
+        "dari",
+        "ke",
+        "bisa",
+        "sudah",
+        "sdh",
+        "termasuk",
+        "tiap",
+        "hari",
+        "untuk",
+        "dengan",
+        "tidak",
+        "mau",
+        "berapa",
+        "dimana",
+        "mana"
+      ],
+      "question": [
+        "dimana",
+        "di mana",
+        "mana",
+        "berapa",
+        "apa",
+        "ada"
       ]
     },
     "en": {
+      "detect": [
+        "we",
+        "have",
+        "the",
+        "and",
+        "with",
+        "near",
+        "from",
+        "is",
+        "are",
+        "there",
+        "where",
+        "can",
+        "i",
+        "my",
+        "our",
+        "per",
+        "breakfast",
+        "rooms",
+        "night",
+        "price",
+        "open",
+        "cheap",
+        "food",
+        "room"
+      ],
+      "question": [
+        "where",
+        "what",
+        "how",
+        "which",
+        "any",
+        "is there",
+        "are there"
+      ],
       "category": {
         "food": [
           "food",
           "eat",
           "restaurant",
           "meal",
-          "cafe"
+          "cafe",
+          "warung"
         ],
         "lodging": [
           "sleep",
           "room",
+          "rooms",
           "bed",
           "stay",
           "hotel",
           "homestay",
-          "guesthouse"
+          "guesthouse",
+          "guest house"
         ],
         "transport": [
           "ride",
           "boat",
           "taxi",
-          "transport"
+          "transport",
+          "motorbike"
         ],
         "guide": [
           "guide",
-          "tour"
+          "tour",
+          "trekking"
         ]
       },
       "commands": {
@@ -238,6 +326,73 @@
         ],
         "help": [
           "help"
+        ],
+        "open_today": [
+          "open today"
+        ],
+        "closed_today": [
+          "closed today"
+        ],
+        "confirm_yes": [
+          "1",
+          "yes",
+          "y",
+          "ok"
+        ],
+        "confirm_no": [
+          "2",
+          "no",
+          "n"
+        ]
+      },
+      "price_units": {
+        "per_night": [
+          "night",
+          "nite"
+        ],
+        "per_person": [
+          "person",
+          "pax",
+          "people"
+        ],
+        "per_trip": [
+          "trip",
+          "return"
+        ],
+        "per_day": [
+          "day"
+        ],
+        "per_meal": [
+          "meal",
+          "portion"
+        ]
+      },
+      "capacity_units": [
+        "rooms",
+        "room",
+        "beds",
+        "bed",
+        "people",
+        "persons",
+        "pax"
+      ],
+      "time": {
+        "am": [
+          "am",
+          "morning"
+        ],
+        "pm": [
+          "pm",
+          "evening"
+        ],
+        "range": [
+          "to",
+          "until"
+        ],
+        "markers": [
+          "open",
+          "hours",
+          "from"
         ]
       },
       "cheap": [
@@ -245,7 +400,159 @@
         "budget"
       ],
       "now": [
-        "now"
+        "now",
+        "tonight"
+      ]
+    },
+    "bbc": {
+      "detect": [
+        "adong",
+        "hami",
+        "ahu",
+        "sian",
+        "tu",
+        "boi",
+        "mangan",
+        "modom",
+        "jabu",
+        "borngin",
+        "manogot",
+        "bodari",
+        "sipanganon",
+        "dekke",
+        "indahan",
+        "solu",
+        "hepeng",
+        "arga",
+        "sadia",
+        "olo",
+        "ndang",
+        "dang",
+        "mauliate",
+        "horas"
+      ],
+      "question": [
+        "didia",
+        "sadia",
+        "aha"
+      ],
+      "category": {
+        "food": [
+          "mangan",
+          "sipanganon",
+          "dekke",
+          "indahan",
+          "lapo"
+        ],
+        "lodging": [
+          "modom",
+          "jabu"
+        ],
+        "transport": [
+          "solu"
+        ]
+      },
+      "commands": {
+        "confirm_yes": [
+          "olo"
+        ],
+        "confirm_no": [
+          "ndang",
+          "dang"
+        ]
+      },
+      "price_units": {
+        "per_night": [
+          "borngin",
+          "sada borngin"
+        ],
+        "per_day": [
+          "ari"
+        ]
+      },
+      "time": {
+        "am": [
+          "manogot"
+        ],
+        "pm": [
+          "bodari",
+          "borngin"
+        ]
+      }
+    },
+    "zh": {
+      "detect": [
+        "的",
+        "有",
+        "吗",
+        "哪里",
+        "哪儿",
+        "我",
+        "想",
+        "住",
+        "吃",
+        "便宜",
+        "现在",
+        "多少",
+        "钱"
+      ],
+      "question": [
+        "哪里",
+        "哪儿",
+        "吗",
+        "多少",
+        "什么",
+        "？"
+      ],
+      "category": {
+        "food": [
+          "吃",
+          "饭",
+          "餐",
+          "餐厅",
+          "美食"
+        ],
+        "lodging": [
+          "住",
+          "住宿",
+          "房间",
+          "民宿",
+          "酒店"
+        ],
+        "transport": [
+          "船",
+          "车",
+          "摩托"
+        ],
+        "guide": [
+          "向导",
+          "导游"
+        ]
+      },
+      "commands": {
+        "search": [
+          "搜索",
+          "查找",
+          "找",
+          "查"
+        ],
+        "help": [
+          "帮助"
+        ],
+        "confirm_yes": [
+          "是",
+          "好"
+        ],
+        "confirm_no": [
+          "否",
+          "不"
+        ]
+      },
+      "cheap": [
+        "便宜"
+      ],
+      "now": [
+        "现在"
       ]
     }
   },
@@ -267,6 +574,15 @@
       "per_item": "",
       "other": "",
       "per_day": "/day"
+    },
+    "zh": {
+      "per_night": "/晚",
+      "per_person": "/人",
+      "per_trip": "/次",
+      "per_meal": "/份",
+      "per_day": "/天",
+      "per_item": "",
+      "other": ""
     }
   },
   "templates": {
@@ -286,12 +602,35 @@
       "closed_ack": "Tercatat: hari ini TUTUP.",
       "no_listing": "Anda belum punya usaha terdaftar. Kirim info usaha Anda dulu.",
       "no_results": "Belum ada info untuk itu. Coba: CARI makan Garoga",
-      "results_header": "Hasil:"
+      "results_header": "Hasil:",
+      "help": "Cari lewat SMS: CARI makan Garoga. Pemilik usaha: kirim MAKAN/INAP + nama, desa, harga.",
+      "not_understood": "Maaf, pesan tidak dimengerti. Pemilik usaha: kirim MAKAN/INAP + nama, desa, harga. Wisatawan: CARI makan Garoga"
     },
     "en": {
-      "help": "Search by SMS: SEARCH food Garoga, or SEARCH room Tuk Tuk",
+      "welcome": "Welcome! Send your business, e.g.: FOOD Warung Bu Sinaga in Garoga, rice and fish 25rb, open 7-21. Travellers: SEARCH food Garoga",
+      "ask_name": "What is the name of your business?",
+      "ask_village": "Which village is your business in?",
+      "ask_offer": "What do you offer? (food, rooms, ...)",
+      "ask_price": "What is the price? E.g. 25rb",
+      "ask_hours": "What are your opening hours? E.g. 7-21",
+      "ask_category": "What kind of business? Reply FOOD, ROOM, BOAT or GUIDE",
+      "ask_publish_phone": "May we show this phone number to travellers? Reply YES or NO",
+      "confirm": "We noted: {summary}. Reply 1 if correct, 2 if wrong.",
+      "confirmed": "Thank you! {name} is now visible to travellers.",
+      "rejected": "OK, cancelled. Please send the correct information again.",
+      "open_ack": "Noted: OPEN today.",
+      "closed_ack": "Noted: CLOSED today.",
+      "no_listing": "You have no listed business yet. Please send your business details first.",
+      "help": "Search by SMS: SEARCH food Garoga, or SEARCH room Tuk Tuk. Businesses: send FOOD/ROOM + name, village, price.",
+      "not_understood": "Sorry, we did not understand. Travellers: SEARCH food Garoga. Businesses: FOOD/ROOM + name, village, price.",
       "no_results": "No listings found. Try: SEARCH food Garoga",
       "results_header": "Results:"
+    },
+    "zh": {
+      "help": "短信查询：搜索 吃 Garoga，或 搜索 住宿 Tuk Tuk",
+      "not_understood": "抱歉，没有看懂。查询请发：搜索 吃 Garoga",
+      "no_results": "没有找到。请试试：搜索 吃 Garoga",
+      "results_header": "结果："
     }
   },
   "llm_example": {
@@ -310,5 +649,9 @@
       "close": null,
       "capacity": 2
     }
+  },
+  "language_fallback": {
+    "bbc": "id",
+    "zh": "en"
   }
 }

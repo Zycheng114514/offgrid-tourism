@@ -61,8 +61,15 @@ def find(query: str, region: Region, listings: list[dict], when: datetime | None
     return items
 
 
+def offer_text(l: dict, lang: str) -> str:
+    """The host's own words if the reader shares their language, else the English translation if there is one."""
+    if lang == l.get("language") or not l.get("offer_en"):
+        return l.get("offer_original") or ""
+    return l["offer_en"]
+
+
 def result_line(i: int, l: dict, region: Region, lang: str) -> str:
-    offer = l.get("offer_en") if lang != region.host_lang and l.get("offer_en") else l.get("offer_original") or ""
+    offer = offer_text(l, lang)
     parts = [f"{i}. {l['name']} ({l['village']})", offer[:40], region.format_price(l.get("price"), lang)]
     if l.get("hours"):
         parts.append(f"{l['hours']['open']}-{l['hours']['close']}")
@@ -72,8 +79,17 @@ def result_line(i: int, l: dict, region: Region, lang: str) -> str:
     return " ".join(p for p in parts if p)
 
 
+def searchable(query: str, region: Region) -> bool:
+    """True if the query names a category, a place, or 'cheap'/'now'; otherwise there is nothing to search for."""
+    return bool(region.category_of(query)[0] or region.match_place(query)
+                or region.has_word(query, "cheap") or region.has_word(query, "now"))
+
+
 def search_reply(query: str, lang: str, region: Region, store: Store) -> str:
-    items = find(query, region, store.listings(region.id, state="confirmed"))[:MAX_RESULTS]
+    listings = store.listings(region.id, state="confirmed")
+    if not searchable(query, region) and not any(relevance(query, l) for l in listings):
+        return region.template("help", lang)
+    items = find(query, region, listings)[:MAX_RESULTS]
     if not items:
         return region.template("no_results", lang)
     return "\n".join([region.template("results_header", lang)] +

@@ -51,3 +51,6 @@ input[type="search"], .compose input { width: 100%; font: inherit; padding: 10px
 .msg.out { align-self: flex-start; background: var(--bg); }
 .compose { display: flex; gap: 8px; margin-top: 8px; }
 footer { margin-top: 24px; }
+.topright { display: flex; align-items: center; gap: 8px; }
+.topright select { font: inherit; font-size: .85rem; padding: 4px 6px; border-radius: 8px; border: 1px solid var(--line);
+                   background: var(--panel); color: var(--ink); }

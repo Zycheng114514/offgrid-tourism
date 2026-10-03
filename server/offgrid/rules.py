@@ -41,11 +41,11 @@ def _to_number(raw: str, region: Region, has_multiplier: bool) -> float | None:
 def parse_price(text: str, region: Region, category: str | None = None) -> tuple[dict | None, list[tuple[int, int]]]:
     """Return ({'min', 'max', 'currency', 'unit'}, [span]) or (None, [])."""
     t = text.lower()
-    words = region.lang_words(region.host_lang)
+    time_words = region.merged("time") or {}
     mults = region.currency.get("multipliers", {})
     mult = _alt(mults)
     sym = _alt(region.currency.get("symbols", []))
-    rng = _alt(words.get("time", {}).get("range", ["-"]) + ["–"])
+    rng = _alt(time_words.get("range", ["-"]) + ["–"])
     thou = re.escape(region.currency.get("thousands_separator", ","))
     pattern = re.compile(
         rf"(?P<sym>(?:{sym})\.?\s*)?(?<![\d.,])(?P<a>{NUM})\s*(?P<am>{mult})?(?![a-z\d])"
@@ -71,11 +71,11 @@ def parse_price(text: str, region: Region, category: str | None = None) -> tuple
 
 def _price_unit(tail: str, region: Region, category: str | None) -> str:  # noqa: ARG001
     tokens = norm(tail).split()
-    prefixes = {norm(w) for w in region.lang_words(region.host_lang).get("price_unit_prefix", ["per"])}
+    prefixes = {norm(w) for w in (region.merged("price_unit_prefix") or ["per"])}
     if tokens and tokens[0] in prefixes:
         tokens = tokens[1:]
     first, two = (tokens[0] if tokens else ""), " ".join(tokens[:2])
-    for unit, unit_words in region.lang_words(region.host_lang).get("price_units", {}).items():
+    for unit, unit_words in (region.merged("price_units") or {}).items():
         wn = {norm(w) for w in unit_words}
         if first in wn or two in wn:
             return unit
@@ -91,7 +91,7 @@ def parse_hours_detail(text: str, region: Region, skip_spans=()) -> tuple[dict |
     t = text.lower()
     for a, b in skip_spans:
         t = t[:a] + " " * (b - a) + t[b:]
-    tw = region.lang_words(region.host_lang).get("time", {})
+    tw = region.merged("time") or {}
     for w in tw.get("all_day", []):
         if norm(w) and f" {norm(w)} " in f" {norm(t)} ":
             pos = t.find(w.lower())
@@ -99,8 +99,8 @@ def parse_hours_detail(text: str, region: Region, skip_spans=()) -> tuple[dict |
     am, noon, pm = (tw.get(k, []) for k in ("am", "noon", "pm"))
     period, rng, mk = _alt(am + noon + pm), _alt(tw.get("range", ["-"]) + ["–"]), _alt(tw.get("markers", []))
     pattern = re.compile(
-        rf"(?P<mk>\b(?:{mk})\s+)?(?<![\d.,])(?P<h1>\d{{1,2}})(?:[.:](?P<m1>\d{{2}}))?\s*(?P<p1>\b(?:{period})\b)?\s*"
-        rf"(?:{rng})\s*(?:\b(?:{mk})\s+)?(?P<h2>\d{{1,2}})(?:[.:](?P<m2>\d{{2}}))?(?![\d])\s*(?P<p2>\b(?:{period})\b)?"
+        rf"(?P<mk>\b(?:{mk})\s+)?(?<![\d.,])(?P<h1>\d{{1,2}})(?:[.:](?P<m1>\d{{2}}))?\s*(?P<p1>(?:{period})\b)?\s*"
+        rf"(?:{rng})\s*(?:\b(?:{mk})\s+)?(?P<h2>\d{{1,2}})(?:[.:](?P<m2>\d{{2}}))?(?![\d])\s*(?P<p2>(?:{period})\b)?"
     )
     for m in pattern.finditer(t):
         if not (m.group("mk") or m.group("m1") or m.group("p1") or m.group("p2")):
@@ -133,7 +133,7 @@ def parse_capacity(text: str, region: Region) -> int | None:
 
 
 def parse_capacity_detail(text: str, region: Region) -> tuple[int | None, tuple[int, int] | None]:
-    alt = _alt(region.lang_words(region.host_lang).get("capacity_units", []))
+    alt = _alt(region.merged("capacity_units") or [])
     m = re.search(rf"(?<![\d.,])(\d{{1,3}})\s*(?:{alt})\b", text.lower())
     return (int(m.group(1)), m.span()) if m else (None, None)
 

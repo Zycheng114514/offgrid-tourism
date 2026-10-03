@@ -134,3 +134,39 @@ class Gateway(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class Languages(unittest.TestCase):
+    def setUp(self):
+        self.dialog, self.store, self.sent = make()
+        load_seed(ROOT / "data/synthetic/seed_listings_samosir.json", REGION, self.store)
+
+    def test_batak_report_gets_indonesian_questions(self):
+        reply = self.dialog.handle("+620000007001", "adong kamar modom di Ambarita, 2 kamar, 150rb sada borngin, boi mangan manogot")
+        self.assertEqual(reply, REGION.template("ask_name", "id"))
+        self.assertEqual(self.store.host_for("+620000007001")["lang"], "bbc")
+
+    def test_english_report_gets_english_replies(self):
+        phone = "+620000007002"
+        first = self.dialog.handle(phone, "Homestay Sunset View in Tuk Tuk, 3 rooms with lake view, 250rb per night incl breakfast")
+        self.assertTrue(first.startswith("We noted:"), first)
+        self.assertEqual(self.dialog.handle(phone, "1"), REGION.template("ask_publish_phone", "en"))
+
+    def test_chinese_search(self):
+        reply = self.dialog.handle("+8613800000000", "搜索 便宜 住宿 Tomok")
+        self.assertTrue(reply.startswith("结果："), reply)
+        self.assertIn("/晚", reply)
+
+    def test_question_without_keyword_is_a_search(self):
+        self.assertTrue(self.dialog.handle("+15550000001", "where can I eat in Garoga?").startswith("Results:"))
+
+    def test_chit_chat_creates_nothing(self):
+        before = len(self.store.listings())
+        reply = self.dialog.handle("+15550000002", "what are you doing")
+        self.assertEqual(reply, REGION.template("help", "en"))
+        self.assertEqual(len(self.store.listings()), before)
+
+    def test_unknown_language_gets_both_default_languages(self):
+        reply = self.dialog.handle("+15550000003", "zzz qqq")
+        self.assertIn(REGION.template("not_understood", "id"), reply)
+        self.assertIn(REGION.template("not_understood", "en"), reply)

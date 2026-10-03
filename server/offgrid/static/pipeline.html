@@ -51,7 +51,7 @@
 
   <section class="card controls">
     <div class="chips" id="examples"></div>
-    <textarea id="text" maxlength="480" placeholder="Or type your own SMS in Indonesian…"></textarea>
+    <textarea id="text" maxlength="480" placeholder="Or type your own SMS: Indonesian, Batak Toba, English or Chinese…"></textarea>
     <div class="row">
       <label><input type="checkbox" id="useModel" checked> Use the language model step (simulated)</label>
       <button class="primary" id="run">Run the pipeline</button>
@@ -87,7 +87,7 @@ const TRAVELLER_STEPS = ["pack", "traveller"];
 const EXPLAIN = {
   sms: "A host sends one SMS from any phone, in their own language.",
   gateway: "An Android phone with a SIM card receives the SMS and forwards it to our server over the internet. The server answers at once and works on the message in the background.",
-  route: "The first word decides what kind of message this is: a new report, a traveller search, an open/closed update, or an answer to a question.",
+  route: "Fixed rules decide which language the message is in (from the region's word lists) and what kind of message it is: a command word, a business report (it has a price, hours or rooms), a traveller search (a question, or a short message naming what or where), or something the service does not understand. Replies use the sender's language, or its fallback.",
   rules: "Fixed rules read what is unambiguous: a price with a currency word, hours with a time word, rooms or people, and village names from the region's list. Rules run first and win over the model.",
   model: "A language model reads what rules cannot: the business name, what is offered, directions, and an English translation.",
   checks: "Every model value must be traceable to the message: names must appear in it, numbers must match, villages must be in the region's list. Anything else is dropped, never guessed.",
@@ -104,7 +104,7 @@ function summary(s) {
   switch (s.id) {
     case "sms": return `${d.chars} chars · ${d.parts} SMS`;
     case "gateway": return "webhook to server";
-    case "route": return d.route;
+    case "route": return `${d.route} · ${d.language_name}`;
     case "rules": return Object.entries(d.evidence || {}).map(([k]) => k).join(", ") || "nothing clear";
     case "model": return d.output ? (d.simulated ? "output written in advance" : "model output") : (d.error || "off");
     case "checks": {
@@ -116,7 +116,7 @@ function summary(s) {
     case "store": return "SQLite + original SMS";
     case "pack": return "no phone until consent";
     case "traveller": return d.rank ? `found: #${d.rank} for "${d.offline_query}"` : "after confirmation";
-    case "search": return "SMS reply";
+    case "search": return `${d.parts} SMS · ${d.encoding}`;
   }
   return "";
 }
@@ -152,7 +152,10 @@ function detail(s) {
   if (s.id === "sms") h += `<table><tr><th>From</th><td>${esc(d.from)} (invented)</td></tr><tr><th>Text</th><td>${esc(d.text)}</td></tr>
       <tr><th>Length</th><td>${d.chars} characters, ${d.encoding}, ${d.parts} SMS</td></tr></table>`;
   if (s.id === "gateway") h += `<p class="small"><code>${esc(d.webhook)}</code></p>${json(d.body)}<p class="small muted">${esc(d.note)}</p>`;
-  if (s.id === "route") h += `<table><tr><th>Command word</th><td>${esc(d.first_word_command || "none")}</td></tr><tr><th>Route</th><td>${esc(d.route)}</td></tr></table>` +
+  if (s.id === "route") h += `<table><tr><th>Language</th><td>${esc(d.language_name)} <span class="small muted">(words matched: ${esc(Object.entries(d.language_scores).map(([k, v]) => k + " " + v).join(", "))})</span></td></tr>
+      <tr><th>Replies in</th><td>${esc(d.reply_language)}</td></tr>
+      <tr><th>Command word</th><td>${esc(d.first_word_command || "none")}</td></tr><tr><th>Kind of message</th><td>${esc(d.route)}</td></tr>
+      <tr><th>Why</th><td>${esc(d.reason)}</td></tr></table>` +
       (trace.note ? `<p class="small muted" style="margin-top:8px">${esc(trace.note)}</p>` : "");
   if (s.id === "rules") {
     h += `<table><tr><th>Field</th><th>Value</th><th>Read from the words</th></tr>`;
@@ -197,7 +200,7 @@ function detail(s) {
       <div class="msg out">${esc(d.sms_reply)}<span class="why">service → traveller</span></div></div>
       <p class="small" style="margin-top:12px"><a href="/app/">Open the traveller app</a> to try offline search yourself.</p>`;
   }
-  if (s.id === "search") h += `<div class="sms"><div class="msg out">${esc(d.reply)}</div></div>`;
+  if (s.id === "search") h += `<div class="sms"><div class="msg out">${esc(d.reply)}<span class="why">${d.chars} characters, ${esc(d.encoding)}, ${d.parts} SMS</span></div></div>`;
   return h;
 }
 

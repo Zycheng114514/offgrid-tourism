@@ -20,12 +20,14 @@ When a decision changes, edit its entry and add a line to its history; do not de
 | D5 | LLM on the server | Decided | One interface for any model; in the demo no model runs and outputs are simulated |
 | D6 | Traveller app technology | Decided | Hackathon demo: offline web app (PWA). Later: native Android app, built by Claude |
 | D7 | On-device LLM for travellers | Default | Optional, last priority |
-| D8 | Where the server runs for the demo | Decided | s2 + Cloudflare quick tunnel; no model server |
-| D9 | Repository | Decided | Private GitHub repo; stays private; no license |
+| D8 | Where the server runs for the demo | Decided | A small cloud server + Cloudflare quick tunnel; no model server |
+| D9 | Repository | Decided | Public GitHub repo (from 2026-10-03); no license |
 | D10 | Team roles | Decided | The team assigns roles itself |
 | D11 | Contact real hosts in the test region | Decided | No; all host data is invented by Claude |
 | D12 | Product name | Open | Working name `offgrid-tourism` |
 | D15 | Web demo | Decided | Host side (`/host`), pipeline walkthrough (`/pipeline`), traveller side (`/app/`), landing page |
+| D16 | Languages | Decided | Hosts: Indonesian, Batak Toba, English; travellers: English, Indonesian, Chinese; replies in the sender's language |
+| D17 | Messages that are not reports | Decided | Classified first; chit-chat and questions never create a listing |
 | D13 | Listing trust rules | Default | Host confirms by SMS; last-confirmed date; owner-only edits; phone shown only with consent |
 | D14 | Which small model | Decided | Qwen3-1.7B named for later; not run in the demo (simulated outputs) |
 
@@ -70,7 +72,7 @@ The product is for any place with weak connectivity where local businesses lack 
 - **Decision:** the server talks to language models through one interface (a "port"), so any provider can be plugged in by changing settings, not code: any OpenAI-compatible server (Ollama, vLLM, llama.cpp, hosted APIs), the Anthropic API, `simulated`, or `none`.
 - **In the hackathon demo no model runs** (no compute resources; Chris, 2026-10-03). The setting is `LLM_PROVIDER=simulated`: for each example message, the model output was written in advance by Claude (`models/simulated/samosir.json`). Messages that are not examples get no model output, so the server uses rules and follow-up questions only. The demo pages say this.
 - The safety checks run on simulated outputs exactly as on real ones (example e8 shows an invented business name being rejected).
-- Decided by Chris, 2026-10-03. History: first default was a small open model on theubuntu; theubuntu became unavailable; then a model on s3; then no model.
+- Decided by Chris, 2026-10-03. History: first default was a small open model on our GPU machine; that machine became unavailable; then a model on a CPU-only cloud server; then no model.
 
 ## D6. Traveller app technology — Decided
 
@@ -86,15 +88,15 @@ The product is for any place with weak connectivity where local businesses lack 
 
 ## D8. Where the server runs for the demo — Decided
 
-- **s2** (Oracle cloud, 1 ARM core, about 5 GB free memory) runs the app server; a Cloudflare quick tunnel gives it a public HTTPS address (needed by the SMS gateway app's webhook and by the web app's offline mode). The address changes whenever the tunnel restarts. Deploy: `deploy/deploy_s2.sh`; details in `docs/RUNBOOK.md`.
-- **No model server.** theubuntu (GPU) is unavailable. A one-off try of Qwen3-1.7B on s3 (CPU only) on 2026-10-03 took 54–73 seconds per message and returned empty output through the OpenAI-compatible JSON-schema mode; it was not debugged further and Ollama on s3 was stopped (its files, about 3.4 GB in `~/ollama` and `~/.ollama`, are still on s3).
-- s1 (data-donation prototypes) and s4 (proxy) are not used.
+- One of our small cloud servers (1 ARM processor core, about 5 GB of free memory, no GPU) runs the app server. A Cloudflare quick tunnel gives it a public HTTPS address, which the SMS gateway app's webhook and the web app's offline mode both need. The address changes whenever the tunnel restarts. Deploy with `deploy/deploy.sh <ssh-host>`; details in `docs/RUNBOOK.md`.
+- **No model server.** Our GPU machine is unavailable. A one-off try of Qwen3-1.7B on a CPU-only cloud server on 2026-10-03 took 54–73 seconds per message and returned empty output through the OpenAI-compatible JSON-schema mode; it was not debugged further and that model server was stopped.
 - Decided by Chris, 2026-10-03.
 
 ## D9. Repository — Decided
 
-- Private GitHub repo `Zycheng114514/offgrid-tourism`, created 2026-10-03 at Chris's request. It stays private; no license is added.
-- Decided by Chris, 2026-10-03.
+- GitHub repo `Zycheng114514/offgrid-tourism`, created private on 2026-10-03 and made **public** the same day at Chris's request. No license file (all rights reserved by default).
+- Before publishing, private machine names and notes about other projects were removed from the files. Earlier commits in the history still name our machines (no addresses, passwords or keys).
+- History: first decided to stay private (Chris, 2026-10-03); changed to public (Chris, 2026-10-03).
 
 ## D10. Team roles — Decided
 
@@ -130,3 +132,19 @@ Host confirms each listing by replying `1`; each listing shows the last-confirme
 - Example host messages with simulated model outputs, and example traveller searches, are in `models/simulated/samosir.json`.
 - Search ranking: on ties, the most recently confirmed listing comes first (server and app).
 - Decided by Chris, 2026-10-03 (pipeline page requested the same day).
+
+## D16. Languages — Decided
+
+- **Hosts** may write in Indonesian, Batak Toba (the local language of Samosir) or English. **Travellers** may search in English, Indonesian or Chinese. The lists are in the region profile; another region lists its own languages.
+- Each message's language is decided by fixed rules: the region profile has word lists per language, and the language with the most matching words wins (Chinese is matched without spaces). The same lists drive commands, category words, price units and time words, so `CARI`, `SEARCH` and `搜索` all start a search.
+- Replies use the sender's language if the region has reply texts for it, otherwise a fallback set in the profile: Batak Toba → Indonesian (everyone in Samosir reads Indonesian), Chinese host messages → English. A host's language is remembered, so follow-up questions stay in it.
+- The traveller app's interface can be switched between English, Indonesian and Chinese; listings show the host's own words when the reader shares the host's language, otherwise the English translation with the original below it.
+- **Not checked:** the Batak Toba words were written by Claude from general knowledge and have not been checked by a native speaker.
+- Decided by Chris, 2026-10-03 ("make this able to accept multiple languages").
+
+## D17. Messages that are not reports — Decided
+
+- Before anything is stored, each message is classified by fixed rules: command word; business report (it has a price, opening hours, rooms/people, or a business word in a message of five words or more); traveller search (a question mark, a question word, or a short message naming what or where with no price); otherwise not understood.
+- Chit-chat and questions never create a listing. A question with nothing searchable gets the help text in the sender's language; a message in no recognised language gets the help text in Indonesian and English.
+- Found when a test message ("what are you doing") was taken as a business report and the server asked for its category (2026-10-03).
+

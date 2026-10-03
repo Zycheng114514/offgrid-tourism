@@ -129,7 +129,7 @@ Cut-off: 2026-10-04 9:00 AM ET (D1), so the 17-hour column applies. The 8-hour c
 
 | Hours | Deadline 9:00 AM ET Oct 4 (≈17 h) | If only ≈8 h are left |
 |---|---|---|
-| 0–3 | Server P0 + simulator page; model running on s3; gateway app on the Android phone | Server P0 + simulator |
+| 0–3 | Server P0 + simulator page; gateway app on the Android phone | Server P0 + simulator |
 | 3–6 | Real SMS working end to end; PWA offline search; seed data | PWA offline search; seed data |
 | 6–9 | Demo pages polished; real-world numbers on slides | Slides + video from the simulator |
 | 9–12 | Slides, demo video, README for judges | Submit |
@@ -140,7 +140,7 @@ Cut-off: 2026-10-04 9:00 AM ET (D1), so the 17-hour column applies. The 8-hour c
 
 | Item | Who |
 |---|---|
-| Server, LLM port, extraction prompt, region pack export, web app, synthetic test set, scoring script, deploy scripts for s2/s3 | Claude |
+| Server, LLM port, extraction prompt, region pack export, web app, synthetic test set, scoring script, deploy script | Claude |
 | Install the SMS gateway app on an Android phone with a SIM; keep it charged and online | Team |
 | Pick the model (D14) | Chris |
 | Check the web app on real phones, including airplane mode; record the demo | Team |
@@ -176,7 +176,7 @@ All example messages are invented by Claude and labelled synthetic (D11). The au
 | Gateway phone loses power, signal or the app stops | Keep it charged and on Wi-Fi; the simulator page is the fallback |
 | Model too slow on a CPU-only server | Reply to the gateway at once and send the SMS when the model finishes; keyword messages skip the model; switch to Option A (D14) |
 | Nobody on the team reads Indonesian (D2) | Score only fields that can be checked without reading it; label test messages as AI-written |
-| s3 or s2 goes down | Rules-only mode keeps the server working without the model; restart scripts in `deploy/` |
+| The demo server goes down | Restart with `deploy/deploy.sh`; the tunnel address then changes |
 | Small model returns broken JSON or wrong fields | Constrain output with the JSON schema; validate; ask the host by SMS when a field fails |
 | Laptop sleeps or tunnel URL changes | Keep the lid open; update the webhook URL after restarts |
 | Wrong or stale listings | Host confirmation, last-confirmed date, only the owner's number can edit |

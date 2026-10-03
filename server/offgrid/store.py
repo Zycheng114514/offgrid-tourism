@@ -18,7 +18,8 @@ CREATE TABLE IF NOT EXISTS hosts (
     phone TEXT UNIQUE NOT NULL,
     publish_phone INTEGER,            -- NULL = not asked yet
     consent_at TEXT,
-    created_at TEXT NOT NULL
+    created_at TEXT NOT NULL,
+    lang TEXT                         -- language the host writes in; replies use it
 );
 CREATE TABLE IF NOT EXISTS listings (
     id TEXT PRIMARY KEY,
@@ -62,6 +63,9 @@ class Store:
         self._db.row_factory = sqlite3.Row
         with self._lock:
             self._db.executescript(SCHEMA)
+            columns = {row[1] for row in self._db.execute("PRAGMA table_info(hosts)")}
+            if "lang" not in columns:  # databases created before languages were added
+                self._db.execute("ALTER TABLE hosts ADD COLUMN lang TEXT")
             self._db.commit()
 
     def _q(self, sql: str, args=()) -> list[sqlite3.Row]:
@@ -99,6 +103,9 @@ class Store:
             self._q("INSERT INTO hosts (id, phone, created_at) VALUES (?,?,?)", ("h-" + uuid.uuid4().hex[:10], phone, now()))
             rows = self._q("SELECT * FROM hosts WHERE phone=?", (phone,))
         return dict(rows[0])
+
+    def set_host_lang(self, host_id: str, lang: str) -> None:
+        self._q("UPDATE hosts SET lang=? WHERE id=?", (lang, host_id))
 
     def set_consent(self, host_id: str, publish: bool) -> None:
         self._q("UPDATE hosts SET publish_phone=?, consent_at=? WHERE id=?", (int(publish), now(), host_id))

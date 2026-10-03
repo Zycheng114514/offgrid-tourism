@@ -1,5 +1,5 @@
 {
- "_note": "Demo examples for the Samosir test region, written by Claude. llm_output is what a model would be expected to return for the message; it was written by hand, not produced by a model (D14). Messages not listed here get no model output, so the server uses rules and follow-up questions only.",
+ "_note": "Demo examples for the Samosir test region, written by Claude. llm_output is what a model would be expected to return for the message; it was written by hand, not produced by a model (D14). Messages not listed here get no model output, so the server uses rules and follow-up questions only. Batak Toba text was written by Claude from general knowledge and has not been checked by a native speaker.",
  "region_id": "samosir",
  "host_examples": [
   {
@@ -195,6 +195,53 @@
    ]
   },
   {
+   "id": "l1",
+   "label": "Batak Toba (local language): understood, answered in Indonesian",
+   "message": "adong kamar modom di Ambarita, 2 kamar, 150rb sada borngin, boi mangan manogot",
+   "llm_output": {
+    "category": "lodging",
+    "name": null,
+    "village": "Ambarita",
+    "landmark": null,
+    "offer": "2 kamar modom, boi mangan manogot",
+    "offer_en": "2 rooms to sleep, breakfast available",
+    "price_min": 150000,
+    "price_max": null,
+    "price_unit": "per_night",
+    "open": null,
+    "close": null,
+    "capacity": 2
+   },
+   "answers": [
+    "Jabu Opung Sidabutar",
+    "1",
+    "olo"
+   ]
+  },
+  {
+   "id": "l2",
+   "label": "English: a host in Tuk Tuk writes in English and gets English replies",
+   "message": "Homestay Sunset View in Tuk Tuk, 3 rooms with lake view, 250rb per night incl breakfast",
+   "llm_output": {
+    "category": "lodging",
+    "name": "Homestay Sunset View",
+    "village": "Tuk Tuk",
+    "landmark": null,
+    "offer": "3 rooms with lake view, breakfast included",
+    "offer_en": "3 rooms with lake view, breakfast included",
+    "price_min": 250000,
+    "price_max": null,
+    "price_unit": "per_night",
+    "open": null,
+    "close": null,
+    "capacity": 3
+   },
+   "answers": [
+    "1",
+    "YES"
+   ]
+  },
+  {
    "id": "c1",
    "label": "Status update: closed today (after a listing is confirmed)",
    "message": "TUTUP",
@@ -213,16 +260,18 @@
   "sms": [
    "SEARCH food Garoga",
    "SEARCH cheap room Tomok",
-   "CARI makan Pangururan",
-   "SEARCH guide",
-   "SEARCH boat Tomok"
+   "CARI kamar murah Tomok",
+   "搜索 便宜 住宿 Tomok",
+   "where can I eat in Garoga?",
+   "what are you doing"
   ],
   "offline": [
    "food Garoga",
    "cheap room",
+   "kamar Tomok",
+   "便宜 住宿",
    "boat",
-   "guide",
-   "homestay Tomok"
+   "guide"
   ]
  }
 }

@@ -43,7 +43,7 @@ def output_schema() -> dict:
 def system_prompt(region: Region) -> str:
     example = region.llm_example or {"message": "", "json": {}}
     return string.Template(PROMPT_PATH.read_text()).substitute(
-        language_name=region.data.get("language_names", {}).get(region.host_lang, region.host_lang),
+        language_name=" or ".join(region.language_name(l) for l in region.host_langs),
         currency_code=region.currency["code"],
         example_message=example["message"],
         example_json=json.dumps(example["json"], ensure_ascii=False),

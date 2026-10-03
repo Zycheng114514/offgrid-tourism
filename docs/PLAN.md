@@ -1,5 +1,7 @@
 # Plan and pipeline
 
+中文版：[PLAN.zh.md](PLAN.zh.md)
+
 Status: draft for team review, 2026-10-03. Decisions referenced as D1, D2, … are in [DECISIONS.md](DECISIONS.md).
 
 ## 1. What we are building

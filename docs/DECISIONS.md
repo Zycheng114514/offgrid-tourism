@@ -1,5 +1,7 @@
 # Decisions
 
+中文版：[DECISIONS.zh.md](DECISIONS.zh.md)
+
 One entry per decision. Status is one of:
 
 - **Open**: needs an answer from the team.
@@ -28,7 +30,7 @@ When a decision changes, edit its entry and add a line to its history; do not de
 | D15 | Web demo | Decided | Host side (`/host`), pipeline walkthrough (`/pipeline`), traveller side (`/app/`), landing page |
 | D16 | Languages | Decided | Hosts: Indonesian, Batak Toba, English; travellers: English, Indonesian, Chinese; replies in the sender's language |
 | D17 | Messages that are not reports | Decided | Classified first; chit-chat and questions never create a listing |
-| D18 | Permanent live demo | Done | https://offgrid-tourism.vercel.app for the parts that keep no state; host demo and SMS simulator stay on our own server |
+| D18 | Permanent live demo | Decided | https://offgrid-tourism.vercel.app for the parts that keep no state; host demo and SMS simulator stay on our own server |
 | D13 | Listing trust rules | Default | Host confirms by SMS; last-confirmed date; owner-only edits; phone shown only with consent |
 | D14 | Which small model | Decided | Qwen3-1.7B named for later; not run in the demo (simulated outputs) |
 
@@ -138,7 +140,7 @@ Host confirms each listing by replying `1`; each listing shows the last-confirme
 
 - **Hosts** may write in Indonesian, Batak Toba (the local language of Samosir) or English. **Travellers** may search in English, Indonesian or Chinese. The lists are in the region profile; another region lists its own languages.
 - Each message's language is decided by fixed rules: the region profile has word lists per language, and the language with the most matching words wins (Chinese is matched without spaces). The same lists drive commands, category words, price units and time words, so `CARI`, `SEARCH` and `搜索` all start a search.
-- Replies use the sender's language if the region has reply texts for it, otherwise a fallback set in the profile: Batak Toba → Indonesian (everyone in Samosir reads Indonesian), Chinese host messages → English. A host's language is remembered, so follow-up questions stay in it.
+- Replies use the sender's language if the region has reply texts for it, otherwise a fallback set in the profile: Batak Toba → Indonesian (the national language), Chinese host messages → English. A host's language is remembered, so follow-up questions stay in it.
 - The traveller app's interface can be switched between English, Indonesian and Chinese; listings show the host's own words when the reader shares the host's language, otherwise the English translation with the original below it.
 - **Not checked:** the Batak Toba words were written by Claude from general knowledge and have not been checked by a native speaker.
 - Decided by Chris, 2026-10-03 ("make this able to accept multiple languages").

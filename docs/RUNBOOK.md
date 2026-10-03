@@ -1,5 +1,7 @@
 # Runbook
 
+中文版：[RUNBOOK.zh.md](RUNBOOK.zh.md)
+
 ## Run locally (Mac or Linux, Python 3.10+, no packages to install)
 
 ```bash

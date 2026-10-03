@@ -1,5 +1,7 @@
 # Offgrid Tourism
 
+中文版：[README.zh.md](README.zh.md)
+
 Local food and lodging information for places with weak connectivity. Small businesses report what they offer **by SMS from any phone, in their own language**. Travellers **search the listings on their phone with no connection**, or ask by SMS when they have signal but no data.
 
 Built for the World Bank **Small AI for Development** hackathon, tourism track (3–4 October 2026).
@@ -72,7 +74,7 @@ The model is reached through one interface, so any provider can be plugged in by
 
 | Who | Languages in the Samosir profile | Replies in |
 |---|---|---|
-| Hosts | Indonesian, Batak Toba (the local language), English | The host's language; Batak Toba falls back to Indonesian, which everyone in Samosir reads |
+| Hosts | Indonesian, Batak Toba (the local language), English | The host's language; Batak Toba falls back to Indonesian, the national language |
 | Travellers | English, Indonesian, Chinese | The traveller's language |
 
 - Each message's language is decided by fixed rules from the region's word lists; Chinese is matched without spaces. The same lists drive commands, category words, price units and time words.
@@ -148,6 +150,7 @@ Our difference is in the details and is untested: hosts list themselves by SMS i
 | [docs/REAL_WORLD_DATA.md](docs/REAL_WORLD_DATA.md) | Test region, measured numbers, data sources, what we may and may not claim |
 | [docs/RUNBOOK.md](docs/RUNBOOK.md) | Run, test, deploy, connect the SMS gateway phone |
 | [docs/SUBMISSION.md](docs/SUBMISSION.md) | Hackathon submission: checklist, submission text, video scripts |
+| [docs/VIDEO_SCRIPTS.md](docs/VIDEO_SCRIPTS.md) | Demo and tech video scripts: what to click, narration, timing |
 
 ## Credits
 

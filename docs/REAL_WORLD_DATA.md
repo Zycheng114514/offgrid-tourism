@@ -1,5 +1,7 @@
 # Real-world case and data
 
+中文版：[REAL_WORLD_DATA.zh.md](REAL_WORLD_DATA.zh.md)
+
 The challenge asks for solutions built around real-world data. For us that means four things:
 
 1. **A real place as the test example**, with public data that shows the information gap. The pipeline itself is region-independent ([DECISIONS.md](DECISIONS.md) D0); the first test region is Samosir, Indonesia (D2).

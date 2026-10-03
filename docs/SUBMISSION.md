@@ -1,5 +1,7 @@
 # Submission
 
+中文版：[SUBMISSION.zh.md](SUBMISSION.zh.md)
+
 Deadline: 2026-10-04 9:00 AM ET. Upload everything to **app.hack-nation.ai** and a backup copy to the organisers' **Google form** (both are required). Our notes say the World Bank track asks for the referral code `WBGSmallAIGADS`; check the form. All entries must be in English. Check the submission page for video length limits before recording.
 
 ## Checklist
@@ -8,8 +10,8 @@ Deadline: 2026-10-04 9:00 AM ET. Upload everything to **app.hack-nation.ai** and
 |---|---|---|---|---|
 | GitHub repo | Public link | Done | Claude | https://github.com/Zycheng114514/offgrid-tourism |
 | Live demo | Stable public link | Done | Chris (Vercel), Claude | https://offgrid-tourism.vercel.app (host demo and SMS simulator on our own server, linked from it) |
-| Demo video | Video | To do | Team records; Claude wrote the script | Script below |
-| Tech video | Video | To do | Team records; Claude wrote the script | Script below |
+| Demo video | Video | To do | Team records; Claude wrote the script | [VIDEO_SCRIPTS.md](VIDEO_SCRIPTS.md) |
+| Tech video | Video | To do | Team records; Claude wrote the script | [VIDEO_SCRIPTS.md](VIDEO_SCRIPTS.md) |
 | Team video | Video | To do | Team | Outline below |
 | Submission text | Text fields | Draft below | Team checks | Copy into both the website and the Google form |
 | Backup on Google form | Upload | To do | Team | Videos, links, text |
@@ -55,36 +57,16 @@ AI is used only where fixed rules cannot do the job: reading free-text messages 
 Samosir Regency, Lake Toba, Indonesia, a destination in the World Bank's Indonesia Tourism Development Project. We measured the information gap on OpenStreetMap with a script that works for any region (228 food and lodging places; 62% within 3 km of Tuk Tuk; 7% with a phone number; 76 of 132 villages with none within 2 km). Village names and coordinates are real; every business, price and phone number in the demo is invented.
 
 **Localization:**
-Nothing about Samosir is in the code. Each region is a profile file: its languages and their word lists, currency and price shorthands (25rb = 25,000 rupiah), village list, reply texts and time zone. Hosts write in their own language, including the local language Batak Toba; replies fall back to Indonesian, which everyone there reads. The host side needs only a basic phone and SMS; the traveller side works with no connection; the SMS gateway uses a local SIM at local prices; the model can run on a server the community controls.
+Nothing about Samosir is in the code. Each region is a profile file: its languages and their word lists, currency and price shorthands (25rb = 25,000 rupiah), village list, reply texts and time zone. Hosts write in their own language, including the local language Batak Toba; replies fall back to Indonesian, the national language. The host side needs only a basic phone and SMS; the traveller side works with no connection; the SMS gateway uses a local SIM at local prices; the model can run on a server the community controls.
 
 **Limits and next steps:**
 No real users yet; the Batak Toba words have not been checked by a native speaker; the Android gateway is built but not yet connected to a phone; no voice reports. Next: a pilot with a tourism-village group in Samosir that seeds the first listings, a native-speaker check, real messages to evaluate a small model, and measuring whether listed businesses get more customers.
 
 **Tech stack:** Python standard library (HTTP server, SQLite), offline web app (service worker), open-source SMS Gateway for Android, OpenAI-compatible / Anthropic model interface, JSON Schema, OpenStreetMap (Overpass API), Cloudflare tunnel.
 
-## Demo video script (about 2 minutes)
+## Demo and tech video scripts
 
-Record the screen at 1280 px wide or more. Use the live demo link. Speak slowly; the text in quotes is the narration.
-
-| Time | Screen | Narration |
-|---|---|---|
-| 0:00–0:15 | README "The problem" table | "On Lake Toba in Indonesia, most small guesthouses and food stalls are invisible online. On OpenStreetMap, 62% of listed places sit within 3 km of one tourist village, and most villages have nothing listed at all. Many owners only have a basic phone." |
-| 0:15–0:45 | `/host`: click the example "Free text, no business name", Send; click the suggested name; then `1`, `YA` | "A host texts what they offer, in their own words. Rules read the price, rooms and village; the model reads the rest. The name is missing, so the service asks for it by SMS, then sends a summary to confirm, and asks whether the number may be shown." |
-| 0:45–1:00 | `/host`: New host, example "Batak Toba" | "Hosts can write in Batak Toba, the local language. The service understands it and replies in Indonesian." |
-| 1:00–1:30 | `/app/`: Download listings; turn on airplane mode (or stop the network); search "cheap room Tomok"; switch to 中文 | "A traveller downloads the region's listings once, about 28 kilobytes. With no connection at all, search still works, in English, Indonesian or Chinese." |
-| 1:30–1:45 | `/app/` → Ask by SMS: `SEARCH food Garoga` | "With signal but no data, the same search works by SMS." |
-| 1:45–2:00 | `/pipeline`, example "The model invents a name", step 6 | "AI is used only where rules cannot do the job, and every model value is checked against the message. In this demo the model's outputs were written in advance, and all businesses are invented. The same pipeline works for any region." |
-
-## Tech video script (about 2 minutes)
-
-| Time | Screen | Narration |
-|---|---|---|
-| 0:00–0:20 | README pipeline diagram | "The host side is plain SMS: an Android phone with a local SIM runs an open-source gateway app and forwards messages to our server, a Python program with no dependencies and a SQLite database." |
-| 0:20–0:50 | `/pipeline`, Play on the first example | "Each message goes through eleven steps: language and kind of message, fixed rules, the language model, checks, follow-up questions, confirmation, storage, and the region pack. This page runs the real server code without saving." |
-| 0:50–1:10 | `/pipeline`, example "The model invents a name", steps 5 and 6 | "Model values are kept only if they can be traced to the message. Here the model invented a business name; the check drops it and the host is asked instead." |
-| 1:10–1:30 | `regions/samosir.json` on GitHub | "Everything place-specific is in a region profile: languages and word lists, currency shorthands, villages from OpenStreetMap, reply texts. A new region is a new file." |
-| 1:30–1:45 | `server/offgrid/llm.py` | "The model sits behind one interface: an OpenAI-compatible server such as Ollama with a small open model, a hosted API, simulated outputs for this demo, or none." |
-| 1:45–2:00 | README "Status and limits" | "What is not done: no model runs in the demo, no real users, Batak Toba not checked by a native speaker. Next is a pilot with a tourism village in Samosir." |
+What to click, the narration and the timing: [VIDEO_SCRIPTS.md](VIDEO_SCRIPTS.md).
 
 ## Team video outline (about 1 minute)
 

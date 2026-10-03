@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#1f6f5c">
+<title>Offgrid Travel</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<header class="top">
+  <div>
+    <strong>Offgrid Travel</strong>
+    <div class="small muted" id="regionName">Loading…</div>
+  </div>
+  <span class="badge" id="net">…</span>
+</header>
+
+<main>
+  <div class="banner small">Demo: every business and phone number is invented; village names are real.</div>
+
+  <section class="packbar">
+    <div id="packInfo" class="small">No listings downloaded yet.</div>
+    <button id="update" class="primary">Download listings</button>
+  </section>
+
+  <nav class="tabs" role="tablist">
+    <button role="tab" id="tabSearch" aria-selected="true">Search (works offline)</button>
+    <button role="tab" id="tabSms" aria-selected="false">Ask by SMS</button>
+  </nav>
+
+  <section id="paneSearch">
+    <input id="q" type="search" placeholder="e.g. cheap room Tomok" autocomplete="off">
+    <div class="chips" id="cats"></div>
+    <div class="toggles">
+      <label><input type="checkbox" id="openNow"> Open now</label>
+      <label><input type="checkbox" id="cheap"> Cheapest first</label>
+    </div>
+    <div class="chips" id="qExamples"></div>
+    <div id="count" class="small muted"></div>
+    <div id="results"></div>
+  </section>
+
+  <section id="paneSms" hidden>
+    <p class="small muted">With phone signal but no mobile data, a traveller texts the service number and gets the top 3
+      listings back by SMS. In this demo the page stands in for the phone's SMS app, so it needs a connection.</p>
+    <div class="thread" id="thread"></div>
+    <div class="compose">
+      <input id="smsText" placeholder="SEARCH food Garoga" autocomplete="off">
+      <button class="primary" id="smsSend">Send</button>
+    </div>
+    <div class="chips" id="smsExamples"></div>
+  </section>
+
+  <footer class="small muted">Map data © OpenStreetMap contributors (ODbL).</footer>
+</main>
+<script src="app.js"></script>
+</body>
+</html>

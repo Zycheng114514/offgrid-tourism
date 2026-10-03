@@ -1,0 +1,11 @@
+{
+  "name": "Offgrid Travel",
+  "short_name": "Offgrid",
+  "description": "Local food and lodging listings that work with no connection.",
+  "start_url": "/app/",
+  "scope": "/app/",
+  "display": "standalone",
+  "background_color": "#f6f5f1",
+  "theme_color": "#1f6f5c",
+  "icons": [{ "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }]
+}

@@ -1,0 +1,228 @@
+{
+ "_note": "Demo examples for the Samosir test region, written by Claude. llm_output is what a model would be expected to return for the message; it was written by hand, not produced by a model (D14). Messages not listed here get no model output, so the server uses rules and follow-up questions only.",
+ "region_id": "samosir",
+ "host_examples": [
+  {
+   "id": "e1",
+   "label": "Keyword format: everything in one SMS",
+   "message": "MAKAN Warung Bu Sinaga di Garoga, nasi ikan 25rb, buka 7-21",
+   "llm_output": {
+    "category": "food",
+    "name": "Warung Bu Sinaga",
+    "village": "Garoga",
+    "landmark": null,
+    "offer": "nasi ikan",
+    "offer_en": "rice with fish",
+    "price_min": 25000,
+    "price_max": null,
+    "price_unit": "per_meal",
+    "open": "07:00",
+    "close": "21:00",
+    "capacity": null
+   },
+   "answers": [
+    "1",
+    "YA"
+   ]
+  },
+  {
+   "id": "e2",
+   "label": "Free text, no business name: the server asks for it",
+   "message": "sy ada homestay 3 kmr di desa tomok dkt pelabuhan, 150rb/mlm sdh sarapan",
+   "llm_output": {
+    "category": "lodging",
+    "name": null,
+    "village": "tomok",
+    "landmark": "dkt pelabuhan",
+    "offer": "homestay 3 kamar, sudah termasuk sarapan",
+    "offer_en": "homestay, 3 rooms, breakfast included",
+    "price_min": 150000,
+    "price_max": null,
+    "price_unit": "per_night",
+    "open": null,
+    "close": null,
+    "capacity": 3
+   },
+   "answers": [
+    "Homestay Pelabuhan Indah",
+    "1",
+    "YA"
+   ]
+  },
+  {
+   "id": "e3",
+   "label": "Free text with opening hours in words",
+   "message": "Rumah makan Lapo Ama Ruth Pangururan jual mie gomak 15 ribu, buka tiap hari jam 8 pagi sampai 8 malam",
+   "llm_output": {
+    "category": "food",
+    "name": "Lapo Ama Ruth",
+    "village": "Pangururan",
+    "landmark": null,
+    "offer": "mie gomak",
+    "offer_en": "mie gomak (Batak noodles)",
+    "price_min": 15000,
+    "price_max": null,
+    "price_unit": "per_meal",
+    "open": "08:00",
+    "close": "20:00",
+    "capacity": null
+   },
+   "answers": [
+    "1",
+    "YA"
+   ]
+  },
+  {
+   "id": "e4",
+   "label": "Transport, return trip",
+   "message": "ojek ke pusuk buhit dari pangururan 100rb pp, bisa antar jemput",
+   "llm_output": {
+    "category": "transport",
+    "name": null,
+    "village": "pangururan",
+    "landmark": null,
+    "offer": "ojek ke Pusuk Buhit pulang pergi, bisa antar jemput",
+    "offer_en": "motorbike taxi to Pusuk Buhit and back, pick-up and drop-off",
+    "price_min": 100000,
+    "price_max": null,
+    "price_unit": "per_trip",
+    "open": null,
+    "close": null,
+    "capacity": null
+   },
+   "answers": [
+    "Ojek Bang Rudi",
+    "1",
+    "YA"
+   ]
+  },
+  {
+   "id": "e5",
+   "label": "Price range per person",
+   "message": "kami terima tamu nginap di rumah adat batak di huta tinggi, 4 org, 100-150rb per org termasuk makan malam",
+   "llm_output": {
+    "category": "lodging",
+    "name": null,
+    "village": "huta tinggi",
+    "landmark": null,
+    "offer": "menginap di rumah adat Batak, termasuk makan malam",
+    "offer_en": "stay in a traditional Batak house, dinner included",
+    "price_min": 100000,
+    "price_max": 150000,
+    "price_unit": "per_person",
+    "open": null,
+    "close": null,
+    "capacity": 4
+   },
+   "answers": [
+    "Rumah Adat Ompu Raja",
+    "1",
+    "TIDAK"
+   ]
+  },
+  {
+   "id": "e6",
+   "label": "Village, price and hours missing: three questions",
+   "message": "Warung Kopi Opung, kopi dan pisang goreng",
+   "llm_output": {
+    "category": "food",
+    "name": "Warung Kopi Opung",
+    "village": null,
+    "landmark": null,
+    "offer": "kopi dan pisang goreng",
+    "offer_en": "coffee and fried banana",
+    "price_min": null,
+    "price_max": null,
+    "price_unit": null,
+    "open": null,
+    "close": null,
+    "capacity": null
+   },
+   "answers": [
+    "Ambarita",
+    "8rb",
+    "6-18",
+    "1",
+    "YA"
+   ]
+  },
+  {
+   "id": "e7",
+   "label": "Guide, price per day",
+   "message": "saya pemandu ke air terjun efrata dari sosor dolok, 200rb sehari, bisa sedikit bahasa inggris",
+   "llm_output": {
+    "category": "guide",
+    "name": null,
+    "village": "sosor dolok",
+    "landmark": null,
+    "offer": "pemandu ke Air Terjun Efrata, bisa sedikit bahasa Inggris",
+    "offer_en": "guide to Efrata waterfall, speaks some English",
+    "price_min": 200000,
+    "price_max": null,
+    "price_unit": "per_day",
+    "open": null,
+    "close": null,
+    "capacity": null
+   },
+   "answers": [
+    "Pemandu Efrata",
+    "1",
+    "YA"
+   ]
+  },
+  {
+   "id": "e8",
+   "label": "The model invents a name; the check rejects it and the host is asked",
+   "message": "ada kamar kosong di ambarita malam ini, 200rb",
+   "llm_output": {
+    "category": "lodging",
+    "name": "Ambarita Guest House",
+    "village": "ambarita",
+    "landmark": null,
+    "offer": "kamar kosong malam ini",
+    "offer_en": "room available tonight",
+    "price_min": 200000,
+    "price_max": null,
+    "price_unit": "per_night",
+    "open": null,
+    "close": null,
+    "capacity": null
+   },
+   "answers": [
+    "Rumah Inap Boru Sidabutar",
+    "1",
+    "YA"
+   ]
+  },
+  {
+   "id": "c1",
+   "label": "Status update: closed today (after a listing is confirmed)",
+   "message": "TUTUP",
+   "llm_output": null,
+   "answers": []
+  },
+  {
+   "id": "c2",
+   "label": "Status update: open today",
+   "message": "BUKA",
+   "llm_output": null,
+   "answers": []
+  }
+ ],
+ "traveller_examples": {
+  "sms": [
+   "SEARCH food Garoga",
+   "SEARCH cheap room Tomok",
+   "CARI makan Pangururan",
+   "SEARCH guide",
+   "SEARCH boat Tomok"
+  ],
+  "offline": [
+   "food Garoga",
+   "cheap room",
+   "boat",
+   "guide",
+   "homestay Tomok"
+  ]
+ }
+}

@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Host Demo</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<main>
+  <p class="small"><a href="/">← Demo home</a> · <a href="/app/">Traveller app</a></p>
+  <h1>Host side: report by SMS</h1>
+  <p class="muted">Left: what a host types on a basic phone and the replies they get. Right: what the server did with it.</p>
+  <div class="banner" id="banner">
+    Model outputs for the example messages were written in advance; no model runs. Other messages use fixed rules
+    and follow-up questions only. All businesses and numbers are invented.
+  </div>
+
+  <div class="grid2">
+    <section class="phone" aria-label="Host phone">
+      <div class="phone-top">
+        <div><strong>Basic phone</strong><br><span class="small muted" id="phoneNo"></span></div>
+        <button id="newPhone" title="Start again as a different host">New host</button>
+      </div>
+      <div class="thread" id="thread" aria-live="polite"></div>
+      <div class="compose">
+        <textarea id="text" maxlength="480" placeholder="Type an SMS in Indonesian…"></textarea>
+        <button class="primary" id="send">Send</button>
+      </div>
+      <div class="counter" id="counter">0 / 160</div>
+      <div id="suggest"></div>
+      <h2 style="margin-top:14px">Example messages</h2>
+      <div class="chips" id="examples"></div>
+    </section>
+
+    <section class="card" aria-label="What the server did">
+      <h2>What the server did</h2>
+      <div id="state" class="muted">Send a message to start.</div>
+      <div id="listing"></div>
+    </section>
+  </div>
+  <footer>Map data © OpenStreetMap contributors (ODbL).</footer>
+</main>
+
+<script>
+const $ = id => document.getElementById(id);
+const LABELS = { category: "Category", name: "Name", village: "Village", landmark: "Landmark",
+  offer_original: "Offer (host's words)", offer_en: "Offer (English)", price: "Price", hours: "Hours", capacity: "Capacity" };
+const SOURCE_TEXT = { rules: "rules", model: "model (simulated)", host_answer: "host's answer", message: "host's message" };
+const AWAITING_TEXT = { confirm: "waiting for the host to reply 1 (correct) or 2 (wrong)",
+  consent: "asking whether the phone number may be shown to travellers" };
+let phone = "", lastId = 0, examples = [], busy = false;
+
+function newPhone() {
+  phone = "+62000000" + String(Math.floor(1000 + Math.random() * 9000));
+  try { sessionStorage.setItem("hostPhone", phone); } catch (e) {}
+  $("phoneNo").textContent = phone + " (invented)";
+  $("thread").innerHTML = ""; lastId = 0; $("suggest").innerHTML = "";
+  $("state").textContent = "Send a message to start."; $("listing").innerHTML = "";
+}
+
+function bubble(m) {
+  const div = document.createElement("div");
+  div.className = "msg " + (m.direction === "in" ? "in" : "out");
+  div.textContent = m.text;
+  const meta = document.createElement("span");
+  meta.className = "meta";
+  meta.textContent = (m.direction === "in" ? "host → service" : "service → host") + " · " + m.text.length + " chars";
+  div.appendChild(meta);
+  $("thread").appendChild(div);
+  $("thread").scrollTop = $("thread").scrollHeight;
+}
+
+async function poll() {
+  if (!phone) return;
+  try {
+    const msgs = await (await fetch(`/api/messages?phone=${encodeURIComponent(phone)}&after=${lastId}`)).json();
+    if (msgs.length) {
+      msgs.forEach(m => { bubble(m); lastId = Math.max(lastId, m.id); });
+      await showDebug();
+    }
+  } catch (e) {}
+}
+
+async function send(text) {
+  text = (text ?? $("text").value).trim();
+  if (!text || busy) return;
+  busy = true;
+  try {
+    await fetch("/api/simulate", { method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ from: phone, text }) });
+    $("text").value = ""; updateCounter();
+    const ex = examples.find(e => e.message === text);
+    if (ex && ex.answers.length) {
+      $("suggest").innerHTML = '<p class="small muted" style="margin:8px 0 2px">Suggested replies for this example:</p>';
+      const chips = document.createElement("div"); chips.className = "chips";
+      ex.answers.forEach(a => { const b = document.createElement("button"); b.className = "chip"; b.textContent = a;
+        b.onclick = () => send(a); chips.appendChild(b); });
+      $("suggest").appendChild(chips);
+    }
+    setTimeout(poll, 300);
+  } finally { busy = false; }
+}
+
+function fmtValue(key, v) {
+  if (v === null || v === undefined || v === "") return '<span class="muted">—</span>';
+  if (key === "price") return `${v.min.toLocaleString()}${v.max ? "–" + v.max.toLocaleString() : ""} ${v.currency} ${v.unit && v.unit !== "other" ? "(" + v.unit.replace("_", " ") + ")" : ""}`;
+  if (key === "hours") return `${v.open}–${v.close}`;
+  return escapeHtml(String(v));
+}
+function escapeHtml(s) { return s.replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c])); }
+
+async function showDebug() {
+  const d = await (await fetch(`/api/debug/host?phone=${encodeURIComponent(phone)}`)).json();
+  const conv = d.conversation;
+  const listing = (d.listings || []).slice(-1)[0];
+  if (!listing) { $("state").textContent = "No listing yet (status updates and searches do not create one)."; $("listing").innerHTML = ""; return; }
+  const st = listing.status.state;
+  let stateText = `Listing <strong>${listing.id}</strong> · state: <span class="state">${st}</span>`;
+  if (conv) stateText += ` · ${AWAITING_TEXT[conv.awaiting] || "asking the host for: " + (LABELS[conv.awaiting] || conv.awaiting)}`;
+  if (st === "confirmed") stateText += ` · <a href="/app/">now visible in the traveller app</a>`;
+  if (listing.status.open_today !== null && listing.status.open_today !== undefined)
+    stateText += ` · today: ${listing.status.open_today ? "open" : "closed"}`;
+  $("state").innerHTML = stateText;
+
+  const ext = listing.extraction || {}, src = ext.field_sources || {};
+  let rows = "";
+  for (const key of Object.keys(LABELS)) {
+    const s = src[key];
+    rows += `<tr><th>${LABELS[key]}</th><td>${fmtValue(key, listing[key])}</td><td>${s ? `<span class="src ${s}">${SOURCE_TEXT[s] || s}</span>` : ""}</td></tr>`;
+  }
+  const phoneShown = listing.contact.publish_phone ? "yes" : (d.host.publish_phone === null ? "not asked yet" : "no");
+  rows += `<tr><th>Phone shown to travellers</th><td>${phoneShown}</td><td></td></tr>`;
+  let html = `<table><tr><th>Field</th><th>Value</th><th>From</th></tr>${rows}</table>`;
+  const rej = ext.rejected_model_values || {};
+  if (Object.keys(rej).length) {
+    html += `<p class="rejected small" style="margin-top:10px">Model values dropped because they do not appear in the host's message: ` +
+      Object.entries(rej).map(([k, v]) => `${LABELS[k] || k} = ${escapeHtml(JSON.stringify(v))}`).join("; ") + `</p>`;
+  }
+  if (ext.llm_error) html += `<p class="small muted">Model: ${escapeHtml(ext.llm_error)} → rules and follow-up questions only.</p>`;
+  html += `<details><summary>Model output for this message${ext.model_output ? " (written in advance)" : ""}</summary><pre>${escapeHtml(JSON.stringify(ext.model_output, null, 2))}</pre></details>`;
+  html += `<details><summary>Original message kept as sent</summary><pre>${escapeHtml(listing.source.text || "")}</pre></details>`;
+  html += `<details><summary>Full listing record (JSON)</summary><pre>${escapeHtml(JSON.stringify(listing, null, 2))}</pre></details>`;
+  $("listing").innerHTML = html;
+}
+
+function updateCounter() {
+  const n = $("text").value.length;
+  $("counter").textContent = `${n} / 160` + (n > 160 ? " (sent as " + Math.ceil(n / 153) + " SMS)" : "");
+}
+
+async function init() {
+  try { phone = sessionStorage.getItem("hostPhone") || ""; } catch (e) {}
+  if (!phone) newPhone(); else $("phoneNo").textContent = phone + " (invented)";
+  const ex = await (await fetch("/api/examples")).json();
+  examples = ex.host_examples || [];
+  examples.forEach(e => {
+    const b = document.createElement("button"); b.className = "chip example";
+    b.innerHTML = `<strong>${escapeHtml(e.label)}</strong><br><span class="small muted">${escapeHtml(e.message)}</span>`;
+    b.onclick = () => { $("text").value = e.message; updateCounter(); $("text").focus(); };
+    $("examples").appendChild(b);
+  });
+  $("send").onclick = () => send();
+  $("text").addEventListener("input", updateCounter);
+  $("text").addEventListener("keydown", e => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); send(); } });
+  $("newPhone").onclick = newPhone;
+  await poll();
+  setInterval(poll, 1500);
+}
+init();
+</script>
+</body>
+</html>

@@ -15,18 +15,19 @@ When a decision changes, edit its entry and add a line to its history; do not de
 | D0 | Scope of the product | Decided | Any region with weak connectivity; the pipeline is region-independent |
 | D1 | Submission cut-off | Decided | 2026-10-04 9:00 AM ET |
 | D2 | First test region and languages | Decided | Samosir (Lake Toba, Indonesia); Indonesian; nobody on the team reads Indonesian |
-| D3 | Channels in the hackathon build | Default | SMS only; voice is P2 |
-| D4 | SMS gateway for the demo | Open | Recommended: Android phone gateway; else Twilio |
-| D5 | LLM on the server | Decided / Open | Any API can be plugged in; default is a small open model on our GPU server. Which model: open (D14) |
+| D3 | Channels in the hackathon build | Decided | SMS only; no voice |
+| D4 | SMS gateway for the demo | Decided | An Android phone with a SIM, running an SMS gateway app |
+| D5 | LLM on the server | Decided | One interface for any model; in the demo no model runs and outputs are simulated |
 | D6 | Traveller app technology | Decided | Hackathon demo: offline web app (PWA). Later: native Android app, built by Claude |
 | D7 | On-device LLM for travellers | Default | Optional, last priority |
-| D8 | Where the server runs for the demo | Default | GPU server (theubuntu) + temporary tunnel; Mac for development |
-| D9 | Repository | Decided / Open | Private GitHub repo created; visibility and license at submission open |
-| D10 | Team roles | Open | 4-person split in PLAN.md §7 |
-| D11 | Contact real hosts in the test region | Open | Recommended: try 2–3, with consent |
+| D8 | Where the server runs for the demo | Decided | s2 + Cloudflare quick tunnel; no model server |
+| D9 | Repository | Decided | Private GitHub repo; stays private; no license |
+| D10 | Team roles | Decided | The team assigns roles itself |
+| D11 | Contact real hosts in the test region | Decided | No; all host data is invented by Claude |
 | D12 | Product name | Open | Working name `offgrid-tourism` |
+| D15 | Web demo | Decided | Two pages: host side (`/host`) and traveller side (`/app/`), plus a landing page |
 | D13 | Listing trust rules | Default | Host confirms by SMS; last-confirmed date; owner-only edits; phone shown only with consent |
-| D14 | Which small model, and how it is served | Open | Recommended: test two models on the test set, pick by measured accuracy; serve with Ollama |
+| D14 | Which small model | Decided | Qwen3-1.7B named for later; not run in the demo (simulated outputs) |
 
 ## D0. Scope of the product — Decided
 
@@ -50,30 +51,26 @@ The product is for any place with weak connectivity where local businesses lack 
   - The team cannot judge the English translations or how natural the messages are. The pitch says so. If any Indonesian speaker (outside the team is fine) can spot-check 5–10 messages, record who and how many.
 - Decided by Chris, 2026-10-03. History: proposed by the earlier planning session.
 
-## D3. Channels in the hackathon build — Default
+## D3. Channels in the hackathon build — Decided
 
-- **Default:** SMS only for hosts and travellers; app for travellers.
-- **Trade-off:** voice calls were in the original idea for hosts who cannot type well. Dropping voice removes the speech-recognition risk but weakens the inclusion story.
-- **Recommendation:** SMS in P0; add voice in P2 if at least 4 hours remain after P0 (record the call, speech-to-text, same pipeline, delete audio). WhatsApp later.
-- History: SMS-only proposed by the earlier planning session because of time.
+- **Decision:** SMS only, for hosts and travellers; the app for travellers. No voice calls and no WhatsApp in this build.
+- **Trade-off we accept:** hosts who cannot type well are not served in this version; the pitch says so.
+- Decided by Chris, 2026-10-03. History: SMS-only proposed by the earlier planning session; voice as a later stretch was dropped.
 
-## D4. SMS gateway for the demo — Open
+## D4. SMS gateway for the demo — Decided
 
-| Option | For | Against |
-|---|---|---|
-| **Android phone as gateway** (open-source gateway app on a teammate's Android phone with a SIM) | No carrier registration; normal SMS prices; the same setup could run in a real village | Needs an Android phone with a SIM that stays on; app account set up by a teammate |
-| **Twilio** (US number) | Well documented; receiving SMS works quickly | Replies to US phones may be blocked until A2P 10DLC or toll-free verification, which can take days; must test early |
-| Simulator page only | Always works | Not a real phone in the demo |
-
-- **Recommendation:** the simulator page is built either way. For real SMS, use an Android gateway if a teammate has an Android phone with a SIM; otherwise Twilio, and test a reply within the first 30 minutes.
-- Accounts must be created by a team member.
-
-## D5. LLM on the server — Decided / Open
-
-- **Decision:** the server talks to language models through one interface (a "port"), so any provider can be plugged in by changing settings, not code. The default is a small open model running on our own GPU server (theubuntu, RTX 3070 with 8 GB of GPU memory), served over an HTTP API.
-- **How:** one client for the OpenAI-compatible API format, which local servers (Ollama, vLLM, llama.cpp) and most hosted providers accept, plus an Anthropic client. Settings: `LLM_PROVIDER`, `LLM_BASE_URL`, `LLM_MODEL`, `LLM_API_KEY`. With no model configured, the server runs on rules plus follow-up questions.
-- **Open:** which model, and the serving software (D14).
+- **Decision:** an Android phone with a SIM card runs an open-source SMS gateway app. The app forwards each incoming SMS to our server (a webhook) and sends our replies as normal SMS from that phone's number.
+- **Why:** no carrier registration (unlike US numbers on Twilio, which may need A2P 10DLC registration before replies get through); normal SMS prices; the same setup can run in a village with a local SIM.
+- **Needs from the team:** one Android phone with a SIM that can stay on, charged and online during the demo; a teammate installs the app.
+- The simulator page is built as well, so the demo works if the phone fails.
 - Decided by Chris, 2026-10-03.
+
+## D5. LLM on the server — Decided
+
+- **Decision:** the server talks to language models through one interface (a "port"), so any provider can be plugged in by changing settings, not code: any OpenAI-compatible server (Ollama, vLLM, llama.cpp, hosted APIs), the Anthropic API, `simulated`, or `none`.
+- **In the hackathon demo no model runs** (no compute resources; Chris, 2026-10-03). The setting is `LLM_PROVIDER=simulated`: for each example message, the model output was written in advance by Claude (`models/simulated/samosir.json`). Messages that are not examples get no model output, so the server uses rules and follow-up questions only. The demo pages say this.
+- The safety checks run on simulated outputs exactly as on real ones (example e8 shows an invented business name being rejected).
+- Decided by Chris, 2026-10-03. History: first default was a small open model on theubuntu; theubuntu became unavailable; then a model on s3; then no model.
 
 ## D6. Traveller app technology — Decided
 
@@ -87,32 +84,28 @@ The product is for any place with weak connectivity where local businesses lack 
 - If built: a small model only turns a free-text question into search filters; answers are built from listing rows.
 - History: proposed by the earlier planning session.
 
-## D8. Where the server runs for the demo — Default
+## D8. Where the server runs for the demo — Decided
 
-| Option | For | Against |
-|---|---|---|
-| **GPU server (theubuntu) + temporary tunnel** | The model and the server sit on one machine; the Mac can sleep | The machine suspends when idle until a sudo setting is changed; it is offline right now |
-| A laptop + temporary tunnel, model on theubuntu over Tailscale | Easy to watch logs | Laptop must stay awake with the lid open |
-| A cloud host | Stable URL | Account setup; free tiers may sleep and miss webhooks |
+- **s2** (Oracle cloud, 1 ARM core, about 5 GB free memory) runs the app server; a Cloudflare quick tunnel gives it a public HTTPS address (needed by the SMS gateway app's webhook and by the web app's offline mode). The address changes whenever the tunnel restarts. Deploy: `deploy/deploy_s2.sh`; details in `docs/RUNBOOK.md`.
+- **No model server.** theubuntu (GPU) is unavailable. A one-off try of Qwen3-1.7B on s3 (CPU only) on 2026-10-03 took 54–73 seconds per message and returned empty output through the OpenAI-compatible JSON-schema mode; it was not debugged further and Ollama on s3 was stopped (its files, about 3.4 GB in `~/ollama` and `~/.ollama`, are still on s3).
+- s1 (data-donation prototypes) and s4 (proxy) are not used.
+- Decided by Chris, 2026-10-03.
 
-- **Default:** develop on the Mac; run the demo server and the model on theubuntu, reachable from the internet through a Cloudflare quick tunnel (no account needed; the URL changes on restart).
-- **Blocker (2026-10-03, 4 PM ET):** theubuntu is offline on Tailscale (last seen 3 days ago). Someone has to wake it, then Chris runs `ssh -t theubuntu 'sudo systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target'` so it does not suspend overnight.
-- **Fallback if it cannot be woken:** run a smaller model with Ollama on the Mac (Apple M5, 16 GB) and keep the Mac awake, or run on rules only.
+## D9. Repository — Decided
 
-## D9. Repository — Decided / Open
+- Private GitHub repo `Zycheng114514/offgrid-tourism`, created 2026-10-03 at Chris's request. It stays private; no license is added.
+- Decided by Chris, 2026-10-03.
 
-- **Decided:** private GitHub repo `Zycheng114514/offgrid-tourism`, created 2026-10-03 at Chris's request.
-- **Open:** make it public at submission? License (MIT recommended if public)?
+## D10. Team roles — Decided
 
-## D10. Team roles — Open
+The team assigns roles among themselves. The plan lists the work items without names (PLAN.md §7).
 
-Proposed 4-person split in PLAN.md §7. Needs: team size, names, who knows mobile development.
+- Decided by Chris, 2026-10-03.
 
-## D11. Contact real hosts in the test region — Open
+## D11. Contact real hosts in the test region — Decided
 
-- **Recommendation:** if a teammate can reach 2–3 real businesses (e.g., guesthouses with a public WhatsApp number) and they agree, ask them to send one real report. One real message is stronger evidence in the pitch than many invented ones.
-- Daytime in Indonesia (UTC+7) starts around 7–8 PM ET.
-- Rules: explain the project, get consent to store and show their message, do not publish their number without consent.
+- **Decision:** no contact with real businesses. All host messages, businesses and phone numbers in the demo and the test set are invented by Claude and labelled synthetic. Village names and landmarks are real.
+- Decided by Chris, 2026-10-03.
 
 ## D12. Product name — Open
 
@@ -124,9 +117,14 @@ Host confirms each listing by replying `1`; each listing shows the last-confirme
 
 - History: proposed by the earlier planning session.
 
-## D14. Which small model, and how it is served — Open
+## D14. Which small model — Decided
 
-- **Limits:** must fit in 8 GB of GPU memory with room for context (about 8B parameters or fewer at 4-bit), handle the host language, and return JSON that follows the listing schema.
-- **Candidates:** general multilingual models (Qwen2.5-7B-Instruct, Qwen3 4B/8B, Gemma 3 4B) and Southeast Asia–specific models (SEA-LION, Sahabat-AI). Which ones handle Indonesian SMS well is not yet measured.
-- **Recommendation:** run one general and one regional model on the same test set and keep the better one; the general model is the default for other regions. Serve with Ollama (installs without sudo, accepts a JSON schema for output, OpenAI-compatible API).
+- **Qwen3-1.7B** (Apache-2.0, about 1.4 GB at 4-bit) is the model named for a later deployment on a CPU-only server; Qwen3-4B-Instruct-2507 was the other option. Chris chose Qwen3-1.7B on 2026-10-03.
+- It is not run in the demo (D5). No model comparison was run (no resources to test).
+- If a model is run later, use `LLM_USER_SUFFIX=" /no_think"` to switch off Qwen3's thinking mode, and check the JSON-schema output first (see D8 for the one try).
 
+## D15. Web demo — Decided
+
+- `/` landing page; `/host` host side: a basic phone on the left, and on the right what the server did (each field with where it came from: rules, model (simulated), or the host's answer; rejected model values; the stored record); `/app/` traveller side: offline search over the downloaded listings, and an "Ask by SMS" tab.
+- Example host messages with simulated model outputs, and example traveller searches, are in `models/simulated/samosir.json`.
+- Decided by Chris, 2026-10-03.

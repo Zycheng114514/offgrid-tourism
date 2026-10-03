@@ -17,3 +17,7 @@ build/
 
 # OS
 .DS_Store
+
+# Local tool settings
+.claude/
+data/runtime/

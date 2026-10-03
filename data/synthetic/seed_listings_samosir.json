@@ -1,0 +1,395 @@
+[
+ {
+  "category": "food",
+  "name": "Warung Bu Sinaga",
+  "village": "Garoga",
+  "landmark": null,
+  "offer_original": "nasi ikan mas arsik, kopi",
+  "offer_en": "rice with arsik carp (Batak spiced fish), coffee",
+  "price": {
+   "min": 25000,
+   "max": null,
+   "unit": "per_meal"
+  },
+  "hours": {
+   "open": "07:00",
+   "close": "21:00"
+  },
+  "capacity": null,
+  "phone": "+6200000000001",
+  "publish_phone": true,
+  "last_confirmed_at": "2026-10-03T01:00:00+00:00"
+ },
+ {
+  "category": "food",
+  "name": "Lapo Ama Ruth",
+  "village": "Pangururan",
+  "landmark": "dekat pasar",
+  "offer_original": "mie gomak, saksang",
+  "offer_en": "mie gomak (Batak noodles), saksang",
+  "price": {
+   "min": 15000,
+   "max": null,
+   "unit": "per_meal"
+  },
+  "hours": {
+   "open": "08:00",
+   "close": "20:00"
+  },
+  "capacity": null,
+  "phone": "+6200000000002",
+  "publish_phone": true,
+  "last_confirmed_at": "2026-10-02T03:00:00+00:00"
+ },
+ {
+  "category": "food",
+  "name": "Kedai Kopi Simbolon",
+  "village": "Simanindo",
+  "landmark": "depan museum",
+  "offer_original": "kopi Sidikalang, pisang goreng",
+  "offer_en": "Sidikalang coffee, fried banana",
+  "price": {
+   "min": 8000,
+   "max": null,
+   "unit": "per_item"
+  },
+  "hours": {
+   "open": "06:00",
+   "close": "18:00"
+  },
+  "capacity": null,
+  "phone": "+6200000000003",
+  "publish_phone": true,
+  "last_confirmed_at": "2026-09-30T02:00:00+00:00"
+ },
+ {
+  "category": "food",
+  "name": "Rumah Makan Toba Indah",
+  "village": "Ambarita",
+  "landmark": "dekat batu kursi",
+  "offer_original": "ikan bakar, sayur daun ubi",
+  "offer_en": "grilled fish, cassava-leaf vegetables",
+  "price": {
+   "min": 35000,
+   "max": 50000,
+   "unit": "per_meal"
+  },
+  "hours": {
+   "open": "10:00",
+   "close": "22:00"
+  },
+  "capacity": null,
+  "phone": "+6200000000004",
+  "publish_phone": true,
+  "last_confirmed_at": "2026-10-01T05:00:00+00:00"
+ },
+ {
+  "category": "food",
+  "name": "Warung Mak Tio",
+  "village": "Tomok",
+  "landmark": "jalan ke makam raja",
+  "offer_original": "nasi campur, teh manis",
+  "offer_en": "mixed rice plate, sweet tea",
+  "price": {
+   "min": 20000,
+   "max": null,
+   "unit": "per_meal"
+  },
+  "hours": {
+   "open": "07:00",
+   "close": "19:00"
+  },
+  "capacity": null,
+  "phone": "+6200000000005",
+  "publish_phone": false,
+  "last_confirmed_at": "2026-09-12T04:00:00+00:00"
+ },
+ {
+  "category": "food",
+  "name": "Kantin Huta Tinggi",
+  "village": "Huta Tinggi",
+  "landmark": null,
+  "offer_original": "makan siang sederhana, pesan dulu",
+  "offer_en": "simple lunch, order ahead",
+  "price": {
+   "min": 20000,
+   "max": null,
+   "unit": "per_meal"
+  },
+  "hours": {
+   "open": "11:00",
+   "close": "15:00"
+  },
+  "capacity": null,
+  "phone": "+6200000000006",
+  "publish_phone": true,
+  "last_confirmed_at": "2026-09-29T04:00:00+00:00"
+ },
+ {
+  "category": "food",
+  "name": "Warung Sianjur",
+  "village": "Sianjur Mulamula",
+  "landmark": "jalan ke Pusuk Buhit",
+  "offer_original": "mi rebus, kopi, air minum",
+  "offer_en": "instant noodle soup, coffee, drinking water",
+  "price": {
+   "min": 12000,
+   "max": null,
+   "unit": "per_meal"
+  },
+  "hours": {
+   "open": "07:00",
+   "close": "17:00"
+  },
+  "capacity": null,
+  "phone": "+6200000000007",
+  "publish_phone": true,
+  "last_confirmed_at": "2026-10-02T09:00:00+00:00"
+ },
+ {
+  "category": "food",
+  "name": "Lapo Nainggolan",
+  "village": "Nainggolan",
+  "landmark": null,
+  "offer_original": "ikan mujair goreng, nasi",
+  "offer_en": "fried tilapia with rice",
+  "price": {
+   "min": 25000,
+   "max": null,
+   "unit": "per_meal"
+  },
+  "hours": {
+   "open": "09:00",
+   "close": "20:00"
+  },
+  "capacity": null,
+  "phone": "+6200000000008",
+  "publish_phone": true,
+  "last_confirmed_at": "2026-09-20T07:00:00+00:00"
+ },
+ {
+  "category": "lodging",
+  "name": "Homestay Rumah Ompung",
+  "village": "Simanindo",
+  "landmark": "dkt museum",
+  "offer_original": "2 kamar, sarapan",
+  "offer_en": "2 rooms, breakfast",
+  "price": {
+   "min": 200000,
+   "max": null,
+   "unit": "per_night"
+  },
+  "hours": null,
+  "capacity": 2,
+  "phone": "+6200000000009",
+  "publish_phone": true,
+  "last_confirmed_at": "2026-10-03T00:30:00+00:00"
+ },
+ {
+  "category": "lodging",
+  "name": "Penginapan Tepi Danau",
+  "village": "Garoga",
+  "landmark": "pinggir danau",
+  "offer_original": "4 kamar, kamar mandi dalam",
+  "offer_en": "4 rooms, private bathrooms",
+  "price": {
+   "min": 150000,
+   "max": 250000,
+   "unit": "per_night"
+  },
+  "hours": null,
+  "capacity": 4,
+  "phone": "+6200000000010",
+  "publish_phone": true,
+  "last_confirmed_at": "2026-10-01T10:00:00+00:00"
+ },
+ {
+  "category": "lodging",
+  "name": "Rumah Adat Huta Tinggi",
+  "village": "Huta Tinggi",
+  "landmark": null,
+  "offer_original": "menginap di rumah adat Batak, termasuk makan malam",
+  "offer_en": "stay in a traditional Batak house, dinner included",
+  "price": {
+   "min": 100000,
+   "max": 150000,
+   "unit": "per_person"
+  },
+  "hours": null,
+  "capacity": 4,
+  "phone": "+6200000000011",
+  "publish_phone": true,
+  "last_confirmed_at": "2026-09-27T08:00:00+00:00"
+ },
+ {
+  "category": "lodging",
+  "name": "Homestay Tomok Pelabuhan",
+  "village": "Tomok",
+  "landmark": "dekat pelabuhan",
+  "offer_original": "3 kamar, sarapan",
+  "offer_en": "3 rooms, breakfast",
+  "price": {
+   "min": 150000,
+   "max": null,
+   "unit": "per_night"
+  },
+  "hours": null,
+  "capacity": 3,
+  "phone": "+6200000000012",
+  "publish_phone": true,
+  "last_confirmed_at": "2026-10-02T06:00:00+00:00"
+ },
+ {
+  "category": "lodging",
+  "name": "Wisma Harian",
+  "village": "Harian",
+  "landmark": "dekat menara pandang",
+  "offer_original": "2 kamar, air panas",
+  "offer_en": "2 rooms, hot water",
+  "price": {
+   "min": 250000,
+   "max": null,
+   "unit": "per_night"
+  },
+  "hours": null,
+  "capacity": 2,
+  "phone": "+6200000000013",
+  "publish_phone": false,
+  "last_confirmed_at": "2026-09-18T06:00:00+00:00"
+ },
+ {
+  "category": "lodging",
+  "name": "Losmen Onan Runggu",
+  "village": "Onan Runggu",
+  "landmark": null,
+  "offer_original": "5 kamar sederhana",
+  "offer_en": "5 basic rooms",
+  "price": {
+   "min": 120000,
+   "max": null,
+   "unit": "per_night"
+  },
+  "hours": null,
+  "capacity": 5,
+  "phone": "+6200000000014",
+  "publish_phone": true,
+  "last_confirmed_at": "2026-09-25T06:00:00+00:00"
+ },
+ {
+  "category": "lodging",
+  "name": "Homestay Parbaba",
+  "village": "Parbaba Dolok",
+  "landmark": "dekat pantai pasir putih",
+  "offer_original": "kamar dan tenda",
+  "offer_en": "rooms and tent pitches",
+  "price": {
+   "min": 80000,
+   "max": 180000,
+   "unit": "per_night"
+  },
+  "hours": null,
+  "capacity": 6,
+  "phone": "+6200000000015",
+  "publish_phone": true,
+  "last_confirmed_at": "2026-10-02T11:00:00+00:00"
+ },
+ {
+  "category": "transport",
+  "name": "Ojek Pak Lumban",
+  "village": "Pangururan",
+  "landmark": null,
+  "offer_original": "ojek ke Pusuk Buhit pp",
+  "offer_en": "motorbike taxi to Pusuk Buhit, return",
+  "price": {
+   "min": 100000,
+   "max": null,
+   "unit": "per_trip"
+  },
+  "hours": null,
+  "capacity": null,
+  "phone": "+6200000000016",
+  "publish_phone": true,
+  "last_confirmed_at": "2026-10-01T02:00:00+00:00"
+ },
+ {
+  "category": "transport",
+  "name": "Kapal Bapak Sitanggang",
+  "village": "Tomok",
+  "landmark": "pelabuhan Tomok",
+  "offer_original": "kapal ke Parapat",
+  "offer_en": "boat to Parapat",
+  "price": {
+   "min": 15000,
+   "max": null,
+   "unit": "per_person"
+  },
+  "hours": {
+   "open": "07:00",
+   "close": "18:00"
+  },
+  "capacity": null,
+  "phone": "+6200000000017",
+  "publish_phone": true,
+  "last_confirmed_at": "2026-10-03T02:00:00+00:00"
+ },
+ {
+  "category": "transport",
+  "name": "Sewa Motor Tuk Tuk",
+  "village": "Tuk Tuk",
+  "landmark": null,
+  "offer_original": "sewa motor harian",
+  "offer_en": "motorbike rental per day",
+  "price": {
+   "min": 100000,
+   "max": null,
+   "unit": "other"
+  },
+  "hours": {
+   "open": "08:00",
+   "close": "20:00"
+  },
+  "capacity": null,
+  "phone": "+6200000000018",
+  "publish_phone": true,
+  "last_confirmed_at": "2026-09-30T08:00:00+00:00"
+ },
+ {
+  "category": "guide",
+  "name": "Pemandu Pusuk Buhit",
+  "village": "Sianjur Mulamula",
+  "landmark": null,
+  "offer_original": "pendakian Pusuk Buhit, cerita sejarah Batak",
+  "offer_en": "Pusuk Buhit hike with Batak history",
+  "price": {
+   "min": 150000,
+   "max": null,
+   "unit": "per_person"
+  },
+  "hours": null,
+  "capacity": null,
+  "phone": "+6200000000019",
+  "publish_phone": true,
+  "last_confirmed_at": "2026-09-28T03:00:00+00:00"
+ },
+ {
+  "category": "guide",
+  "name": "Tur Desa Palipi",
+  "village": "Palipi",
+  "landmark": null,
+  "offer_original": "tur tenun ulos dan kebun kopi",
+  "offer_en": "ulos weaving and coffee garden tour",
+  "price": {
+   "min": 75000,
+   "max": null,
+   "unit": "per_person"
+  },
+  "hours": {
+   "open": "09:00",
+   "close": "16:00"
+  },
+  "capacity": null,
+  "phone": "+6200000000020",
+  "publish_phone": true,
+  "last_confirmed_at": "2026-09-10T03:00:00+00:00"
+ }
+]

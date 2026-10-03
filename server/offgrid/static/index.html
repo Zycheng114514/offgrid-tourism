@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Offgrid Tourism Demo</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<main>
+  <h1>Offgrid Tourism</h1>
+  <p class="muted" id="region">Local food and lodging information for places with weak connectivity.</p>
+  <div class="banner">
+    Demo. All businesses, prices and phone numbers are invented; village names are real.
+    No language model runs in this demo: model outputs for the example messages were written in advance.
+    Messages that are not examples are handled by fixed rules and follow-up questions.
+  </div>
+  <div class="cards">
+    <div class="card">
+      <h2>Local business side</h2>
+      <p>A host with a basic phone reports what they offer by SMS, in their own language. The server reads the
+         message, asks for anything missing, and lists the business once the host confirms.</p>
+      <a class="big" href="/host">Open the host demo</a>
+    </div>
+    <div class="card">
+      <h2>Traveller side</h2>
+      <p>A traveller downloads the region's listings while online, then searches them with no connection.
+         With signal but no data, they can ask by SMS.</p>
+      <a class="big" href="/app/">Open the traveller app</a>
+    </div>
+  </div>
+  <footer>Map data © OpenStreetMap contributors (ODbL). World Bank Small AI for Development hackathon, tourism track.</footer>
+</main>
+<script>
+fetch("/api/config").then(r => r.json()).then(c => {
+  document.getElementById("region").textContent = `Test region: ${c.display_name}. Same pipeline for any region.`;
+}).catch(() => {});
+</script>
+</body>
+</html>

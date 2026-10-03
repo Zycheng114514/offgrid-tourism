@@ -1,55 +1,314 @@
 {
   "id": "samosir",
   "display_name": "Samosir Regency, Lake Toba, Indonesia",
-  "note": "First test profile. The pipeline reads everything region-specific from a file like this one.",
+  "note": "First test profile. Everything region-specific the pipeline needs is in this file; the code has no place names, languages or currencies in it.",
   "country_code": "ID",
   "phone_country_prefix": "+62",
   "timezone": "Asia/Jakarta",
-  "osm": { "area_name": "Samosir", "admin_level": 5 },
+  "osm": {
+    "area_name": "Samosir",
+    "admin_level": 5
+  },
   "languages": {
-    "host": ["id"],
-    "host_stretch": ["bbc"],
-    "traveller": ["en"]
+    "host": "id",
+    "traveller": "en"
+  },
+  "language_names": {
+    "id": "Indonesian",
+    "en": "English"
   },
   "currency": {
     "code": "IDR",
-    "symbols": ["Rp", "IDR"],
-    "multipliers": { "rb": 1000, "ribu": 1000, "k": 1000, "jt": 1000000, "juta": 1000000 },
-    "plausible_range": { "food": [2000, 500000], "lodging": [50000, 5000000] }
-  },
-  "keywords": {
-    "food": ["MAKAN", "WARUNG", "RUMAH MAKAN"],
-    "lodging": ["INAP", "PENGINAPAN", "HOMESTAY", "KAMAR"],
-    "transport": ["OJEK", "SEWA", "KAPAL"],
-    "guide": ["PEMANDU", "GUIDE"],
-    "open_today": ["BUKA"],
-    "closed_today": ["TUTUP"],
-    "confirm_yes": ["1", "YA", "BENAR"],
-    "confirm_no": ["2", "TIDAK", "SALAH"],
-    "search": ["CARI"],
-    "help": ["BANTUAN", "INFO", "?"]
+    "symbols": [
+      "rp",
+      "idr"
+    ],
+    "multipliers": {
+      "rb": 1000,
+      "ribu": 1000,
+      "k": 1000,
+      "jt": 1000000,
+      "juta": 1000000
+    },
+    "decimal_separator": ",",
+    "thousands_separator": ".",
+    "display": "Rp{amount}",
+    "plausible_range": {
+      "food": [
+        2000,
+        500000
+      ],
+      "lodging": [
+        50000,
+        5000000
+      ],
+      "transport": [
+        5000,
+        2000000
+      ],
+      "guide": [
+        20000,
+        5000000
+      ],
+      "other": [
+        1000,
+        10000000
+      ]
+    }
   },
   "gazetteer": {
     "source": "data/real/osm/samosir/places.csv",
-    "note": "OpenStreetMap place points; replace with the official village list when available."
+    "note": "OpenStreetMap place points (snapshot 2026-10-03); replace with the official village list when available."
+  },
+  "words": {
+    "id": {
+      "category": {
+        "food": [
+          "makan",
+          "warung",
+          "rumah makan",
+          "lapo",
+          "kedai",
+          "kafe",
+          "cafe",
+          "restoran",
+          "nasi",
+          "mie",
+          "ikan"
+        ],
+        "lodging": [
+          "inap",
+          "nginap",
+          "menginap",
+          "penginapan",
+          "homestay",
+          "kamar",
+          "kmr",
+          "hotel",
+          "losmen",
+          "wisma"
+        ],
+        "transport": [
+          "ojek",
+          "sewa",
+          "kapal",
+          "angkot",
+          "becak"
+        ],
+        "guide": [
+          "pemandu",
+          "guide",
+          "tur"
+        ]
+      },
+      "commands": {
+        "open_today": [
+          "buka"
+        ],
+        "closed_today": [
+          "tutup"
+        ],
+        "confirm_yes": [
+          "1",
+          "ya",
+          "y",
+          "iya",
+          "benar",
+          "betul",
+          "ok"
+        ],
+        "confirm_no": [
+          "2",
+          "tidak",
+          "tdk",
+          "salah",
+          "bukan"
+        ],
+        "search": [
+          "cari"
+        ],
+        "help": [
+          "bantuan",
+          "info",
+          "?"
+        ]
+      },
+      "price_units": {
+        "per_night": [
+          "malam",
+          "mlm"
+        ],
+        "per_person": [
+          "orang",
+          "org",
+          "pax"
+        ],
+        "per_trip": [
+          "pp",
+          "sekali jalan",
+          "trip"
+        ],
+        "per_meal": [
+          "porsi",
+          "piring"
+        ],
+        "per_day": [
+          "hari",
+          "sehari"
+        ]
+      },
+      "capacity_units": [
+        "kamar",
+        "kmr",
+        "orang",
+        "org",
+        "tempat tidur",
+        "bed"
+      ],
+      "time": {
+        "am": [
+          "pagi"
+        ],
+        "noon": [
+          "siang"
+        ],
+        "pm": [
+          "sore",
+          "malam"
+        ],
+        "range": [
+          "-",
+          "s/d",
+          "sd",
+          "sampai",
+          "hingga"
+        ],
+        "all_day": [
+          "24 jam"
+        ],
+        "markers": [
+          "buka",
+          "jam",
+          "pukul"
+        ]
+      },
+      "cheap": [
+        "murah"
+      ],
+      "now": [
+        "sekarang"
+      ],
+      "price_unit_prefix": [
+        "per"
+      ]
+    },
+    "en": {
+      "category": {
+        "food": [
+          "food",
+          "eat",
+          "restaurant",
+          "meal",
+          "cafe"
+        ],
+        "lodging": [
+          "sleep",
+          "room",
+          "bed",
+          "stay",
+          "hotel",
+          "homestay",
+          "guesthouse"
+        ],
+        "transport": [
+          "ride",
+          "boat",
+          "taxi",
+          "transport"
+        ],
+        "guide": [
+          "guide",
+          "tour"
+        ]
+      },
+      "commands": {
+        "search": [
+          "search",
+          "find"
+        ],
+        "help": [
+          "help"
+        ]
+      },
+      "cheap": [
+        "cheap",
+        "budget"
+      ],
+      "now": [
+        "now"
+      ]
+    }
+  },
+  "unit_labels": {
+    "id": {
+      "per_night": "/malam",
+      "per_person": "/orang",
+      "per_trip": "/perjalanan",
+      "per_meal": "/porsi",
+      "per_item": "",
+      "other": "",
+      "per_day": "/hari"
+    },
+    "en": {
+      "per_night": "/night",
+      "per_person": "/person",
+      "per_trip": "/trip",
+      "per_meal": "/meal",
+      "per_item": "",
+      "other": "",
+      "per_day": "/day"
+    }
   },
   "templates": {
     "id": {
-      "welcome": "Selamat datang! Kirim usaha Anda, contoh: MAKAN Warung Bu Sinaga di Garoga, nasi ikan 25rb, buka 7-21",
+      "welcome": "Selamat datang! Kirim usaha Anda, contoh: MAKAN Warung Bu Sinaga di Garoga, nasi ikan 25rb, buka 7-21. Wisatawan: CARI makan Garoga",
       "ask_name": "Apa nama usaha Anda?",
       "ask_village": "Usaha Anda di desa mana?",
       "ask_offer": "Apa yang Anda tawarkan? (makanan, kamar, dll.)",
-      "ask_price": "Berapa harganya?",
+      "ask_price": "Berapa harganya? Contoh: 25rb",
       "ask_hours": "Jam berapa buka dan tutup? Contoh: 7-21",
-      "ask_publish_phone": "Boleh nomor HP Anda ditampilkan untuk wisatawan? Balas YA atau TIDAK",
+      "ask_category": "Usaha apa? Balas MAKAN, INAP, OJEK atau PEMANDU",
+      "ask_publish_phone": "Boleh nomor HP ini ditampilkan untuk wisatawan? Balas YA atau TIDAK",
       "confirm": "Kami catat: {summary}. Balas 1 jika benar, 2 jika salah.",
-      "confirmed": "Terima kasih! Usaha Anda sudah tampil untuk wisatawan.",
-      "rejected": "Maaf. Silakan kirim ulang informasi yang benar.",
-      "no_results": "Belum ada info untuk itu. Coba: CARI makan <nama desa>"
+      "confirmed": "Terima kasih! {name} sudah tampil untuk wisatawan.",
+      "rejected": "Baik, data dibatalkan. Silakan kirim ulang informasi yang benar.",
+      "open_ack": "Tercatat: hari ini BUKA.",
+      "closed_ack": "Tercatat: hari ini TUTUP.",
+      "no_listing": "Anda belum punya usaha terdaftar. Kirim info usaha Anda dulu.",
+      "no_results": "Belum ada info untuk itu. Coba: CARI makan Garoga",
+      "results_header": "Hasil:"
     },
     "en": {
-      "no_results": "No listings found. Try: SEARCH food <village name>",
-      "result_line": "{name} ({village}) {offer} {price} {hours} tel {phone}"
+      "help": "Search by SMS: SEARCH food Garoga, or SEARCH room Tuk Tuk",
+      "no_results": "No listings found. Try: SEARCH food Garoga",
+      "results_header": "Results:"
+    }
+  },
+  "llm_example": {
+    "message": "INAP Homestay Rumah Ompung di Simanindo dkt museum, 2 kmr, 200rb/mlm, sarapan",
+    "json": {
+      "category": "lodging",
+      "name": "Homestay Rumah Ompung",
+      "village": "Simanindo",
+      "landmark": "dkt museum",
+      "offer": "2 kamar, sarapan",
+      "offer_en": "2 rooms, breakfast",
+      "price_min": 200000,
+      "price_max": null,
+      "price_unit": "per_night",
+      "open": null,
+      "close": null,
+      "capacity": 2
     }
   }
 }

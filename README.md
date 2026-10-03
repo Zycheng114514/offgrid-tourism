@@ -146,6 +146,7 @@ Our difference is in the details and is untested: hosts list themselves by SMS i
 | [docs/DECISIONS.md](docs/DECISIONS.md) | Every design decision, with status and history |
 | [docs/REAL_WORLD_DATA.md](docs/REAL_WORLD_DATA.md) | Test region, measured numbers, data sources, what we may and may not claim |
 | [docs/RUNBOOK.md](docs/RUNBOOK.md) | Run, test, deploy, connect the SMS gateway phone |
+| [docs/SUBMISSION.md](docs/SUBMISSION.md) | Hackathon submission: checklist, submission text, video scripts |
 
 ## Credits
 

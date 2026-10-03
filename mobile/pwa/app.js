@@ -70,6 +70,8 @@ function find(q) {
   const cheap = $("cheap").checked || hasWord(q, "cheap"), nowOnly = $("openNow").checked || hasWord(q, "now");
   let items = pack.listings.slice();
   if (cat) items = items.filter(l => l.category === cat);
+  // ties are broken by freshness: the most recently confirmed listing comes first (sorts below are stable)
+  items.sort((a, b) => (b.last_confirmed_at || "").localeCompare(a.last_confirmed_at || ""));
   if (nowOnly) items = items.filter(l => openNow(l) !== false);
   if (place) {
     const here = [place.lat, place.lon];

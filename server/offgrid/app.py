@@ -18,8 +18,9 @@ from urllib.parse import parse_qs, urlparse
 
 from .dialog import Dialog
 from .gateway import Gateway, parse_smsgate_webhook, verify_signature
-from .llm import LLM
+from .llm import LLM, LLMConfig
 from .pack import build_pack, public_listing
+from .trace import trace
 from .region import ROOT, Region
 from .store import Store
 
@@ -115,8 +116,9 @@ def make_handler(app: App):
                 return self._json({"conversation": app.store.conversation(q["phone"]),
                                    "listings": app.store.listings(host_id=host["id"]),
                                    "host": {"publish_phone": host.get("publish_phone")}})
-            if path in ("/", "/host", "/host/"):
-                return self._file(STATIC_DIR / ("index.html" if path == "/" else "host.html"))
+            if path in ("/", "/host", "/host/", "/pipeline", "/pipeline/"):
+                page = {"/": "index.html", "/host": "host.html", "/pipeline": "pipeline.html"}[path.rstrip("/") or "/"]
+                return self._file(STATIC_DIR / page)
             if path.startswith("/static/"):
                 return self._safe_file(STATIC_DIR, path[len("/static/"):])
             if path in ("/app", "/app/"):
@@ -146,6 +148,16 @@ def make_handler(app: App):
                     gateway_id, phone, text = parsed
                     app.receive(phone, text, gateway_id)
                 return self._json({"ok": True})
+            if path == "/api/pipeline/trace":
+                try:
+                    body = json.loads(raw or b"{}")
+                except json.JSONDecodeError:
+                    return self._json({"error": "bad json"}, 400)
+                text = str(body.get("text", "")).strip()[:480]
+                if not text:
+                    return self._json({"error": "text is required"}, 400)
+                llm = app.llm if body.get("model", "on") != "off" else LLM(LLMConfig(provider="none"))
+                return self._json(trace(text, app.region, llm, app.store))
             if path == "/api/simulate" and app.simulator:
                 try:
                     body = json.loads(raw or b"{}")

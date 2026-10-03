@@ -84,12 +84,18 @@ def _price_unit(tail: str, region: Region, category: str | None) -> str:  # noqa
 
 def parse_hours(text: str, region: Region, skip_spans=()) -> dict | None:
     """'buka 7-21', 'jam 8 pagi sampai 8 malam', '07.00-21.00', '24 jam' -> {'open', 'close'}."""
+    return parse_hours_detail(text, region, skip_spans)[0]
+
+
+def parse_hours_detail(text: str, region: Region, skip_spans=()) -> tuple[dict | None, tuple[int, int] | None]:
     t = text.lower()
     for a, b in skip_spans:
         t = t[:a] + " " * (b - a) + t[b:]
     tw = region.lang_words(region.host_lang).get("time", {})
-    if any(norm(w) and f" {norm(w)} " in f" {norm(t)} " for w in tw.get("all_day", [])):
-        return {"open": "00:00", "close": "24:00"}
+    for w in tw.get("all_day", []):
+        if norm(w) and f" {norm(w)} " in f" {norm(t)} ":
+            pos = t.find(w.lower())
+            return {"open": "00:00", "close": "24:00"}, ((pos, pos + len(w)) if pos >= 0 else None)
     am, noon, pm = (tw.get(k, []) for k in ("am", "noon", "pm"))
     period, rng, mk = _alt(am + noon + pm), _alt(tw.get("range", ["-"]) + ["–"]), _alt(tw.get("markers", []))
     pattern = re.compile(
@@ -105,9 +111,9 @@ def parse_hours(text: str, region: Region, skip_spans=()) -> dict | None:
             h2 += 12  # 'buka 8-9' most likely means 08:00-21:00
         if h1 > 24 or h2 > 24 or h2 <= h1:
             continue
-        return {"open": f"{h1:02d}:{int(m.group('m1') or 0):02d}",
-                "close": f"{h2:02d}:{int(m.group('m2') or 0):02d}"}
-    return None
+        return ({"open": f"{h1:02d}:{int(m.group('m1') or 0):02d}",
+                 "close": f"{h2:02d}:{int(m.group('m2') or 0):02d}"}, m.span())
+    return None, None
 
 
 def _apply_period(hour: int, word: str | None, am: list, noon: list, pm: list) -> int:
@@ -123,19 +129,29 @@ def _apply_period(hour: int, word: str | None, am: list, noon: list, pm: list) -
 
 
 def parse_capacity(text: str, region: Region) -> int | None:
+    return parse_capacity_detail(text, region)[0]
+
+
+def parse_capacity_detail(text: str, region: Region) -> tuple[int | None, tuple[int, int] | None]:
     alt = _alt(region.lang_words(region.host_lang).get("capacity_units", []))
     m = re.search(rf"(?<![\d.,])(\d{{1,3}})\s*(?:{alt})\b", text.lower())
-    return int(m.group(1)) if m else None
+    return (int(m.group(1)), m.span()) if m else (None, None)
 
 
 def parse(text: str, region: Region) -> dict:
-    """All rule-based fields found in one message."""
-    category, _ = region.category_of(text)
+    """All rule-based fields found in one message, plus the words each one came from ('evidence')."""
+    category, _, word = region.category_match(text)
     price, spans = parse_price(text, region, category)
+    hours, hours_span = parse_hours_detail(text, region, spans)
+    capacity, cap_span = parse_capacity_detail(text, region)
+    place, gram, how = region.match_place_detail(text)
+    piece = lambda span: text[span[0]:span[1]].strip() if span else None
     return {
         "category": category,
         "price": price,
-        "hours": parse_hours(text, region, spans),
-        "capacity": parse_capacity(text, region),
-        "place": region.match_place(text),
+        "hours": hours,
+        "capacity": capacity,
+        "place": place,
+        "evidence": {"category": word, "price": piece(spans[0]) if spans else None, "hours": piece(hours_span),
+                     "capacity": piece(cap_span), "place": gram, "place_match": how},
     }

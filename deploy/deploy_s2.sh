@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
 # Deploy the demo to s2 (Oracle cloud, ARM64, Ubuntu) and expose it through a Cloudflare quick tunnel.
-# Usage: deploy/deploy_s2.sh [host]   (default host alias: s2-ts, the Tailscale address)
+# Usage: deploy/deploy_s2.sh [host] [--reset-data]   (default host alias: s2-ts, the Tailscale address)
+#   --reset-data  move the demo database aside (kept as a timestamped copy) and load the seed listings again
 # Copies files only (never deletes on the server), restarts the app and the tunnel in tmux, prints the public URL.
 set -euo pipefail
-HOST="${1:-s2-ts}"
+HOST="s2-ts"; RESET=0
+for arg in "$@"; do case "$arg" in --reset-data) RESET=1 ;; *) HOST="$arg" ;; esac; done
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 REMOTE_DIR="offgrid-tourism"
 
@@ -14,9 +16,12 @@ rsync -az --relative \
   "$ROOT/./data/real/osm" "$ROOT/./data/synthetic" \
   "$HOST:$REMOTE_DIR/"
 
-ssh "$HOST" bash -s <<'REMOTE'
+ssh "$HOST" RESET="$RESET" bash -s <<'REMOTE'
 set -euo pipefail
 cd ~/offgrid-tourism
+if [ "${RESET:-0}" = 1 ] && [ -f data/runtime/samosir.sqlite ]; then
+  mv data/runtime/samosir.sqlite "data/runtime/samosir.$(date +%Y%m%d-%H%M%S).sqlite.bak"
+fi
 if [ ! -f .env ]; then
   cat > .env <<'ENV'
 REGION_PROFILE=regions/samosir.json

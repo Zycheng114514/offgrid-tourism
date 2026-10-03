@@ -54,7 +54,7 @@ def listing_from_extraction(ex: Extraction, listing_id: str, region: Region, hos
         "extraction": {"method": ex.method, "model": ex.model, "missing_fields_asked": [],
                        "llm_seconds": round(ex.llm_seconds, 1), "llm_error": ex.llm_error,
                        "model_output": ex.model_output, "rejected_model_values": ex.rejected,
-                       "field_sources": dict(ex.sources)},
+                       "field_sources": dict(ex.sources), "rule_evidence": ex.evidence, "checks": ex.checks},
     }
 
 

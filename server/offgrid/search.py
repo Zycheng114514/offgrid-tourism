@@ -42,6 +42,8 @@ def find(query: str, region: Region, listings: list[dict], when: datetime | None
     items = [l for l in listings if l.get("status", {}).get("state") == "confirmed"]
     if category:
         items = [l for l in items if l.get("category") == category]
+    # ties are broken by freshness: the most recently confirmed listing comes first (sorts below are stable)
+    items.sort(key=lambda l: l.get("status", {}).get("last_confirmed_at") or "", reverse=True)
     if now_only:
         items = [l for l in items if is_open_now(l, region, when) is not False]
     if place:

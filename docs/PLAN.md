@@ -149,7 +149,10 @@ Cut-off: 2026-10-04 9:00 AM ET (D1), so the 17-hour column applies. The 8-hour c
 
 ## 8. Demo script (about 3 minutes)
 
+Pages: `/pipeline` (the pipeline step by step), `/host` (host side), `/app/` (traveller side).
+
 1. The gap, with measured numbers from OpenStreetMap for the test region.
+1a. The pipeline walkthrough (`/pipeline`, Play): one example SMS through rules, model, checks and follow-up questions to a traveller's search; then the example where the model invents a name and the check rejects it.
 2. A host texts `MAKAN Warung Bu Sinaga di Garoga, nasi ikan 25rb, buka 7-21` from a basic phone to the gateway phone's number. The server replies with a summary; the host replies `1`. A second, free-text message shows the fields a model would fill (model output written in advance and labelled as such, D5).
 3. A traveller's app downloads the Garoga pack, then the phone goes into airplane mode. Searching "cheap food open now" still works and shows the listing with "confirmed today".
 4. A traveller with no data texts `CARI makan Garoga` and gets 3 listings by SMS.

@@ -8,7 +8,7 @@ DB_PATH=../data/runtime/dev.sqlite python -m offgrid seed
 LLM_PROVIDER=simulated DB_PATH=../data/runtime/dev.sqlite PORT=8790 python -m offgrid serve
 ```
 
-Open http://127.0.0.1:8790/ (landing), `/host` (host side), `/app/` (traveller side).
+Open http://127.0.0.1:8790/ (landing), `/host` (host side), `/pipeline` (pipeline walkthrough), `/app/` (traveller side).
 
 Tests (no network, simulated model):
 
@@ -26,7 +26,7 @@ What it does: copies the code and data to `s2:~/offgrid-tourism` (copy only, not
 
 - The public URL changes whenever the tunnel restarts. Current URL: `grep trycloudflare ~/offgrid-tourism/data/runtime/tunnel.log | tail -1` on s2.
 - Logs on s2: `~/offgrid-tourism/data/runtime/server.log`, `tunnel.log`.
-- Start over with fresh demo data: on s2, move `data/runtime/samosir.sqlite` aside and run the deploy script again.
+- Start over with fresh demo data: `deploy/deploy_s2.sh --reset-data` (the old database is kept as a timestamped `.bak` copy on s2).
 
 ## Connect the Android SMS gateway phone (D4)
 

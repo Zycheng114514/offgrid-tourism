@@ -69,6 +69,8 @@ class Extraction:
     model_output: dict | None = None
     rejected: dict = field(default_factory=dict)  # model answers dropped by the checks
     sources: dict = field(default_factory=dict)   # listing field -> 'rules' | 'model' | 'message'
+    evidence: dict = field(default_factory=dict)  # the words each rule matched
+    checks: list = field(default_factory=list)    # one entry per model value: kept / rejected / not used, and why
 
     def missing(self) -> list[str]:
         need = ["category", "name", "place", "offer_original", "price"]
@@ -101,7 +103,7 @@ def _appears(value: str | None, text: str, min_share: float = 0.6) -> bool:
 def extract(text: str, region: Region, llm: LLM | None = None) -> Extraction:
     r = rules.parse(text, region)
     ex = Extraction(category=r["category"], price=r["price"], hours=r["hours"],
-                    capacity=r["capacity"], place=r["place"])
+                    capacity=r["capacity"], place=r["place"], evidence=r["evidence"])
     for attr, name in (("category", "category"), ("price", "price"), ("hours", "hours"),
                        ("capacity", "capacity"), ("place", "village")):
         if getattr(ex, attr) is not None:
@@ -116,6 +118,8 @@ def extract(text: str, region: Region, llm: LLM | None = None) -> Extraction:
         ex.offer_original = text.strip()[:160]  # the host's own words are the fallback description
         ex.sources["offer_original"] = "message"
     if ex.price is not None and _plausible_price(ex.price, ex.category, region) is None:
+        ex.checks.append({"field": "price", "value": ex.price, "result": "rejected",
+                          "reason": f"outside the plausible range for {ex.category or 'other'} in this region"})
         ex.rejected["price"] = ex.price
         ex.price = None
         ex.sources.pop("price", None)
@@ -123,43 +127,81 @@ def extract(text: str, region: Region, llm: LLM | None = None) -> Extraction:
 
 
 def _merge_model_answer(ex: Extraction, d: dict, text: str, region: Region) -> None:
-    def keep(key: str, value, ok: bool):
-        if value in (None, ""):
-            return None
-        if not ok:
-            ex.rejected[key] = value
-            return None
-        ex.sources[key] = "model"
-        return value
+    """Take model values only where rules found nothing and the value can be traced to the message."""
+    ev = ex.evidence or {}
 
-    if ex.category is None and d.get("category") in CATEGORIES:
-        ex.category = keep("category", d["category"], True)
-    ex.name = keep("name", d.get("name"), _appears(d.get("name"), text))
-    ex.landmark = keep("landmark", d.get("landmark"), _appears(d.get("landmark"), text, 0.5))
-    ex.offer_original = keep("offer_original", d.get("offer"), True)
-    ex.offer_en = keep("offer_en", d.get("offer_en"), True)
-    ex.village_text = d.get("village")
-    if ex.place is None and d.get("village"):
-        place = region.match_place(d["village"])
-        if place is None:
-            ex.rejected["village"] = d["village"]
+    def check(field_name: str, value, result: str, reason: str):
+        ex.checks.append({"field": field_name, "value": value, "result": result, "reason": reason})
+        if result == "rejected":
+            ex.rejected[field_name] = value
+        elif result == "kept":
+            ex.sources[field_name] = "model"
+        return value if result == "kept" else None
+
+    if d.get("category") is not None:
+        if ex.category is not None:
+            check("category", d["category"], "not used", f"rules already found '{ex.category}' from the word '{ev.get('category')}'")
+        elif d["category"] in CATEGORIES:
+            ex.category = check("category", d["category"], "kept", "rules found no category word")
         else:
-            ex.place = keep("village", place, _appears(place["name"], text, 0.5))
+            check("category", d["category"], "rejected", "not one of the allowed categories")
+    for key, share in (("name", 0.6), ("landmark", 0.5)):
+        if d.get(key):
+            ok = _appears(d[key], text, share)
+            setattr(ex, key, check(key, d[key], "kept" if ok else "rejected",
+                                   "its words appear in the message" if ok else "not found in the message"))
+    if d.get("offer"):
+        ex.offer_original = check("offer_original", d["offer"], "kept",
+                                  "description in the host's language; the host checks it before confirming")
+    if d.get("offer_en"):
+        ex.offer_en = check("offer_en", d["offer_en"], "kept",
+                            "translation; cannot be checked against the message, so the original is always shown with it")
+    ex.village_text = d.get("village")
+    if d.get("village"):
+        if ex.place is not None:
+            check("village", d["village"], "not used", f"rules already matched '{ex.place['name']}' in the village list")
+        else:
+            place = region.match_place(d["village"])
+            if place is None:
+                check("village", d["village"], "rejected", "not in the region's village list")
+            elif not _appears(place["name"], text, 0.5):
+                check("village", d["village"], "rejected", "place not named in the message")
+            else:
+                check("village", d["village"], "kept", "in the village list and named in the message")
+                ex.place = place
 
     nums = _numbers_in(text, region)
-    if ex.price is None and isinstance(d.get("price_min"), (int, float)):
+    if isinstance(d.get("price_min"), (int, float)):
         lo, hi = float(d["price_min"]), d.get("price_max")
         hi = float(hi) if isinstance(hi, (int, float)) else None
-        ok = round(lo, 2) in nums and (hi is None or round(hi, 2) in nums)
         unit = d.get("price_unit") if d.get("price_unit") in PRICE_UNITS else "other"
-        ex.price = keep("price", {"min": lo, "max": hi, "currency": region.currency["code"], "unit": unit}, ok)
-    if ex.price and ex.price.get("unit") in (None, "other") and d.get("price_unit") in PRICE_UNITS:
-        ex.price["unit"] = d["price_unit"]  # rules found the amount but no unit word
-    if ex.hours is None and d.get("open") and d.get("close"):
+        value = {"min": lo, "max": hi, "currency": region.currency["code"], "unit": unit}
+        if ex.price is not None:
+            check("price", value, "not used", f"rules already read '{ev.get('price')}'")
+        elif round(lo, 2) in nums and (hi is None or round(hi, 2) in nums):
+            ex.price = check("price", value, "kept", "the amount matches a number in the message")
+        else:
+            check("price", value, "rejected", "amount not found in the message")
+    if ex.price and ex.price.get("unit") in (None, "other") and d.get("price_unit") in PRICE_UNITS \
+            and d["price_unit"] != "other" and ex.sources.get("price") == "rules":
+        ex.price["unit"] = d["price_unit"]
+        ex.checks.append({"field": "price unit", "value": d["price_unit"], "result": "kept",
+                          "reason": "rules read the amount but found no unit word"})
+    if d.get("open") and d.get("close"):
         hours = {"open": d["open"], "close": d["close"]}
-        ex.hours = keep("hours", hours, _hours_ok(hours, nums))
-    if ex.capacity is None and isinstance(d.get("capacity"), int):
-        ex.capacity = keep("capacity", d["capacity"], float(d["capacity"]) in nums)
+        if ex.hours is not None:
+            check("hours", hours, "not used", f"rules already read '{ev.get('hours')}'")
+        else:
+            ok = _hours_ok(hours, nums)
+            ex.hours = check("hours", hours, "kept" if ok else "rejected",
+                             "the hours match numbers in the message" if ok else "hours not found in the message")
+    if isinstance(d.get("capacity"), int):
+        if ex.capacity is not None:
+            check("capacity", d["capacity"], "not used", f"rules already read '{ev.get('capacity')}'")
+        else:
+            ok = float(d["capacity"]) in nums
+            ex.capacity = check("capacity", d["capacity"], "kept" if ok else "rejected",
+                                "the number appears in the message" if ok else "number not found in the message")
 
 
 def _hours_ok(hours: dict, nums: set[float]) -> bool:

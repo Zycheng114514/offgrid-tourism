@@ -25,7 +25,7 @@ When a decision changes, edit its entry and add a line to its history; do not de
 | D10 | Team roles | Decided | The team assigns roles itself |
 | D11 | Contact real hosts in the test region | Decided | No; all host data is invented by Claude |
 | D12 | Product name | Open | Working name `offgrid-tourism` |
-| D15 | Web demo | Decided | Two pages: host side (`/host`) and traveller side (`/app/`), plus a landing page |
+| D15 | Web demo | Decided | Host side (`/host`), pipeline walkthrough (`/pipeline`), traveller side (`/app/`), landing page |
 | D13 | Listing trust rules | Default | Host confirms by SMS; last-confirmed date; owner-only edits; phone shown only with consent |
 | D14 | Which small model | Decided | Qwen3-1.7B named for later; not run in the demo (simulated outputs) |
 
@@ -126,5 +126,7 @@ Host confirms each listing by replying `1`; each listing shows the last-confirme
 ## D15. Web demo — Decided
 
 - `/` landing page; `/host` host side: a basic phone on the left, and on the right what the server did (each field with where it came from: rules, model (simulated), or the host's answer; rejected model values; the stored record); `/app/` traveller side: offline search over the downloaded listings, and an "Ask by SMS" tab.
+- `/pipeline` pipeline walkthrough: pick an example SMS (or type one) and step through the 11 steps (SMS, gateway, route, rules, model, checks, listing fields, follow-up SMS, stored record, region pack, traveller search). Every step is computed live by the server code (`server/offgrid/trace.py`) without saving anything; the message is shown with the words each rule read highlighted; the model step can be switched off to show the rules-only path.
 - Example host messages with simulated model outputs, and example traveller searches, are in `models/simulated/samosir.json`.
-- Decided by Chris, 2026-10-03.
+- Search ranking: on ties, the most recently confirmed listing comes first (server and app).
+- Decided by Chris, 2026-10-03 (pipeline page requested the same day).

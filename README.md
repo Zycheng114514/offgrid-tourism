@@ -4,7 +4,7 @@ Local food and lodging information for places with weak connectivity. Hosts repo
 
 Built for the World Bank **Small AI for Development** hackathon, tourism track (3–4 October 2026).
 
-> Status (2026-10-03): working demo. Server, host-side demo page and offline traveller app are built and deployed on our server s2. No language model runs in the demo: model outputs for the example messages were written in advance (see [docs/DECISIONS.md](docs/DECISIONS.md) D5). All businesses and phone numbers are invented.
+> Status (2026-10-03): working demo. Server, host-side demo page, pipeline walkthrough page and offline traveller app are built and deployed on our server s2. No language model runs in the demo: model outputs for the example messages were written in advance (see [docs/DECISIONS.md](docs/DECISIONS.md) D5). All businesses and phone numbers are invented.
 
 ## How it works
 

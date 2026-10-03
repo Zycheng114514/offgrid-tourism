@@ -343,6 +343,38 @@
               "host_answer"
             ]
           }
+        },
+        "rule_evidence": {
+          "type": "object",
+          "description": "The words in the message each rule matched."
+        },
+        "checks": {
+          "type": "array",
+          "description": "One entry per model value: kept, rejected or not used, and why.",
+          "items": {
+            "type": "object",
+            "required": [
+              "field",
+              "result",
+              "reason"
+            ],
+            "properties": {
+              "field": {
+                "type": "string"
+              },
+              "value": {},
+              "result": {
+                "enum": [
+                  "kept",
+                  "rejected",
+                  "not used"
+                ]
+              },
+              "reason": {
+                "type": "string"
+              }
+            }
+          }
         }
       },
       "required": [

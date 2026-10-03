@@ -75,17 +75,22 @@ class Region:
     def is_no(self, text: str) -> bool:
         return norm(text) in {norm(w) for w in self.lang_words(self.host_lang)["commands"].get("confirm_no", [])}
 
-    def category_of(self, text: str) -> tuple[str | None, str | None]:
-        """First category word found in the text, checking the start of the message first."""
+    def category_match(self, text: str) -> tuple[str | None, str | None, str | None]:
+        """(category, language, word) for the first category word in the text."""
         t = " " + norm(text) + " "
-        best: tuple[int, str, str] | None = None
+        best: tuple[int, str, str, str] | None = None
         for lang in self.all_langs():
             for cat, words in self.lang_words(lang).get("category", {}).items():
                 for w in words:
                     pos = t.find(" " + norm(w) + " ")
                     if pos != -1 and (best is None or pos < best[0]):
-                        best = (pos, cat, lang)
-        return (best[1], best[2]) if best else (None, None)
+                        best = (pos, cat, lang, w)
+        return (best[1], best[2], best[3]) if best else (None, None, None)
+
+    def category_of(self, text: str) -> tuple[str | None, str | None]:
+        """First category word found in the text, checking the start of the message first."""
+        cat, lang, _ = self.category_match(text)
+        return cat, lang
 
     def has_word(self, text: str, key: str) -> bool:
         t = " " + norm(text) + " "
@@ -118,24 +123,28 @@ class Region:
             index[alias].sort(key=lambda p: PLACE_RANK.get(p["place"], 9))
         return index
 
-    def match_place(self, text: str | None) -> dict | None:
-        """Find a gazetteer place named in free text. Exact n-gram match first, then close spelling."""
+    def match_place_detail(self, text: str | None) -> tuple[dict | None, str | None, str | None]:
+        """(place, words matched, 'exact' or 'close spelling') for a gazetteer place named in the text."""
         if not text or not self.places:
-            return None
+            return None, None, None
         tokens = norm(text).split()
         for n in (4, 3, 2, 1):
             for i in range(len(tokens) - n + 1):
                 gram = " ".join(tokens[i:i + n])
                 for key in (gram, gram.replace(" ", "")):
                     if key in self._alias_index:
-                        return self._alias_index[key][0]
+                        return self._alias_index[key][0], gram, "exact"
         candidates = [" ".join(tokens[i:i + n]) for n in (2, 1) for i in range(len(tokens) - n + 1)]
         candidates = [c for c in candidates if len(c) >= 5]
         for c in candidates:
             close = difflib.get_close_matches(c, self._alias_index.keys(), n=1, cutoff=0.85)
             if close:
-                return self._alias_index[close[0]][0]
-        return None
+                return self._alias_index[close[0]][0], c, "close spelling"
+        return None, None, None
+
+    def match_place(self, text: str | None) -> dict | None:
+        """Find a gazetteer place named in free text. Exact n-gram match first, then close spelling."""
+        return self.match_place_detail(text)[0]
 
     # ---- money and text ------------------------------------------------------
 

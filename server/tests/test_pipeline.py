@@ -88,7 +88,7 @@ class Traveller(unittest.TestCase):
     def test_sms_search(self):
         reply = self.dialog.handle("+15550000000", "SEARCH food Garoga")
         self.assertTrue(reply.startswith("Results:"))
-        self.assertIn("Warung Bu Sinaga", reply)
+        self.assertIn("Lapo Tepi Danau", reply)
 
     def test_pack_hides_phone_without_consent(self):
         pack = build_pack(REGION, self.store)
@@ -98,6 +98,25 @@ class Traveller(unittest.TestCase):
 
     def test_find_ranks_matching_words(self):
         self.assertEqual(find("boat", REGION, self.store.listings(REGION.id))[0]["name"], "Kapal Bapak Sitanggang")
+
+
+class Trace(unittest.TestCase):
+    def test_trace_is_a_dry_run_with_all_steps(self):
+        from offgrid.trace import trace
+        store = Store(":memory:")
+        llm = LLM(LLMConfig(provider="simulated", simulated_path=str(ROOT / "models/simulated/samosir.json")))
+        out = trace("MAKAN Warung Bu Sinaga di Garoga, nasi ikan 25rb, buka 7-21", REGION, llm, store)
+        ids = [s["id"] for s in out["steps"]]
+        self.assertEqual(ids, ["sms", "gateway", "route", "rules", "model", "checks", "merge", "ask", "store", "pack", "traveller"])
+        self.assertEqual(store.listings(), [])
+        self.assertEqual(out["steps"][-1]["data"]["rank"], 1)
+
+    def test_trace_shows_rejected_name(self):
+        from offgrid.trace import trace
+        llm = LLM(LLMConfig(provider="simulated", simulated_path=str(ROOT / "models/simulated/samosir.json")))
+        out = trace("ada kamar kosong di ambarita malam ini, 200rb", REGION, llm, Store(":memory:"))
+        checks = {c["field"]: c for c in out["steps"][5]["data"]["checks"]}
+        self.assertEqual(checks["name"]["result"], "rejected")
 
 
 class Gateway(unittest.TestCase):

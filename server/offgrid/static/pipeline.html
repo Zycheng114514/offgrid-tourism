@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pipeline Walkthrough</title>
+<link rel="stylesheet" href="/static/style.css">
+<style>
+  .controls { display: grid; gap: 10px; }
+  .controls textarea { width: 100%; min-height: 56px; font: inherit; padding: 8px; border-radius: 10px;
+                       border: 1px solid var(--line); background: var(--panel); color: var(--ink); }
+  .row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+  .flow { display: flex; flex-wrap: wrap; gap: 6px; align-items: stretch; margin: 16px 0 8px; }
+  .stage { flex: 1 1 120px; min-width: 112px; max-width: 190px; text-align: left; background: var(--panel);
+           border: 1px solid var(--line); border-radius: 10px; padding: 8px 10px; position: relative; }
+  .stage .n { font-size: .72rem; color: var(--muted); }
+  .stage .t { font-weight: 600; font-size: .86rem; line-height: 1.25; }
+  .stage .s { font-size: .74rem; color: var(--muted); margin-top: 3px; line-height: 1.25; }
+  .stage.on { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent) inset; }
+  .stage.skip { opacity: .45; }
+  .lane { font-size: .75rem; color: var(--muted); margin: 10px 0 2px; text-transform: uppercase; letter-spacing: .04em; }
+  .msgbox { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; font-size: 1.05rem; }
+  mark { border-radius: 4px; padding: 0 2px; color: inherit; }
+  mark.category { background: #cfe8dd; } mark.price { background: #f6dfb3; } mark.hours { background: #d7dcf7; }
+  mark.capacity { background: #f2d0d8; } mark.place { background: #d4ecf3; }
+  @media (prefers-color-scheme: dark) {
+    mark.category { background: #2d5546; } mark.price { background: #5e4a20; } mark.hours { background: #353d6b; }
+    mark.capacity { background: #5c2f3a; } mark.place { background: #24505c; }
+  }
+  .legend { display: flex; flex-wrap: wrap; gap: 6px; font-size: .75rem; margin-top: 8px; }
+  .detail { margin-top: 14px; }
+  .detail h2 { margin-bottom: 4px; }
+  .explain { color: var(--muted); margin-bottom: 12px; }
+  .res { font-size: .75rem; padding: 2px 8px; border-radius: 999px; border: 1px solid var(--line); white-space: nowrap; }
+  .res.kept { color: var(--accent); border-color: var(--accent); }
+  .res.rejected { color: var(--bad); border-color: var(--bad); }
+  .res.notused { color: var(--muted); }
+  .sms { display: flex; flex-direction: column; gap: 8px; max-width: 520px; }
+  .sms .msg .why { display: block; font-size: .72rem; color: var(--muted); margin-top: 3px; }
+  .simnote { border-left: 4px solid #6a5acd; background: var(--panel); border-radius: 8px; padding: 8px 12px; margin-bottom: 10px; font-size: .9rem; }
+</style>
+</head>
+<body>
+<main>
+  <p class="small"><a href="/">← Demo home</a> · <a href="/host">Host demo</a> · <a href="/app/">Traveller app</a></p>
+  <h1>The pipeline, step by step</h1>
+  <p class="muted" id="regionLine">From one SMS by a local business to a listing a traveller can find with no connection.</p>
+  <div class="banner">Every step below is computed live by the same server code that runs the SMS service; nothing is saved.
+    No language model runs in this demo: for the example messages, the model's output was written in advance.
+    For any other message, turn the model off or see the rules-only result. All businesses are invented.</div>
+
+  <section class="card controls">
+    <div class="chips" id="examples"></div>
+    <textarea id="text" maxlength="480" placeholder="Or type your own SMS in Indonesian…"></textarea>
+    <div class="row">
+      <label><input type="checkbox" id="useModel" checked> Use the language model step (simulated)</label>
+      <button class="primary" id="run">Run the pipeline</button>
+      <span class="small muted" id="status"></span>
+    </div>
+  </section>
+
+  <div id="out" hidden>
+    <div class="lane">Host side</div>
+    <div class="flow" id="flowHost"></div>
+    <div class="lane">Traveller side</div>
+    <div class="flow" id="flowTraveller"></div>
+    <div class="row" style="margin:6px 0 14px">
+      <button id="prev">◀ Previous</button><button id="next">Next ▶</button><button id="play">▶ Play all</button>
+    </div>
+
+    <div class="msgbox" id="msg"></div>
+    <div class="legend"><mark class="category">category word</mark><mark class="price">price</mark>
+      <mark class="hours">hours</mark><mark class="capacity">rooms / people</mark><mark class="place">village</mark>
+      <span class="muted">= read by fixed rules</span></div>
+
+    <section class="card detail" id="detail"></section>
+  </div>
+  <footer>Map data © OpenStreetMap contributors (ODbL).</footer>
+</main>
+
+<script>
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const json = v => `<pre>${esc(JSON.stringify(v, null, 2))}</pre>`;
+const HOST_STEPS = ["sms", "gateway", "route", "rules", "model", "checks", "merge", "ask", "store"];
+const TRAVELLER_STEPS = ["pack", "traveller"];
+const EXPLAIN = {
+  sms: "A host sends one SMS from any phone, in their own language.",
+  gateway: "An Android phone with a SIM card receives the SMS and forwards it to our server over the internet. The server answers at once and works on the message in the background.",
+  route: "The first word decides what kind of message this is: a new report, a traveller search, an open/closed update, or an answer to a question.",
+  rules: "Fixed rules read what is unambiguous: a price with a currency word, hours with a time word, rooms or people, and village names from the region's list. Rules run first and win over the model.",
+  model: "A language model reads what rules cannot: the business name, what is offered, directions, and an English translation.",
+  checks: "Every model value must be traceable to the message: names must appear in it, numbers must match, villages must be in the region's list. Anything else is dropped, never guessed.",
+  merge: "The listing combines the rules' fields and the model values that passed the checks. Required fields that are still missing are asked for by SMS.",
+  ask: "The host gets one short question per missing field, then a summary to confirm with 1. The first listing from a number also asks whether the number may be shown to travellers.",
+  store: "The confirmed listing is saved together with the host's original message.",
+  pack: "Confirmed listings go into a small file per region that travellers download when they have a connection.",
+  traveller: "On the traveller's phone, search runs on that file with no connection. With signal but no data, the same search works by SMS.",
+};
+let trace = null, steps = [], current = 0, timer = null, examples = [];
+
+function summary(s) {
+  const d = s.data;
+  switch (s.id) {
+    case "sms": return `${d.chars} chars · ${d.parts} SMS`;
+    case "gateway": return "webhook to server";
+    case "route": return d.route;
+    case "rules": return Object.entries(d.evidence || {}).map(([k]) => k).join(", ") || "nothing clear";
+    case "model": return d.output ? (d.simulated ? "output written in advance" : "model output") : (d.error || "off");
+    case "checks": {
+      const c = d.checks || [], n = r => c.filter(x => x.result === r).length;
+      return c.length ? `${n("kept")} kept · ${n("rejected")} rejected · ${n("not used")} not used` : "nothing to check";
+    }
+    case "merge": return d.missing.length ? `missing: ${d.missing.join(", ")}` : "complete";
+    case "ask": return d.sms[0].why;
+    case "store": return "SQLite + original SMS";
+    case "pack": return "no phone until consent";
+    case "traveller": return d.rank ? `found: #${d.rank} for "${d.offline_query}"` : "after confirmation";
+    case "search": return "SMS reply";
+  }
+  return "";
+}
+
+function highlight(text, ev) {
+  if (!ev) return esc(text);
+  const marks = [];
+  const lower = text.toLowerCase();
+  for (const [field, words] of Object.entries(ev)) {
+    if (!words || field === "place_match") continue;
+    let pos = lower.indexOf(String(words).toLowerCase());
+    if (pos < 0 && field === "place") pos = lower.replace(/\s+/g, " ").indexOf(String(words));
+    if (pos >= 0) marks.push([pos, pos + String(words).length, field]);
+  }
+  marks.sort((a, b) => a[0] - b[0]);
+  let out = "", at = 0;
+  for (const [a, b, f] of marks) { if (a < at) continue; out += esc(text.slice(at, a)) + `<mark class="${f}">${esc(text.slice(a, b))}</mark>`; at = b; }
+  return out + esc(text.slice(at));
+}
+
+function fmt(key, v) {
+  if (v === null || v === undefined || v === "") return '<span class="muted">—</span>';
+  if (key === "price") return esc(`${v.min.toLocaleString()}${v.max ? "–" + v.max.toLocaleString() : ""} ${v.currency || ""} ${v.unit && v.unit !== "other" ? "(" + v.unit.replace("_", " ") + ")" : ""}`);
+  if (key === "hours") return esc(`${v.open}–${v.close}`);
+  if (typeof v === "object") return esc(JSON.stringify(v));
+  return esc(v);
+}
+const SRC = { rules: "rules", model: "model", host_answer: "host's answer", message: "host's message" };
+
+function detail(s) {
+  const d = s.data;
+  let h = `<h2>${steps.indexOf(s) + 1}. ${esc(s.title)}</h2><p class="explain">${esc(EXPLAIN[s.id] || "")}</p>`;
+  if (s.id === "sms") h += `<table><tr><th>From</th><td>${esc(d.from)} (invented)</td></tr><tr><th>Text</th><td>${esc(d.text)}</td></tr>
+      <tr><th>Length</th><td>${d.chars} characters, ${d.encoding}, ${d.parts} SMS</td></tr></table>`;
+  if (s.id === "gateway") h += `<p class="small"><code>${esc(d.webhook)}</code></p>${json(d.body)}<p class="small muted">${esc(d.note)}</p>`;
+  if (s.id === "route") h += `<table><tr><th>Command word</th><td>${esc(d.first_word_command || "none")}</td></tr><tr><th>Route</th><td>${esc(d.route)}</td></tr></table>` +
+      (trace.note ? `<p class="small muted" style="margin-top:8px">${esc(trace.note)}</p>` : "");
+  if (s.id === "rules") {
+    h += `<table><tr><th>Field</th><th>Value</th><th>Read from the words</th></tr>`;
+    for (const k of ["category", "price", "hours", "capacity", "village"]) {
+      const f = d[k];
+      h += `<tr><th>${k}</th><td>${fmt(k, f.value)}${k === "village" && f.coordinates ? ` <span class="small muted">(${f.coordinates.map(x => x.toFixed(3)).join(", ")}; ${esc(f.match)} match in the village list)</span>` : ""}</td><td>${f.from_words ? `“${esc(f.from_words)}”` : '<span class="muted">—</span>'}</td></tr>`;
+    }
+    h += `</table>`;
+  }
+  if (s.id === "model") {
+    if (d.simulated && d.output) h += `<div class="simnote">Simulated: this output was written in advance for this example message. No model ran.</div>`;
+    if (!d.output) h += `<p class="muted">${esc(d.error || "Model step turned off.")} → rules and follow-up questions only.</p>`;
+    else h += json(d.output);
+    if (d.prompt) h += `<details><summary>Instructions the model would get (region-specific parts filled from the region file)</summary><pre>${esc(d.prompt)}</pre></details>`;
+  }
+  if (s.id === "checks") {
+    if (!d.checks.length) h += `<p class="muted">No model values to check.</p>`;
+    else {
+      h += `<table><tr><th>Field</th><th>Model value</th><th>Result</th><th>Why</th></tr>`;
+      for (const c of d.checks) h += `<tr><th>${esc(c.field)}</th><td>${fmt(c.field, c.value)}</td><td><span class="res ${c.result.replace(" ", "")}">${esc(c.result)}</span></td><td>${esc(c.reason)}</td></tr>`;
+      h += `</table>`;
+    }
+  }
+  if (s.id === "merge") {
+    h += `<table><tr><th>Field</th><th>Value</th><th>From</th></tr>`;
+    for (const [k, v] of Object.entries(d.fields)) {
+      const src = d.sources[k];
+      h += `<tr><th>${esc(k)}</th><td>${fmt(k, v)}</td><td>${src ? `<span class="src ${src}">${SRC[src] || src}</span>` : (d.missing.includes(k) ? '<span class="res rejected">ask the host</span>' : "")}</td></tr>`;
+    }
+    h += `</table>`;
+  }
+  if (s.id === "ask") {
+    h += `<div class="sms">` + d.sms.map(m => `<div class="msg ${m.to === "service" ? "in" : "out"}">${esc(m.text)}<span class="why">${m.to === "service" ? "host → service" : "service → host"} · ${esc(m.why)}</span></div>`).join("") + `</div>`;
+  }
+  if (s.id === "store") h += `<p class="small muted">${esc(d.note)}</p>` + json(d.listing);
+  if (s.id === "pack") h += `<p class="small muted">${esc(d.note)}</p>` + json(d.entry);
+  if (s.id === "traveller") {
+    if (d.note) h += `<p class="muted">${esc(d.note)}</p>`;
+    else h += `<table><tr><th>Offline search</th><td>“${esc(d.offline_query)}” → this listing is result #${d.rank} of ${d.results}</td></tr></table>
+      <p class="small" style="margin:12px 0 6px">Same search by SMS, no data needed:</p>
+      <div class="sms"><div class="msg in">${esc(d.sms_query)}<span class="why">traveller → service</span></div>
+      <div class="msg out">${esc(d.sms_reply)}<span class="why">service → traveller</span></div></div>
+      <p class="small" style="margin-top:12px"><a href="/app/">Open the traveller app</a> to try offline search yourself.</p>`;
+  }
+  if (s.id === "search") h += `<div class="sms"><div class="msg out">${esc(d.reply)}</div></div>`;
+  return h;
+}
+
+function renderFlow() {
+  const box = (s, i) => `<button class="stage ${i === current ? "on" : ""}" data-i="${i}"><div class="n">Step ${i + 1}</div>
+    <div class="t">${esc(s.title)}</div><div class="s">${esc(summary(s))}</div></button>`;
+  const host = [], trav = [];
+  steps.forEach((s, i) => (TRAVELLER_STEPS.includes(s.id) || s.id === "search" ? trav : host).push(box(s, i)));
+  $("flowHost").innerHTML = host.join("");
+  $("flowTraveller").innerHTML = trav.join("") || '<span class="small muted">Not reached for this message.</span>';
+  document.querySelectorAll(".stage").forEach(b => b.onclick = () => { stop(); show(+b.dataset.i); });
+}
+function show(i) { current = Math.max(0, Math.min(steps.length - 1, i)); renderFlow(); $("detail").innerHTML = detail(steps[current]); }
+function stop() { if (timer) { clearInterval(timer); timer = null; $("play").textContent = "▶ Play all"; } }
+
+async function run(text) {
+  text = (text ?? $("text").value).trim(); if (!text) return;
+  $("text").value = text; stop(); $("status").textContent = "Running…";
+  try {
+    const res = await fetch("/api/pipeline/trace", { method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ text, model: $("useModel").checked ? "on" : "off" }) });
+    trace = await res.json(); steps = trace.steps;
+    const rules = steps.find(s => s.id === "rules");
+    $("msg").innerHTML = highlight(text, rules ? rules.data.evidence : null);
+    $("out").hidden = false; $("status").textContent = `Route: ${trace.route}`;
+    show(0);
+  } catch (e) { $("status").textContent = "Could not reach the server."; }
+}
+
+async function init() {
+  try { const c = await (await fetch("/api/config")).json(); $("regionLine").textContent = `Test region: ${c.display_name}. The same code runs for any region; only the region file changes.`; } catch (e) {}
+  const ex = await (await fetch("/api/examples")).json();
+  examples = ex.host_examples || [];
+  examples.forEach(e => { const b = document.createElement("button"); b.className = "chip example";
+    b.innerHTML = `<strong>${esc(e.label)}</strong><br><span class="small muted">${esc(e.message)}</span>`;
+    b.onclick = () => run(e.message); $("examples").appendChild(b); });
+  $("run").onclick = () => run();
+  $("prev").onclick = () => { stop(); show(current - 1); };
+  $("next").onclick = () => { stop(); show(current + 1); };
+  $("play").onclick = () => {
+    if (timer) return stop();
+    show(0); $("play").textContent = "■ Stop";
+    timer = setInterval(() => { if (current >= steps.length - 1) return stop(); show(current + 1); }, 3500);
+  };
+  $("useModel").onchange = () => { if (trace) run(); };
+  if (examples.length) run(examples[0].message);
+}
+init();
+</script>
+</body>
+</html>

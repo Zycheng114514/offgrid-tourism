@@ -1,8 +1,5 @@
 # Design and pipeline
 
-中文版：[DESIGN.zh.md](DESIGN.zh.md)
-
-
 ## 1. What we are building
 
 Small food and lodging businesses in places with weak connectivity are often missing from online maps and booking sites. Their owners may only have a feature phone. Travellers who go there cannot find out where to eat or sleep.

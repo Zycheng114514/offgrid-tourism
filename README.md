@@ -1,7 +1,5 @@
 # Offgrid Tourism
 
-中文版：[README.zh.md](README.zh.md)
-
 Local food and lodging information for places with weak connectivity. Small businesses report what they offer **by SMS from any phone, in their own language**. Travellers **search the listings on their phone with no connection**, or ask by SMS when they have signal but no data.
 
 **Live demo:** https://offgrid-tourism.vercel.app (permanent, on Vercel). The host demo and the SMS simulator keep conversations, so they run on our own server; `/host` on Vercel forwards there (https://emotions-auburn-carried-divide.trycloudflare.com, a temporary address that changes when that server restarts).
@@ -28,17 +26,13 @@ Measured on OpenStreetMap for our test region, Samosir Regency on Lake Toba, Ind
 | …with opening hours | 12 (5%) |
 | Villages with no listed food or lodging within 2 km | 76 of 132 (58%) |
 
-A village with zero places in OpenStreetMap has no public record; it does not mean the village has no food or lodging. That missing record is what this project fills. Details and sources: [docs/REAL_WORLD_DATA.md](docs/REAL_WORLD_DATA.md).
+A village with zero places in OpenStreetMap has no public record; it does not mean the village has no food or lodging. That missing record is what this project fills.
 
 ## What it does
 
 **Hosts (local businesses)** text one message, for example `MAKAN Warung Bu Sinaga di Garoga, nasi ikan 25rb, buka 7-21` ("FOOD Warung Bu Sinaga in Garoga, rice and fish 25k, open 7–21"). The server turns it into a structured listing, asks one short SMS question for anything missing, sends back a summary to confirm with `1`, and asks whether the phone number may be shown to travellers. `BUKA` / `TUTUP` ("open" / "closed") mark today's status.
 
 **Travellers** download the listings for a region while they have a connection (about 28 KB for the 20 demo listings), then search them on the phone with no connection: by category, village, "cheap", "open now". With signal but no data, they text `SEARCH food Garoga`, `CARI makan Garoga` or `搜索 吃 Garoga` and get the top three back by SMS. They can also ask in their own words (the Ask tab): online, the server answers from the listings; with signal but no data, the same question works by SMS; with no connection, a small language model downloaded to the phone (Qwen2.5-0.5B-Instruct, running in the browser) turns the question into a search.
-
-![Host side: a basic phone on the left, what the server did on the right](docs/img/host-demo.jpg)
-
-![Traveller app in Chinese, searching offline for cheap lodging near Tomok](docs/img/traveller-app-zh.jpg)
 
 ## How the pipeline works
 
@@ -65,10 +59,6 @@ traveller with no connection ──► small model on the phone: question → se
 | Questions with no connection | A small model on the phone turns the question into search filters; the answer is built from the listing rows, so it cannot invent places | Yes (runs in the browser) |
 
 The [`/pipeline`](https://offgrid-tourism.vercel.app/pipeline) page runs any message through these steps with the real server code and shows each step's output, without saving anything. One example shows the model inventing a business name and the check rejecting it.
-
-![Pipeline walkthrough: the 11 steps for a message in Batak Toba](docs/img/pipeline-steps.jpg)
-
-![The words each rule read are highlighted in the message](docs/img/pipeline-rules.jpg)
 
 The model is reached through one interface, so any provider can be plugged in by changing settings: any OpenAI-compatible server (Ollama, vLLM, llama.cpp, hosted APIs), the Anthropic API, `simulated`, or `none` (rules and follow-up questions only).
 
@@ -150,11 +140,10 @@ Our difference is in the details and is untested: hosts list themselves by SMS i
 | File | Content |
 |---|---|
 | [docs/DESIGN.md](docs/DESIGN.md) | Design principles, pipeline, where AI is used, evaluation, risks, related work |
-| [docs/REAL_WORLD_DATA.md](docs/REAL_WORLD_DATA.md) | Test region, measured numbers, data sources, what we may and may not claim |
 | [docs/RUNBOOK.md](docs/RUNBOOK.md) | Run, test, deploy, connect the SMS gateway phone |
 
 ## Credits
 
-Map data © OpenStreetMap contributors, available under the Open Database License (ODbL). Background on Lake Toba tourism from World Bank project documents linked in [docs/REAL_WORLD_DATA.md](docs/REAL_WORLD_DATA.md).
+Map data © OpenStreetMap contributors, available under the Open Database License (ODbL).
 
 No license has been chosen yet, so all rights are reserved by default.

@@ -8,13 +8,13 @@
 Small food and lodging businesses in places with weak connectivity are often missing from online maps and booking sites. Their owners may only have a feature phone. Travellers who go there cannot find out where to eat or sleep.
 
 - **Hosts** (local businesses) report what they offer by SMS from any phone, in their own language. The server turns each message into a structured listing (place, what, price, hours, contact) and keeps the original text plus an English translation.
-- **Travellers** download listings for a village or district while they have a connection, then search them on their phone with no connection at all. They can also ask in their own words: with data the server answers from the listings, with only a cellular signal the same works by SMS, and with no connection a small model on the phone helps the search (in progress).
+- **Travellers** download listings for a village or district while they have a connection, then search them on their phone with no connection at all. They can also ask in their own words: with data the server answers from the listings, with only a cellular signal the same works by SMS, and with no connection a small model on the phone turns the question into a search.
 
 ## 2. Design principles
 
 1. **The pipeline is region-independent.** Everything specific to a place (languages, currency, keywords, village list, reply texts, phone format) lives in a region profile file (`regions/<id>.json`). Adding a region means writing a new profile, not changing code. Samosir, Indonesia is only the first test profile.
 2. **Use AI only where fixed rules cannot do the job:** turning free-text messages into fields, and translation. Keywords, prices, hours, phone numbers and village names are parsed by rules first.
-3. **The traveller side works with zero AI.** Offline search over a small region pack answers most questions instantly on any phone and costs almost no battery. An on-device model is optional and last.
+3. **The traveller side works with zero AI; AI is an addition.** Offline search over a small region pack answers most questions instantly on any phone and costs almost no battery. Questions in the traveller's own words are answered by the server from the listings, or, with no connection, by an optional small model on the phone that only turns the question into search filters.
 4. **Ask instead of guessing.** If a required field is missing, the server asks the host one short SMS question, like a survey, rather than letting a model fill it in.
 5. **Every listing is confirmed by its host.** The server texts back a summary; the host replies `1` to confirm. Each listing shows when it was last confirmed. A phone number can only edit its own listings.
 6. **Consent before publishing.** A host's phone number is shown to travellers only if the host agreed.
@@ -71,7 +71,7 @@ Required fields: category, name, village, what is offered, price (or "ask"), hou
 | Cellular only | SMS `CARI makan Garoga` or free text | Server matches listings, replies with the top 3 in at most 2 SMS (160 characters each, plain characters only) |
 | Data | Ask in their own words, in the app | Rules pick candidate listings; the server's LLM answers from them only and cites listing IDs; the answer is checked, otherwise rules build it (`server/offgrid/chat.py`) |
 
-**In progress:** a small on-device model (Qwen2.5-0.5B-Instruct, running in the browser) that only turns a free-text question into search filters. Answer text is built from listing rows, so the model cannot invent places.
+With no connection: an optional small on-device model (Qwen2.5-0.5B-Instruct, running in the browser) that only turns a free-text question into search filters. Answer text is built from listing rows, so the model cannot invent places.
 
 A search that starts with a search word (`SEARCH`, `CARI`, `搜索`) stays pure rules. Questions in free words, in the app or by SMS, are answered from the listings by the server's model (simulated in this demo), with rules as the fallback.
 
@@ -123,7 +123,6 @@ Settings live in `.env` (`LLM_PROVIDER`, `LLM_BASE_URL`, `LLM_MODEL`, `LLM_API_K
 
 **P2 (only if time is left):**
 - Weekly SMS asking hosts "still open? reply 1".
-- On-device small model for free-text questions.
 - A second language or a second region profile, to show region independence.
 
 ## 6. Timeline

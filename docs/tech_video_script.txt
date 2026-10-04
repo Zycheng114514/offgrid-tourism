@@ -1,0 +1,46 @@
+TECH VIDEO SCRIPT
+====================
+
+Length: about 2:18 (at 140 words per minute) to 2:38 (at 120). Narration: 275 words, plus time waiting for the screen.
+
+BEFORE RECORDING
+- Chrome, window about 1280 px wide, zoom 100-110%, bookmarks bar hidden, other tabs closed.
+- Open these tabs in order:
+  1. https://github.com/Zycheng114514/offgrid-tourism#the-problem
+  2. https://offgrid-tourism.vercel.app/host   (forwards to our own server). Click New host so the conversation is empty.
+  3. https://offgrid-tourism.vercel.app/app/
+  4. https://emotions-auburn-carried-divide.trycloudflare.com/app/   switched to the Ask by SMS tab (the SMS simulator runs on our own server only)
+  5. https://offgrid-tourism.vercel.app/pipeline
+- Going offline: turn off Wi-Fi.
+- Recording on a Mac: Shift-Command-5, record the screen or an area, Options > choose the microphone.
+  Or record the screen first and add the voice afterwards.
+- Right before recording, check that tabs 2 and 4 load: our own server's address changes if it restarts.
+- Read the SAY lines aloud as written; they are in English because the submission must be in English.
+
+1. Architecture (21-24 s)
+   SCREEN: Tab 1: scroll to "How the pipeline works"; stay on the diagram and the table.
+   SAY: Here's how it works. A host's SMS reaches an Android phone with a local SIM, which forwards it to our server. The server is plain Python with a small database. Travellers use an offline web app, and can ask questions in their own words.
+
+2. Fixed rules first (18-21 s)
+   SCREEN: Tab 5: click the example "Keyword format: everything in one SMS", then step 4 "Fixed rules read the clear parts". The words the rules read are highlighted in the message.
+   SAY: Every message goes through the same steps. First, fixed rules detect the language and read what is clear: prices like 25 rb, opening hours, rooms, and village names. The highlighted words are what the rules found.
+
+3. The model, then checks (23-26 s)
+   SCREEN: Tab 5: click the example "The model invents a name..."; click step 5 (the model's output), then step 6 (checks: "rejected").
+   SAY: Then a small language model reads what rules can't: the business name, the offer, and an English translation. Every value it gives must appear in the original message. Here it made up a name, so the system rejects it and asks the host instead.
+
+4. Traveller questions (22-24 s)
+   SCREEN: Tab 5: type Where can I get breakfast in Tuk Tuk? in the box, click Run the pipeline, then the step "Answer from the listings": it shows the candidates and the failed check.
+   SAY: Travellers' questions work the same way. Rules pick the candidate listings, and the model answers only from them. Here it named a cafe that is not in our listings, so the answer is rejected and built from the listings by rules.
+
+5. Any region, any language (15-17 s)
+   SCREEN: New tab: https://github.com/Zycheng114514/offgrid-tourism/blob/main/regions/samosir.json , scroll through "languages" and "words".
+   SAY: Nothing is hard-coded for Samosir. Each region is one settings file: its languages, words, currency and villages. That's how one system handles Indonesian, Batak Toba, English and Chinese.
+
+6. Models on the server and the phone (22-26 s)
+   SCREEN: New tab: https://github.com/Zycheng114514/offgrid-tourism/blob/main/server/offgrid/llm.py , stay on the description at the top. Then tab 3, Ask tab, the "Offline assistant" box.
+   SAY: The server's model plugs in through one interface: a small open model on our own server, a hosted one, or none. In this demo its outputs were written in advance. On the phone, a half-billion-parameter model runs inside the browser and only turns questions into search filters.
+
+7. Next steps (17-20 s)
+   SCREEN: Tab 1: README section "Status and limits".
+   SAY: The traveller app works offline after one download, and the demo is live on Vercel. Next, we want to pilot it with a tourism village in Samosir, and test a small model on real messages.

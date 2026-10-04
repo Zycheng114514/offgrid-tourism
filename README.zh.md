@@ -36,7 +36,7 @@ English version: [README.md](README.md)
 
 **商户**（本地商户）发一条短信，例如 `MAKAN Warung Bu Sinaga di Garoga, nasi ikan 25rb, buka 7-21`（“餐饮 Warung Bu Sinaga 在 Garoga，米饭和鱼 25k，营业 7–21”）。服务器把它转成结构化的商户条目，对缺少的内容用一条简短的短信追问，发回一份摘要让商户回复 `1` 确认，并询问是否可以向游客显示该电话号码。`BUKA` / `TUTUP`（“营业” / “关门”）用来标记今天的状态。
 
-**游客**在有网络连接时下载某个地区的商户条目（20 条演示商户条目约 28 KB），然后在手机上无需网络连接即可搜索：按类别、村庄、“便宜”、“正在营业”。有信号但没有流量时，他们发短信 `SEARCH food Garoga`、`CARI makan Garoga` 或 `搜索 吃 Garoga`，通过短信收到前三条结果。
+**游客**在有网络连接时下载某个地区的商户条目（20 条演示商户条目约 28 KB），然后在手机上无需网络连接即可搜索：按类别、村庄、“便宜”、“正在营业”。有信号但没有流量时，他们发短信 `SEARCH food Garoga`、`CARI makan Garoga` 或 `搜索 吃 Garoga`，通过短信收到前三条结果。他们也可以用自己的话提问（Ask 页）：联网时由服务器根据商户条目回答；有信号但没有流量时，同样的问题可以用短信问；完全没有网络时，下载到手机里的小语言模型（Qwen2.5-0.5B-Instruct，在浏览器里运行）把问题转成搜索。
 
 ![商户端：左边是一部功能机，右边是服务器所做的处理](docs/img/host-demo.jpg)
 
@@ -50,6 +50,8 @@ English version: [README.md](README.md)
           → 5 用短信追问缺的信息 → 6 店主确认 → SQLite（连同原始短信）
           → 地区数据包（JSON）──下载──► 游客端应用：离线搜索
 有信号、没有流量的游客 ──短信──► 同一个服务器 ──短信──► 前 3 条结果
+游客用自己的话提问 ──应用或短信──► 服务器：规则挑出商户条目 → 模型只根据它们回答 → 核对
+完全没有网络的游客 ──► 手机上的小模型：问题 → 搜索条件 → 离线搜索
 ```
 
 | 步骤 | 做什么 | 是否用 AI？ |
@@ -61,6 +63,8 @@ English version: [README.md](README.md)
 | 追问 | 每个缺少的字段发一条短信提问，而不是猜测 | 否 |
 | 确认与同意 | 商户回复 `1`；只有经同意才显示电话号码 | 否 |
 | 地区数据包和搜索 | 只含已确认的商户条目；搜索在手机上运行 | 否 |
+| 游客提问（应用、短信） | 规则挑出候选商户条目；模型只根据它们回答；回答里点名的每个商户都必须是引用的候选，且不能出现其他名字，否则不用 | 是（演示中为模拟输出） |
+| 没有网络时提问 | 手机上的小模型把问题转成搜索条件；答案由商户条目生成，所以编不出不存在的地点 | 是（在浏览器里运行） |
 
 [`/pipeline`](https://offgrid-tourism.vercel.app/pipeline) 页面用真实的服务器代码让任意一条短信走完这些步骤，并显示每一步的输出，不保存任何内容。其中一个示例显示模型编造了一个商户名称，核对把它拒绝了。
 
@@ -69,6 +73,8 @@ English version: [README.md](README.md)
 ![短信中每条规则读取到的词被高亮显示](docs/img/pipeline-rules.jpg)
 
 模型通过同一个模型接口调用，因此只需修改设置，就可以接入任何提供方：任何兼容 OpenAI 的服务器（Ollama、vLLM、llama.cpp、托管 API）、Anthropic API、`simulated`，或 `none`（只用规则和追问）。
+
+在游客的手机上，应用可以从 Hugging Face 下载 Qwen2.5-0.5B-Instruct（Apache-2.0 许可），用 transformers.js 在浏览器里运行：有显卡（WebGPU）时约 790 MB，没有时（WebAssembly）约 520 MB。它只输出 JSON 格式的搜索条件，在手机上回答的问题不会离开手机。我们在一台 Mac 笔记本上测试，用显卡时每个问题约 1 秒，不用显卡时 3.5–8.6 秒。
 
 ## 语言
 
@@ -98,7 +104,7 @@ English version: [README.md](README.md)
 cd server
 python -m offgrid seed                                  # load the 20 invented listings
 LLM_PROVIDER=simulated python -m offgrid serve          # http://127.0.0.1:8000
-python -m unittest discover tests                       # 19 tests, no network
+python -m unittest discover tests                       # 24 tests, no network
 ```
 
 部署到服务器、各项设置，以及连接 Android 短信网关手机：[docs/RUNBOOK.zh.md](docs/RUNBOOK.zh.md)。
@@ -106,10 +112,10 @@ python -m unittest discover tests                       # 19 tests, no network
 ## 仓库结构
 
 ```
-server/offgrid/   HTTP 服务器、规则、模型接口、对话、搜索、地区数据包、管道追踪
+server/offgrid/   HTTP 服务器、规则、模型接口、对话、游客提问、搜索、地区数据包、管道追踪
 server/offgrid/static/   首页、商户端演示、管道演示页
 server/tests/     用模拟输出跑的端到端测试
-mobile/pwa/       游客端应用：可离线使用的网页应用（下载一次后，飞行模式下也能用）
+mobile/pwa/       游客端应用：可离线使用的网页应用，含搜索、提问和可选的手机端模型
 regions/          每个地区一个配置文件
 models/           信息提取的提示词；演示用的模拟模型输出和示例
 schemas/          商户条目的 JSON Schema
@@ -123,7 +129,7 @@ docs/             计划、真实数据、运行手册、提交材料、视频�
 
 ## 现状与局限
 
-- **演示中没有运行模型**。示例短信的模型输出是预先写好的。我们在一台 1 核 CPU 服务器上只试了一次 Qwen3-1.7B：每条短信耗时 54–73 秒，在 JSON-schema 模式下返回空输出；没有继续推进。
+- **演示中服务器上的模型是模拟的**。示例短信和示例问题的模型输出是预先写好的；其他短信和问题由规则处理。游客手机上的模型是真实的模型，下载后在浏览器里运行。我们在一台 1 核 CPU 服务器上只试了一次 Qwen3-1.7B：每条短信耗时 54–73 秒，在 JSON-schema 模式下返回空输出；没有继续推进。
 - **没有准确率数字**。给我们自己写的输出打分，什么也测不出来；测试只能说明管道可以端到端运行。
 - **还没有真实用户**。所有商户都是编造的。Android 短信网关已经实现，但尚未连接到手机；演示使用的是短信模拟器。没有语音上报。
 - **巴塔克托巴语未经验证**（见上文）。
@@ -149,7 +155,7 @@ docs/             计划、真实数据、运行手册、提交材料、视频�
 | [docs/REAL_WORLD_DATA.zh.md](docs/REAL_WORLD_DATA.zh.md) | 测试地区、已测量的数字、数据来源、哪些可以声称、哪些不可以声称 |
 | [docs/RUNBOOK.zh.md](docs/RUNBOOK.zh.md) | 运行、测试、部署、连接短信网关手机 |
 | [docs/SUBMISSION.zh.md](docs/SUBMISSION.zh.md) | 黑客松提交材料：核对清单、提交文本、视频脚本 |
-| [docs/VIDEO_SCRIPTS.zh.md](docs/VIDEO_SCRIPTS.zh.md) | 演示视频和技术视频脚本：点哪里、旁白、时长 |
+| [docs/demo_video_script.zh.txt](docs/demo_video_script.zh.txt)、[docs/tech_video_script.zh.txt](docs/tech_video_script.zh.txt) | 演示视频和技术视频脚本：点哪里、旁白、时长 |
 
 ## 致谢
 

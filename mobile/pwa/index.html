@@ -35,6 +35,7 @@
 
   <nav class="tabs" role="tablist">
     <button role="tab" id="tabSearch" aria-selected="true" data-t="tabSearch"></button>
+    <button role="tab" id="tabAsk" aria-selected="false" data-t="tabAsk"></button>
     <button role="tab" id="tabSms" aria-selected="false" data-t="tabSms"></button>
   </nav>
 
@@ -48,6 +49,29 @@
     <div class="chips" id="qExamples"></div>
     <div id="count" class="small muted"></div>
     <div id="results"></div>
+  </section>
+
+  <section id="paneAsk" hidden>
+    <p class="small muted" data-t="askIntro"></p>
+    <div class="compose">
+      <input id="askText" type="search" autocomplete="off" enterkeyhint="send">
+      <button class="primary" id="askSend" data-t="askSend"></button>
+    </div>
+    <div class="toggles">
+      <label><input type="checkbox" id="askLocal"> <span data-t="askLocal"></span></label>
+    </div>
+    <div class="chips" id="askExamples"></div>
+    <div id="askOut" aria-live="polite"></div>
+    <div class="assist" id="assist">
+      <div><strong data-t="assistTitle"></strong></div>
+      <div id="assistState" class="small"></div>
+      <progress id="assistBar" max="1" value="0" hidden></progress>
+      <div class="assist-actions">
+        <button class="primary assist-download" id="assistDownload"></button>
+        <button id="assistRemove" data-t="assistRemove" hidden></button>
+      </div>
+      <p class="small muted" data-t="assistAbout"></p>
+    </div>
   </section>
 
   <section id="paneSms" hidden>

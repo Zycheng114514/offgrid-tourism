@@ -61,3 +61,7 @@ deploy/deploy.sh <ssh-host>
 
 之后，每次向 `main` 上传（push）都会自动重新部署。当我们自己服务器的临时通道地址变化时，更新 `deploy/live_server_url.txt` 并上传（push），这样 Vercel 上的 `/host` 就会指向新地址。
 
+## 游客提问
+
+- **服务器：** `POST /api/chat`，请求体为 `{"question": "...", "lang": "en"}`，返回答案、引用的商户条目、`method`（`model`、`simulated` 或 `rules`）和说明。代码：`server/offgrid/chat.py`；提示词：`models/prompts/answer_question.txt`；演示用的预先写好的回答：`models/simulated/samosir.json`（`traveller_chat_examples`）。用短信提的自由文本问题走同一套代码；以 `SEARCH`、`CARI` 或 `搜索` 开头的短信仍然完全靠规则。
+- **手机：** Ask 页的 "Download offline assistant" 按钮会从 Hugging Face 下载 Qwen2.5-0.5B-Instruct（有显卡时用 WebGPU、4 位版本，约 790 MB；没有显卡时用 WebAssembly、8 位版本，约 520 MB），并从 jsDelivr 下载 transformers.js 4.3.0。`mobile/pwa/assistant-worker.js` 在后台线程里运行它。我们测试时 Chrome 拒绝把 483 MB 的模型文件整个存进缓存，所以大文件按 32 MB 一块存进浏览器缓存。勾选 "Answer on this phone" 时，即使联网也用手机上的模型回答。

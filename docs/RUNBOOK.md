@@ -61,3 +61,7 @@ First deploy (done once, by the GitHub account that owns the repo):
 
 After that, every push to `main` redeploys automatically. When our own server's tunnel address changes, update `deploy/live_server_url.txt` and push, so `/host` on Vercel points to the new address.
 
+## Traveller questions
+
+- **Server:** `POST /api/chat` with `{"question": "...", "lang": "en"}` returns the answer, the cited listings, `method` (`model`, `simulated` or `rules`) and a note. Code: `server/offgrid/chat.py`; prompt: `models/prompts/answer_question.txt`; prepared answers for the demo: `models/simulated/samosir.json` (`traveller_chat_examples`). Free-text SMS questions use the same code; a message that starts with `SEARCH`, `CARI` or `搜索` stays pure rules.
+- **Phone:** the Ask tab's "Download offline assistant" button downloads Qwen2.5-0.5B-Instruct from Hugging Face (about 790 MB with a graphics chip, WebGPU, 4-bit; about 520 MB without, WebAssembly, 8-bit) and transformers.js 4.3.0 from jsDelivr. `mobile/pwa/assistant-worker.js` runs it in a background thread. Chrome refused to store the 483 MB model file in one piece in our test, so large files are stored in 32 MB parts in the browser's cache. "Answer on this phone" uses the phone's model even when online.

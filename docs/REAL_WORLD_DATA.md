@@ -4,10 +4,10 @@
 
 The challenge asks for solutions built around real-world data. For us that means four things:
 
-1. **A real place as the test example**, with public data that shows the information gap. The pipeline itself is region-independent ([DECISIONS.md](DECISIONS.md) D0); the first test region is Samosir, Indonesia (D2).
-2. **Real messages in a real local language**, so accuracy is measured, not claimed.
+1. **A real place as the test example**, with public data that shows the information gap. The pipeline itself is region-independent; the first test region is Samosir, Indonesia.
+2. **Messages in the real local languages** (Indonesian and Batak Toba). In this build they are written by Claude; accuracy on real messages is not yet measured.
 3. **Real device and channel limits:** basic phones, 160-character SMS, offline use.
-4. **No real hosts in this build** (D11): every business, message and phone number is invented and labelled synthetic; village names and landmarks are real.
+4. **No real hosts in this build**: every business, message and phone number is invented and labelled synthetic; village names and landmarks are real.
 
 Every number below is labelled **measured** (produced by a script in this repo, with the date of the data) or **not yet measured**.
 
@@ -56,7 +56,7 @@ Sources to check for the test region:
 Rules:
 - Every message is labelled `"source": "synthetic"` and `"author": "claude"`.
 - Real village names and landmarks; invented business names and phone numbers.
-- Nobody on the team reads Indonesian (D2), so scores cover fields that can be checked without reading it: category, village, price, hours.
+- Nobody on the team reads Indonesian, so scores cover fields that can be checked without reading it: category, village, price, hours.
 - The same author writes the messages and the gold answers, so the scores show the pipeline works; they do not show accuracy on real messages.
 
 ## 5. What we may and may not claim

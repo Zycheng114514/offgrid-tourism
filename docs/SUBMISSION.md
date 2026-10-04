@@ -2,7 +2,7 @@
 
 中文版：[SUBMISSION.zh.md](SUBMISSION.zh.md)
 
-Deadline: 2026-10-04 9:00 AM ET. Upload everything to **app.hack-nation.ai** and a backup copy to the organisers' **Google form** (both are required). Our notes say the World Bank track asks for the referral code `WBGSmallAIGADS`; check the form. All entries must be in English. Check the submission page for video length limits before recording.
+Deadline: 2026-10-04 9:00 AM ET. Upload everything to **app.hack-nation.ai** and a backup copy to the organisers' **Google form** (both are required). Our notes say the World Bank track asks for the referral code `WBGSmallAIGADS`; check the form. All entries must be in English. The submission page (seen 2026-10-03) takes one MP4 or MOV per section (team introduction, product demo, technical walkthrough), each up to 60 seconds and 1 GB, and stays open until 2026-10-04 9:15 AM ET (15-minute grace period).
 
 ## Checklist
 
@@ -13,6 +13,7 @@ Deadline: 2026-10-04 9:00 AM ET. Upload everything to **app.hack-nation.ai** and
 | Demo video | Video | To do | Team records; Claude wrote the script | [VIDEO_SCRIPTS.md](VIDEO_SCRIPTS.md) |
 | Tech video | Video | To do | Team records; Claude wrote the script | [VIDEO_SCRIPTS.md](VIDEO_SCRIPTS.md) |
 | Team video | Video | To do | Team | Outline below |
+| Team photo | JPG, PNG or WebP, up to 10 MB | To do | Team | Required before the platform lets you submit; shared with organisers and jurors |
 | Submission text | Text fields | Draft below | Team checks | Copy into both the website and the Google form |
 | Backup on Google form | Upload | To do | Team | Videos, links, text |
 
@@ -30,7 +31,7 @@ The slide lists Vercel, Replit or Lovable. Options:
 | Replit | Runs our server as it is | An always-on deployment needs a paid plan; the free version sleeps |
 | Keep the current link | Already works | Address can change; no guarantee during judging |
 
-Decided (D18): Vercel for the landing page, pipeline walkthrough and traveller app; the host demo and SMS simulator stay on our own server, linked from the Vercel pages.
+Decided: Vercel for the landing page, pipeline walkthrough and traveller app; the host demo and SMS simulator stay on our own server, linked from the Vercel pages.
 
 ## Submission text (draft)
 

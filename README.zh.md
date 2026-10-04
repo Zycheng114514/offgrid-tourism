@@ -118,7 +118,7 @@ data/real/        测试地区的 OpenStreetMap 数据（ODbL 许可）
 data/synthetic/   编造的预置商户数据，已标明是编造的
 deploy/           deploy.sh：通过 SSH 复制到服务器，启动应用和 Cloudflare 临时通道
 api/, vercel.json  Vercel 入口，用于不保存状态的部分（server/offgrid/wsgi.py）
-docs/             计划、决策记录、真实数据、运行手册、提交材料、视频脚本
+docs/             计划、真实数据、运行手册、提交材料、视频脚本
 ```
 
 ## 现状与局限
@@ -146,7 +146,6 @@ docs/             计划、决策记录、真实数据、运行手册、提交�
 | 文件 | 内容 |
 |---|---|
 | [docs/PLAN.zh.md](docs/PLAN.zh.md) | 计划、管道、范围、演示脚本、风险 |
-| [docs/DECISIONS.zh.md](docs/DECISIONS.zh.md) | 每一项设计决策，附状态和历史 |
 | [docs/REAL_WORLD_DATA.zh.md](docs/REAL_WORLD_DATA.zh.md) | 测试地区、已测量的数字、数据来源、哪些可以声称、哪些不可以声称 |
 | [docs/RUNBOOK.zh.md](docs/RUNBOOK.zh.md) | 运行、测试、部署、连接短信网关手机 |
 | [docs/SUBMISSION.zh.md](docs/SUBMISSION.zh.md) | 黑客松提交材料：核对清单、提交文本、视频脚本 |

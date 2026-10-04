@@ -157,16 +157,60 @@ class Languages(unittest.TestCase):
         self.assertTrue(reply.startswith("结果："), reply)
         self.assertIn("/晚", reply)
 
-    def test_question_without_keyword_is_a_search(self):
-        self.assertTrue(self.dialog.handle("+15550000001", "where can I eat in Garoga?").startswith("Results:"))
+    def test_question_without_keyword_is_answered_from_listings(self):
+        reply = self.dialog.handle("+15550000001", "where can I eat in Garoga?")
+        self.assertTrue(reply.startswith(REGION.template("chat_rules_header", "en")), reply)
 
     def test_chit_chat_creates_nothing(self):
         before = len(self.store.listings())
         reply = self.dialog.handle("+15550000002", "what are you doing")
-        self.assertEqual(reply, REGION.template("help", "en"))
+        self.assertEqual(reply, REGION.template("chat_nothing", "en"))
         self.assertEqual(len(self.store.listings()), before)
 
     def test_unknown_language_gets_both_default_languages(self):
         reply = self.dialog.handle("+15550000003", "zzz qqq")
         self.assertIn(REGION.template("not_understood", "id"), reply)
         self.assertIn(REGION.template("not_understood", "en"), reply)
+
+
+class TravellerChat(unittest.TestCase):
+    def setUp(self):
+        from offgrid import chat
+        self.chat = chat
+        self.store = Store(":memory:")
+        load_seed(ROOT / "data/synthetic/seed_listings_samosir.json", REGION, self.store)
+        self.llm = LLM(LLMConfig(provider="simulated", simulated_path=str(ROOT / "models/simulated/samosir.json")))
+
+    def ask(self, question, llm="default"):
+        return self.chat.answer(question, REGION, self.store.listings(REGION.id), self.llm if llm == "default" else llm)
+
+    def test_every_chat_example_is_used_or_rejected_for_its_stated_reason(self):
+        for ex in EXAMPLES["traveller_chat_examples"]:
+            res = self.ask(ex["question"])
+            if "rejects" in ex["label"]:
+                self.assertEqual(res["method"], "rules", ex["id"])
+                self.assertTrue(res["checks_failed"], ex["id"])
+            else:
+                self.assertEqual(res["method"], "simulated", (ex["id"], res["checks_failed"]))
+                self.assertTrue(set(res["listing_ids"]) <= set(res["candidate_ids"]), ex["id"])
+
+    def test_answers_in_the_question_language(self):
+        self.assertEqual(self.ask("Tomok 附近有便宜的住的地方吗？")["lang"], "zh")
+        self.assertEqual(self.ask("Di mana bisa makan ikan di Pangururan?")["lang"], "id")
+
+    def test_invented_name_is_rejected(self):
+        res = self.ask("Where can I get breakfast in Tuk Tuk?")
+        self.assertIn("Tuk Tuk Sunrise Cafe", [f["detail"] for f in res["checks_failed"]])
+
+    def test_without_a_model_the_answer_comes_from_rows(self):
+        res = self.ask("Is there a boat from Tomok to Parapat?", llm=None)
+        self.assertEqual(res["method"], "rules")
+        self.assertIn("Kapal Bapak Sitanggang", res["answer"])
+
+    def test_sms_question_gets_the_model_answer_and_phone(self):
+        dialog, store, sent = make()
+        load_seed(ROOT / "data/synthetic/seed_listings_samosir.json", REGION, store)
+        reply = dialog.handle("+15550000009", "Is there a boat from Tomok to Parapat?")
+        self.assertTrue(reply.startswith("Yes. Kapal Bapak Sitanggang"), reply)
+        self.assertIn("+6200000000017", reply)
+

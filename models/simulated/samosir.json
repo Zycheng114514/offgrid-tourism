@@ -1,5 +1,5 @@
 {
- "_note": "Demo examples for the Samosir test region, written by Claude. llm_output is what a model would be expected to return for the message; it was written by hand, not produced by a model (D14). Messages not listed here get no model output, so the server uses rules and follow-up questions only. Batak Toba text was written by Claude from general knowledge and has not been checked by a native speaker.",
+ "_note": "Demo examples for the Samosir test region, written by Claude. llm_output is what a model would be expected to return for the message or question; it was written by hand, not produced by a model. Messages not listed here get no model output, so the server uses rules and follow-up questions only. Batak Toba text was written by Claude from general knowledge and has not been checked by a native speaker.",
  "region_id": "samosir",
  "host_examples": [
   {
@@ -259,10 +259,10 @@
  "traveller_examples": {
   "sms": [
    "SEARCH food Garoga",
-   "SEARCH cheap room Tomok",
    "CARI kamar murah Tomok",
    "搜索 便宜 住宿 Tomok",
-   "where can I eat in Garoga?",
+   "Is there a boat from Tomok to Parapat?",
+   "Di mana bisa makan ikan di Pangururan?",
    "what are you doing"
   ],
   "offline": [
@@ -273,5 +273,64 @@
    "boat",
    "guide"
   ]
- }
+ },
+ "traveller_chat_examples": [
+  {
+   "id": "q1",
+   "label": "English: a cheap room near Tomok",
+   "question": "Where can I sleep cheaply near Tomok tonight?",
+   "llm_output": {
+    "answer": "The best match is Homestay Tomok Pelabuhan, near the harbour in Tomok: 3 rooms with breakfast for Rp150.000 a night. Penginapan Tepi Danau in Garoga, by the lake, starts at the same price.",
+    "listing_ids": [
+     "samosir-0012",
+     "samosir-0010"
+    ]
+   }
+  },
+  {
+   "id": "q2",
+   "label": "Indonesian: fish in Pangururan (the listings have none, and the answer says so)",
+   "question": "Di mana bisa makan ikan di Pangururan?",
+   "llm_output": {
+    "answer": "Lapo Opung Boru di Pangururan (dekat pasar) menjual mie gomak dan saksang, Rp15.000, buka 08:00-20:00. Daftar kami belum mencatat menu ikan di Pangururan.",
+    "listing_ids": [
+     "samosir-0002"
+    ]
+   }
+  },
+  {
+   "id": "q3",
+   "label": "Chinese: a cheap place to stay near Tomok",
+   "question": "Tomok 附近有便宜的住的地方吗？",
+   "llm_output": {
+    "answer": "有。Tomok 码头附近的 Homestay Tomok Pelabuhan 每晚 Rp150.000，含早餐，有 3 个房间。Garoga 湖边的 Penginapan Tepi Danau 也是 Rp150.000 起。",
+    "listing_ids": [
+     "samosir-0012",
+     "samosir-0010"
+    ]
+   }
+  },
+  {
+   "id": "q4",
+   "label": "English: a boat to Parapat",
+   "question": "Is there a boat from Tomok to Parapat?",
+   "llm_output": {
+    "answer": "Yes. Kapal Bapak Sitanggang runs a boat from Tomok harbour to Parapat for Rp15.000 per person, between 07:00 and 18:00.",
+    "listing_ids": [
+     "samosir-0017"
+    ]
+   }
+  },
+  {
+   "id": "q5",
+   "label": "The model names a cafe that is not in the listings; the check rejects the answer",
+   "question": "Where can I get breakfast in Tuk Tuk?",
+   "llm_output": {
+    "answer": "Try Tuk Tuk Sunrise Cafe for breakfast, or stay at Homestay Tomok Pelabuhan, where breakfast is included.",
+    "listing_ids": [
+     "samosir-0012"
+    ]
+   }
+  }
+ ]
 }

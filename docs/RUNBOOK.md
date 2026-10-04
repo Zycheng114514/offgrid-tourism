@@ -30,7 +30,7 @@ What it does: copies the code and data to `~/offgrid-tourism` on the server (cop
 - Logs on the server: `~/offgrid-tourism/data/runtime/server.log`, `tunnel.log`.
 - Start over with fresh demo data: `deploy/deploy.sh <ssh-host> --reset-data` (the old database is kept as a timestamped `.bak` copy on the server).
 
-## Connect the Android SMS gateway phone (D4)
+## Connect the Android SMS gateway phone
 
 A teammate does this on an Android phone with a SIM that can stay on and online.
 

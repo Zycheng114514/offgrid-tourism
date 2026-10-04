@@ -167,8 +167,10 @@ class LLM:
     def _simulated(self, user: str) -> LLMResult:
         if self._sim_cache is None:
             path = pathlib.Path(self.config.simulated_path)
-            items = json.loads(path.read_text()).get("host_examples", []) if path.is_file() else []
-            self._sim_cache = {_key(i["message"]): i["llm_output"] for i in items if i.get("llm_output")}
+            data = json.loads(path.read_text()) if path.is_file() else {}
+            items = [(i["message"], i.get("llm_output")) for i in data.get("host_examples", [])]
+            items += [(i["question"], i.get("llm_output")) for i in data.get("traveller_chat_examples", [])]
+            self._sim_cache = {_key(text): out for text, out in items if out}
         key = _key(user)
         if key not in self._sim_cache:
             close = difflib.get_close_matches(key, self._sim_cache.keys(), n=1, cutoff=0.92)
@@ -180,5 +182,7 @@ class LLM:
 
 
 def _key(text: str) -> str:
-    text = unicodedata.normalize("NFKD", text).encode("ascii", "ignore").decode().lower()
-    return re.sub(r"[^a-z0-9]+", " ", text).strip()
+    """Lowercase, accents removed, letters and digits of any script kept (Chinese must not vanish)."""
+    text = unicodedata.normalize("NFKD", text)
+    text = "".join(c for c in text if not unicodedata.combining(c)).lower()
+    return re.sub(r"[^\w]+|_", " ", text).strip()

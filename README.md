@@ -118,7 +118,7 @@ data/real/        OpenStreetMap extract for the test region (ODbL)
 data/synthetic/   invented seed listings, labelled as such
 deploy/           deploy.sh: copy to a server over SSH, start the app and a Cloudflare quick tunnel
 api/, vercel.json  Vercel entry point for the parts that keep no state (server/offgrid/wsgi.py)
-docs/             plan, decisions, real-world data, runbook
+docs/             plan, real-world data, runbook, submission, video scripts
 ```
 
 ## Status and limits
@@ -146,7 +146,6 @@ Our difference is in the details and is untested: hosts list themselves by SMS i
 | File | Content |
 |---|---|
 | [docs/PLAN.md](docs/PLAN.md) | Plan, pipeline, scope, demo script, risks |
-| [docs/DECISIONS.md](docs/DECISIONS.md) | Every design decision, with status and history |
 | [docs/REAL_WORLD_DATA.md](docs/REAL_WORLD_DATA.md) | Test region, measured numbers, data sources, what we may and may not claim |
 | [docs/RUNBOOK.md](docs/RUNBOOK.md) | Run, test, deploy, connect the SMS gateway phone |
 | [docs/SUBMISSION.md](docs/SUBMISSION.md) | Hackathon submission: checklist, submission text, video scripts |

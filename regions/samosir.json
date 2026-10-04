@@ -248,6 +248,20 @@
         "berapa",
         "apa",
         "ada"
+      ],
+      "common_words": [
+        "ada",
+        "di",
+        "ya",
+        "coba",
+        "untuk",
+        "dari",
+        "atau",
+        "dan",
+        "juga",
+        "tidak",
+        "silakan",
+        "hubungi"
       ]
     },
     "en": {
@@ -402,6 +416,33 @@
       "now": [
         "now",
         "tonight"
+      ],
+      "common_words": [
+        "try",
+        "yes",
+        "no",
+        "the",
+        "there",
+        "you",
+        "we",
+        "it",
+        "if",
+        "for",
+        "in",
+        "at",
+        "on",
+        "from",
+        "near",
+        "or",
+        "and",
+        "but",
+        "also",
+        "both",
+        "best",
+        "stay",
+        "book",
+        "call",
+        "ask"
       ]
     },
     "bbc": {
@@ -604,7 +645,9 @@
       "no_results": "Belum ada info untuk itu. Coba: CARI makan Garoga",
       "results_header": "Hasil:",
       "help": "Cari lewat SMS: CARI makan Garoga. Pemilik usaha: kirim MAKAN/INAP + nama, desa, harga.",
-      "not_understood": "Maaf, pesan tidak dimengerti. Pemilik usaha: kirim MAKAN/INAP + nama, desa, harga. Wisatawan: CARI makan Garoga"
+      "not_understood": "Maaf, pesan tidak dimengerti. Pemilik usaha: kirim MAKAN/INAP + nama, desa, harga. Wisatawan: CARI makan Garoga",
+      "chat_rules_header": "Ini yang ada di daftar kami:",
+      "chat_nothing": "Belum ada yang cocok di daftar kami. Coba nama desa, atau makan, kamar, kapal, pemandu."
     },
     "en": {
       "welcome": "Welcome! Send your business, e.g.: FOOD Warung Bu Sinaga in Garoga, rice and fish 25rb, open 7-21. Travellers: SEARCH food Garoga",
@@ -624,13 +667,17 @@
       "help": "Search by SMS: SEARCH food Garoga, or SEARCH room Tuk Tuk. Businesses: send FOOD/ROOM + name, village, price.",
       "not_understood": "Sorry, we did not understand. Travellers: SEARCH food Garoga. Businesses: FOOD/ROOM + name, village, price.",
       "no_results": "No listings found. Try: SEARCH food Garoga",
-      "results_header": "Results:"
+      "results_header": "Results:",
+      "chat_rules_header": "Here is what our listings have:",
+      "chat_nothing": "Our listings have nothing that matches. Try a village name, or food, room, boat, guide."
     },
     "zh": {
       "help": "短信查询：搜索 吃 Garoga，或 搜索 住宿 Tuk Tuk",
       "not_understood": "抱歉，没有看懂。查询请发：搜索 吃 Garoga",
       "no_results": "没有找到。请试试：搜索 吃 Garoga",
-      "results_header": "结果："
+      "results_header": "结果：",
+      "chat_rules_header": "我们的列表里有这些：",
+      "chat_nothing": "我们的列表里没有符合的。试试村名，或吃、住宿、船、向导。"
     }
   },
   "llm_example": {

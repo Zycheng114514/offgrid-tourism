@@ -20,6 +20,7 @@ from .dialog import Dialog
 from .gateway import Gateway, parse_smsgate_webhook, verify_signature
 from .llm import LLM, LLMConfig
 from .pack import build_pack, public_listing
+from .chat import answer as chat_answer
 from .trace import trace
 from .region import ROOT, Region
 from .store import Store
@@ -158,6 +159,16 @@ def make_handler(app: App):
                     return self._json({"error": "text is required"}, 400)
                 llm = app.llm if body.get("model", "on") != "off" else LLM(LLMConfig(provider="none"))
                 return self._json(trace(text, app.region, llm, app.store))
+            if path == "/api/chat":
+                try:
+                    body = json.loads(raw or b"{}")
+                except json.JSONDecodeError:
+                    return self._json({"error": "bad json"}, 400)
+                question = str(body.get("question", "")).strip()
+                if not question:
+                    return self._json({"error": "question is required"}, 400)
+                return self._json(chat_answer(question, app.region, app.store.listings(app.region.id), app.llm,
+                                              body.get("lang")))
             if path == "/api/simulate" and app.simulator:
                 try:
                     body = json.loads(raw or b"{}")

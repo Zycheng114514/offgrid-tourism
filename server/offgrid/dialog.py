@@ -5,8 +5,9 @@ report, a traveller search, or a message the service does not understand.
 
 Hosts: report -> listing draft -> one question per missing field -> summary ->
 '1' to confirm -> consent to show the phone number; status words mark today's
-status. Travellers: a search word, a question, or a short message with what/where
-words gets the top results. Replies use the sender's language (region profile).
+status. Travellers: a search word gets the top results by rules; a question, or a
+short message naming what or where, is answered from the listings (chat.py, with
+the language model when one is set). Replies use the sender's language.
 """
 
 from __future__ import annotations
@@ -16,6 +17,7 @@ from typing import Callable
 from . import rules
 from .extract import Extraction, extract
 from .llm import LLM
+from . import chat
 from .region import Region, norm
 from .search import search_reply
 from .store import Store, now
@@ -48,15 +50,15 @@ def classify(text: str, region: Region) -> dict:
     r = rules.parse(text, region)
     n_words = len(norm(text).split())
     if "?" in text or "？" in text:
-        return route("search", "question mark", query=text, explicit=False)
+        return route("chat", "question mark", query=text)
     signal = ("price" if r["price"] else "hours" if r["hours"] else "rooms/people" if r["capacity"]
               else "business word in a longer message" if r["category"] and n_words >= REPORT_MIN_WORDS else None)
     if signal:
         return route("report", f"looks like a business report ({signal})")
     if region.has_word(text, "question"):
-        return route("search", "question word", query=text, explicit=False)
+        return route("chat", "question word", query=text)
     if (r["category"] or r["place"] or region.has_word(text, "cheap")) and n_words <= SHORT_QUERY_WORDS:
-        return route("search", "short message naming what or where, with no price", query=text, explicit=False)
+        return route("chat", "short message naming what or where, with no price", query=text)
     return route("unclear", "no business details and no search words")
 
 
@@ -133,8 +135,9 @@ class Dialog:
             return self.reply(phone, r.template("welcome", self.host_lang(phone)))
         if c["route"] == "report":
             return self._new_report(phone, text, lang)
-        if c["route"] == "search":
-            return self.reply(phone, search_reply(c["query"], lang or r.traveller_lang, r, self.store))
+        if c["route"] == "chat":
+            result = chat.answer(c["query"], r, self.store.listings(r.id), self.llm, lang)
+            return self.reply(phone, chat.sms_text(result))
         if lang:
             return self.reply(phone, r.template("not_understood", lang))
         both = [r.template("not_understood", l) for l in dict.fromkeys([r.host_lang, r.traveller_lang])]

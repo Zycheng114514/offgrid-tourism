@@ -30,7 +30,7 @@ deploy/deploy.sh <ssh-host>
 - 服务器上的日志：`~/offgrid-tourism/data/runtime/server.log`、`tunnel.log`。
 - 用全新的演示数据重新开始：`deploy/deploy.sh <ssh-host> --reset-data`（旧数据库会在服务器上保留为带时间戳的 `.bak` 副本）。
 
-## 连接 Android 短信网关手机（D4）
+## 连接 Android 短信网关手机
 
 由一位队友在一部装有 SIM 卡、能一直开机并保持在线的 Android 手机上操作。
 

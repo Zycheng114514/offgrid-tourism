@@ -19,6 +19,7 @@ from .pack import build_pack
 from .region import ROOT, Region
 from .seed import load_seed
 from .store import Store
+from .chat import answer as chat_answer
 from .trace import trace
 
 REGION = Region(os.environ.get("REGION_PROFILE", "regions/samosir.json"))
@@ -103,6 +104,17 @@ def app(environ, start_response):
             return _json(start_response, build_pack(REGION, STORE, query.get("village"), float(query.get("radius_km", 10))))
         if path == "/healthz":
             return _json(start_response, {"ok": True, **config()})
+
+    if method == "POST" and path == "/api/chat":
+        try:
+            size = int(environ.get("CONTENT_LENGTH") or 0)
+            body = json.loads(environ["wsgi.input"].read(size) or b"{}")
+        except (ValueError, json.JSONDecodeError):
+            return _json(start_response, {"error": "bad json"}, "400 Bad Request")
+        question = str(body.get("question", "")).strip()
+        if not question:
+            return _json(start_response, {"error": "question is required"}, "400 Bad Request")
+        return _json(start_response, chat_answer(question, REGION, STORE.listings(REGION.id), LLM_SIMULATED, body.get("lang")))
 
     if method == "POST" and path == "/api/pipeline/trace":
         try:

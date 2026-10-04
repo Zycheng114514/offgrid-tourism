@@ -83,7 +83,7 @@ const $ = id => document.getElementById(id);
 const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const json = v => `<pre>${esc(JSON.stringify(v, null, 2))}</pre>`;
 const HOST_STEPS = ["sms", "gateway", "route", "rules", "model", "checks", "merge", "ask", "store"];
-const TRAVELLER_STEPS = ["pack", "traveller"];
+const TRAVELLER_STEPS = ["pack", "traveller", "answer"];
 const EXPLAIN = {
   sms: "A host sends one SMS from any phone, in their own language.",
   gateway: "An Android phone with a SIM card receives the SMS and forwards it to our server over the internet. The server answers at once and works on the message in the background.",
@@ -96,6 +96,7 @@ const EXPLAIN = {
   store: "The confirmed listing is saved together with the host's original message.",
   pack: "Confirmed listings go into a small file per region that travellers download when they have a connection.",
   traveller: "On the traveller's phone, search runs on that file with no connection. With signal but no data, the same search works by SMS.",
+  answer: "A traveller asked in their own words. Fixed rules pick the candidate listings; the language model writes a short answer from those listings only and names the ones it used. The answer is kept only if every business it names is a cited candidate and it names no business or place that is not in the listings or the village list; otherwise the reply is built from the listings by rules.",
 };
 let trace = null, steps = [], current = 0, timer = null, examples = [];
 
@@ -117,6 +118,7 @@ function summary(s) {
     case "pack": return "no phone until consent";
     case "traveller": return d.rank ? `found: #${d.rank} for "${d.offline_query}"` : "after confirmation";
     case "search": return `${d.parts} SMS · ${d.encoding}`;
+    case "answer": return d.method === "rules" ? "built by rules" : (d.method === "simulated" ? "model answer (simulated), checked" : "model answer, checked");
   }
   return "";
 }
@@ -199,6 +201,15 @@ function detail(s) {
       <div class="sms"><div class="msg in">${esc(d.sms_query)}<span class="why">traveller → service</span></div>
       <div class="msg out">${esc(d.sms_reply)}<span class="why">service → traveller</span></div></div>
       <p class="small" style="margin-top:12px"><a href="/app/">Open the traveller app</a> to try offline search yourself.</p>`;
+  }
+  if (s.id === "answer") {
+    const who = { simulated: "the language model (simulated: answer written in advance), after the checks", model: "the language model, after the checks", rules: "fixed rules, from the listing rows" }[d.method];
+    h += `<table><tr><th>Candidates (rules)</th><td>${esc((d.candidates || []).join(", ") || "none")}</td></tr>
+      <tr><th>Answer written by</th><td>${esc(who)}</td></tr></table>`;
+    if ((d.checks_failed || []).length) h += `<p class="rejected small" style="margin-top:10px">Failed checks: ` +
+      d.checks_failed.map(c => `${esc(c.check)}: “${esc(c.detail)}”`).join("; ") + `</p>`;
+    if (d.note) h += `<p class="small muted">${esc(d.note)}</p>`;
+    h += `<details><summary>Model output${d.method === "simulated" || (d.model || "").startsWith("simulated") ? " (written in advance)" : ""}</summary>${json(d.model_output)}</details>`;
   }
   if (s.id === "search") h += `<div class="sms"><div class="msg out">${esc(d.reply)}<span class="why">${d.chars} characters, ${esc(d.encoding)}, ${d.parts} SMS</span></div></div>`;
   return h;

@@ -9,6 +9,7 @@ from __future__ import annotations
 
 from datetime import datetime, timezone
 
+from . import chat
 from .dialog import ASK, Dialog, classify, listing_from_extraction, missing_fields
 from .extract import extract, system_prompt
 from .llm import LLM
@@ -17,7 +18,8 @@ from .region import Region
 from .search import find, result_line, searchable, relevance
 from .store import Store
 
-ROUTE_NAMES = {"report": "new business report", "search": "traveller search", "help": "help",
+ROUTE_NAMES = {"report": "new business report", "search": "traveller search (rules)",
+               "chat": "traveller question (answered from the listings)", "help": "help",
                "status": "status update (open or closed today)", "answer": "yes/no answer", "unclear": "not understood"}
 GSM7 = set("@£$¥èéùìòÇ\nØø\rÅåΔ_ΦΓΛΩΠΨΣΘΞÆæßÉ !\"#¤%&'()*+,-./0123456789:;<=>?¡ABCDEFGHIJKLMNOPQRSTUVWXYZÄÖÑÜ§"
            "¿abcdefghijklmnopqrstuvwxyzäöñüà")
@@ -59,7 +61,13 @@ def trace(text: str, region: Region, llm: LLM, store: Store, phone: str = "+6200
         result["note"] = ("This message is not a new business report, so the listing steps do not run. "
                           "Try one of the example reports.")
         listings = store.listings(region.id, state="confirmed")
-        if c["route"] == "search":
+        if c["route"] == "chat":
+            res = chat.answer(c["query"], region, listings, llm, lang)
+            steps.append({"id": "answer", "title": "Answer from the listings", "data": {
+                "method": res["method"], "model": res["model"], "candidates": res["candidate_ids"],
+                "model_output": res["model_output"], "checks_failed": res["checks_failed"], "note": res["note"]}})
+            reply = chat.sms_text(res)
+        elif c["route"] == "search":
             reply = _search_text(c["query"], lang or region.traveller_lang, region, listings)
         elif c["route"] == "help":
             reply = region.template("help", lang or region.traveller_lang)

@@ -9,7 +9,7 @@ Status: draft for team review, 2026-10-03. Decisions referenced as D1, D2, … a
 Small food and lodging businesses in places with weak connectivity are often missing from online maps and booking sites. Their owners may only have a feature phone. Travellers who go there cannot find out where to eat or sleep.
 
 - **Hosts** (local businesses) report what they offer by SMS from any phone, in their own language. The server turns each message into a structured listing (place, what, price, hours, contact) and keeps the original text plus an English translation.
-- **Travellers** download listings for a village or district while they have a connection, then search them on their phone with no connection at all. With only a cellular signal they can ask by SMS. With data they can also chat with the server.
+- **Travellers** download listings for a village or district while they have a connection, then search them on their phone with no connection at all. With only a cellular signal they can ask by SMS. Chatting with the server when they have data was planned but not built.
 
 ## 2. Design principles
 
@@ -70,9 +70,11 @@ Required fields: category, name, village, what is offered, price (or "ask"), hou
 | Data (at a hotspot) | App downloads the region pack | Server export: JSON per village or district |
 | None | Search in the app | Local filters on the pack: category, village, price, open now, distance (GPS works offline). No AI. |
 | Cellular only | SMS `CARI makan Garoga` or free text | Server matches listings, replies with the top 3 in at most 2 SMS (160 characters each, plain characters only) |
-| Data | Chat in the app | Server LLM answers only from listing rows and cites listing IDs; it cannot add places that are not in the database |
+| Data | Chat in the app (**not built**) | Planned: server LLM answers only from listing rows and cites listing IDs; it cannot add places that are not in the database |
 
-Optional, last (D7): a small on-device model that only turns a free-text question into search filters. Answer text is built from listing rows, so the model cannot invent places.
+Optional, last (D7), **not built**: a small on-device model that only turns a free-text question into search filters. Answer text is built from listing rows, so the model cannot invent places.
+
+In the hackathon build the traveller side uses no language model at all: offline search and SMS search are fixed rules over the listings.
 
 ### 4.3 Data
 
@@ -89,7 +91,7 @@ Optional, last (D7): a small on-device model that only turns a free-text questio
 | Free-text fields | LLM with the listing schema | Yes | Ask the host the missing questions by SMS |
 | Translation to English | LLM or translation model | Yes | Show the original only |
 | Traveller SMS questions | Keyword parse, LLM for free text | Partly | Keyword format only |
-| Online chat | LLM over listing rows | Yes | Not available; offline search still works |
+| Online chat (not built) | LLM over listing rows | Yes | Not available; offline search still works |
 | Offline search | Filters on the pack | No | Same |
 
 ### 4.5 The LLM port

@@ -1,6 +1,6 @@
-# Plan and pipeline
+# Design and pipeline
 
-中文版：[PLAN.zh.md](PLAN.zh.md)
+中文版：[DESIGN.zh.md](DESIGN.zh.md)
 
 
 ## 1. What we are building
@@ -19,7 +19,7 @@ Small food and lodging businesses in places with weak connectivity are often mis
 5. **Every listing is confirmed by its host.** The server texts back a summary; the host replies `1` to confirm. Each listing shows when it was last confirmed. A phone number can only edit its own listings.
 6. **Consent before publishing.** A host's phone number is shown to travellers only if the host agreed.
 7. **Any model can be plugged in.** The server reaches language models through one interface; the default is a small open model on our own GPU server, and a hosted API can replace it by changing settings.
-8. **Claims are measured or labelled.** Every number in the pitch is either measured by a script in this repo or marked as an estimate.
+8. **Claims are measured or labelled.** Every number in these documents is either measured by a script in this repo or marked as an estimate.
 
 ## 3. Region profiles
 
@@ -101,66 +101,12 @@ All model calls go through one function: `complete_json(task, text, schema) -> d
 |---|---|---|
 | `openai_compatible` | Any server that speaks the OpenAI API format: Ollama, vLLM, llama.cpp; most hosted APIs | A later deployment, e.g. Qwen3-1.7B |
 | `anthropic` | Anthropic API | Optional hosted alternative |
-| `simulated` | A file of example messages with outputs written in advance | **The hackathon demo**: no model runs |
+| `simulated` | A file of example messages with outputs written in advance | **The demo**: no model runs on the server |
 | `none` | Nothing | Rules plus SMS follow-up questions |
 
 Settings live in `.env` (`LLM_PROVIDER`, `LLM_BASE_URL`, `LLM_MODEL`, `LLM_API_KEY`). Prompts are files in `models/prompts/`, one per task (extract listing, translate, parse traveller question, answer from rows), so they can be changed and re-scored without touching code.
 
-## 5. Hackathon scope
-
-**P0, the core demo (must have):**
-- Server: SMS webhook, rules + LLM extraction, follow-up questions, confirmation, SQLite, traveller SMS search, region pack export.
-- Web demo: a host-side page (a basic phone plus what the server did) and a traveller-side app; both work without the SMS gateway.
-- Traveller app as an offline web app (PWA): download a pack, search offline, call or SMS a host. A native Android app comes after the hackathon.
-- Example host messages with model outputs written in advance.
-- Seed data for the test region: real village names and landmarks, invented businesses and phone numbers.
-- Region profile for the test region.
-
-**P1 (needed for a credible pitch):**
-- Measured accuracy on a labelled test set (Section 9).
-- Real-world data page with measured numbers ([REAL_WORLD_DATA.md](REAL_WORLD_DATA.md)).
-- Slides and demo video.
-
-**P2 (only if time is left):**
-- Weekly SMS asking hosts "still open? reply 1".
-- A second language or a second region profile, to show region independence.
-
-## 6. Timeline
-
-Cut-off: 2026-10-04 9:00 AM ET, so the 17-hour column applies. The 8-hour column is kept as the fallback if we fall behind. Hours count from the start of the build.
-
-| Hours | Deadline 9:00 AM ET Oct 4 (≈17 h) | If only ≈8 h are left |
-|---|---|---|
-| 0–3 | Server P0 + simulator page; gateway app on the Android phone | Server P0 + simulator |
-| 3–6 | Real SMS working end to end; PWA offline search; seed data | PWA offline search; seed data |
-| 6–9 | Demo pages polished; real-world numbers on slides | Slides + video from the simulator |
-| 9–12 | Slides, demo video, README for judges | Submit |
-| 12–15 | P2 items if P0/P1 are done | — |
-| 15–17 | Buffer, submit | — |
-
-## 7. Work items (the team assigns people)
-
-| Item | Who |
-|---|---|
-| Server, LLM port, extraction prompt, region pack export, web app, synthetic test set, scoring script, deploy script | Claude |
-| Install the SMS gateway app on an Android phone with a SIM; keep it charged and online | Team |
-| Pick the model | Chris |
-| Check the web app on real phones, including airplane mode; record the demo | Team |
-| Connectivity and visitor data for the test region (REAL_WORLD_DATA.md §2–3) | Team |
-| Slides and demo video | Team |
-
-## 8. Demo script (about 3 minutes)
-
-Pages: `/pipeline` (the pipeline step by step), `/host` (host side), `/app/` (traveller side).
-
-1. The gap, with measured numbers from OpenStreetMap for the test region.
-1a. The pipeline walkthrough (`/pipeline`, Play): one example SMS through rules, model, checks and follow-up questions to a traveller's search; then the example where the model invents a name and the check rejects it.
-2. A host texts `MAKAN Warung Bu Sinaga di Garoga, nasi ikan 25rb, buka 7-21` from a basic phone to the gateway phone's number. The server replies with a summary; the host replies `1`. A second, free-text message shows the fields a model would fill (model output written in advance and labelled as such).
-3. A traveller's app downloads the Garoga pack, then the phone goes into airplane mode. Searching "cheap food open now" still works and shows the listing with "confirmed today".
-4. A traveller with no data texts `CARI makan Garoga` and gets 3 listings by SMS.
-5. Measured accuracy, limits, and how to add a new region.
-
-## 9. Evaluation
+## 5. Evaluation
 
 | What | How | Output |
 |---|---|---|
@@ -171,19 +117,19 @@ Pages: `/pipeline` (the pipeline step by step), `/host` (host side), `/app/` (tr
 
 All example messages are invented by Claude and labelled synthetic. The automated tests (`server/tests`) check that the pipeline works end to end on them; they are not evidence of accuracy on real messages. No model is run or compared.
 
-## 10. Risks
+## 6. Risks
 
 | Risk | Plan |
 |---|---|
 | Gateway phone loses power, signal or the app stops | Keep it charged and on Wi-Fi; the simulator page is the fallback |
 | Model too slow on a CPU-only server | Reply to the gateway at once and send the SMS when the model finishes; keyword messages skip the model; switch to Option A |
-| Nobody on the team reads Indonesian | Score only fields that can be checked without reading it; label test messages as AI-written |
+| The test messages have not been checked by an Indonesian speaker | Score only fields that can be checked without reading Indonesian; label test messages as AI-written |
 | The demo server goes down | Restart with `deploy/deploy.sh`; the tunnel address then changes |
 | Small model returns broken JSON or wrong fields | Constrain output with the JSON schema; validate; ask the host by SMS when a field fails |
 | Laptop sleeps or tunnel URL changes | Keep the lid open; update the webhook URL after restarts |
 | Wrong or stale listings | Host confirmation, last-confirmed date, only the owner's number can edit |
 
-## 11. Who already does this
+## 7. Who already does this
 
 Closest overlaps first. Items marked (not re-checked) come from memory and were not re-verified today; we have not searched for this exact combination yet, and not finding something does not mean it does not exist.
 
@@ -196,7 +142,7 @@ Closest overlaps first. Items marked (not re-checked) come from memory and were 
 
 Our difference is in the details and is unverified: hosts list themselves by SMS in their own language; listings are confirmed and dated; travellers get region packs that work offline; the same pipeline is reused for any region through a profile.
 
-## 12. After the hackathon
+## 8. Next steps
 
 - Pilot with a local tourism group or village office that can seed the first listings (a one-time visit or survey) and promote the SMS number; hosts then keep listings current by SMS.
 - A local number or short code through a local SMS provider; decide who pays for host SMS.

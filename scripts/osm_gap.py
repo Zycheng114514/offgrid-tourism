@@ -51,7 +51,7 @@ out tags center;
 def fetch(query: str) -> dict:
     data = urllib.parse.urlencode({"data": query}).encode()
     req = urllib.request.Request(
-        OVERPASS_URL, data=data, headers={"User-Agent": "offgrid-tourism/0.1 (hackathon research)"}
+        OVERPASS_URL, data=data, headers={"User-Agent": "offgrid-tourism/0.1 (research)"}
     )
     with urllib.request.urlopen(req, timeout=200) as resp:
         return json.load(resp)

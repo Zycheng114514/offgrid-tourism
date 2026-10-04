@@ -9,7 +9,7 @@ Providers (set LLM_PROVIDER):
   anthropic          Anthropic Messages API. Needs LLM_MODEL, LLM_API_KEY.
   simulated          no model runs; answers are looked up in a file of example
                      messages with outputs written in advance (LLM_SIMULATED_PATH).
-                     Used for the hackathon demo. Messages not in the file get
+                     Used for the demo. Messages not in the file get
                      no answer, so the server falls back to rules.
   none               no model; complete_json returns None and callers fall back
                      to rules and follow-up questions.

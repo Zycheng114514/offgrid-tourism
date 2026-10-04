@@ -2,7 +2,7 @@
 
 中文版：[REAL_WORLD_DATA.zh.md](REAL_WORLD_DATA.zh.md)
 
-The challenge asks for solutions built around real-world data. For us that means four things:
+This project is built around real-world data. That means four things:
 
 1. **A real place as the test example**, with public data that shows the information gap. The pipeline itself is region-independent; the first test region is Samosir, Indonesia.
 2. **Messages in the real local languages** (Indonesian and Batak Toba). In this build they are written by Claude; accuracy on real messages is not yet measured.
@@ -56,7 +56,7 @@ Sources to check for the test region:
 Rules:
 - Every message is labelled `"source": "synthetic"` and `"author": "claude"`.
 - Real village names and landmarks; invented business names and phone numbers.
-- Nobody on the team reads Indonesian, so scores cover fields that can be checked without reading it: category, village, price, hours.
+- The test messages have not been checked by an Indonesian speaker, so scores cover fields that can be checked without reading Indonesian: category, village, price, hours.
 - The same author writes the messages and the gold answers, so the scores show the pipeline works; they do not show accuracy on real messages.
 
 ## 5. What we may and may not claim

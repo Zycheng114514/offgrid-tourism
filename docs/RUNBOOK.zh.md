@@ -32,7 +32,7 @@ deploy/deploy.sh <ssh-host>
 
 ## 连接 Android 短信网关手机
 
-由一位队友在一部装有 SIM 卡、能一直开机并保持在线的 Android 手机上操作。
+在一部装有 SIM 卡、能一直开机并保持在线的 Android 手机上操作。
 
 1. 安装“SMS Gateway for Android”（开源，文档见 docs.sms-gate.app）。开启 **Cloud server** 模式；应用会显示用户名和密码。
 2. 注册我们的 webhook（替换其中的值；可在任何一台电脑上运行）：

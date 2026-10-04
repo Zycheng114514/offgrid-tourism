@@ -4,17 +4,15 @@ English version: [README.md](README.md)
 
 为网络连接较差的地方提供本地餐饮和住宿信息。小商户**用任意手机发短信，以自己的语言**上报自己提供的内容。游客**在手机上搜索商户条目，无需网络连接**；有信号但没有流量时，可以发短信询问。
 
-为世界银行 **Small AI for Development** 黑客松的旅游赛道开发（2026 年 10 月 3–4 日）。
-
 **在线演示**：<https://offgrid-tourism.vercel.app>（永久地址，部署在 Vercel 上）。商户端演示和短信模拟器会保存对话，所以它们运行在我们自己的服务器上；Vercel 上的 `/host` 会转发到那里（<https://emotions-auburn-carried-divide.trycloudflare.com>，临时地址，该服务器重启时会变）。
 
 | 页面 | 展示的内容 |
 |---|---|
 | [`/pipeline`](https://offgrid-tourism.vercel.app/pipeline) | 一条短信在管道中经过的每一步，由服务器实时计算 |
 | [`/host`](https://offgrid-tourism.vercel.app/host) | 商户端：一部功能机，以及服务器对每条短信做了什么 |
-| [`/app/`](https://offgrid-tourism.vercel.app/app/) | 游客端应用：下载一次，然后离线搜索；或者发短信询问 |
+| [`/app/`](https://offgrid-tourism.vercel.app/app/) | 游客端应用：下载一次，然后离线搜索；可以用自己的话提问；或者发短信询问 |
 
-> **演示数据**。每个商户、价格和电话号码都是编造的；村名是真实的（OpenStreetMap）。**演示中没有运行语言模型**：对于示例短信，模型输出是预先写好的，页面上凡是出现这些输出的地方都有说明。其他任何短信只由固定规则和追问处理。
+> **演示数据**。每个商户、价格和电话号码都是编造的；村名是真实的（OpenStreetMap）。**演示中服务器上的语言模型是模拟的**：示例短信和示例问题的模型输出是预先写好的，页面上凡是出现这些输出的地方都有说明；其他短信由固定规则和追问处理。游客手机上可选的模型是真实的模型，在浏览器里运行。
 
 ## 问题
 
@@ -124,7 +122,7 @@ data/real/        测试地区的 OpenStreetMap 数据（ODbL 许可）
 data/synthetic/   编造的预置商户数据，已标明是编造的
 deploy/           deploy.sh：通过 SSH 复制到服务器，启动应用和 Cloudflare 临时通道
 api/, vercel.json  Vercel 入口，用于不保存状态的部分（server/offgrid/wsgi.py）
-docs/             计划、真实数据、运行手册、提交材料、视频脚本
+docs/             设计、真实数据、运行手册
 ```
 
 ## 现状与局限
@@ -151,11 +149,9 @@ docs/             计划、真实数据、运行手册、提交材料、视频�
 
 | 文件 | 内容 |
 |---|---|
-| [docs/PLAN.zh.md](docs/PLAN.zh.md) | 计划、管道、范围、演示脚本、风险 |
+| [docs/DESIGN.zh.md](docs/DESIGN.zh.md) | 设计原则、管道、哪里用到 AI、评估、风险、相关工作 |
 | [docs/REAL_WORLD_DATA.zh.md](docs/REAL_WORLD_DATA.zh.md) | 测试地区、已测量的数字、数据来源、哪些可以声称、哪些不可以声称 |
 | [docs/RUNBOOK.zh.md](docs/RUNBOOK.zh.md) | 运行、测试、部署、连接短信网关手机 |
-| [docs/SUBMISSION.zh.md](docs/SUBMISSION.zh.md) | 黑客松提交材料：核对清单、提交文本、视频脚本 |
-| [docs/demo_video_script.zh.txt](docs/demo_video_script.zh.txt)、[docs/tech_video_script.zh.txt](docs/tech_video_script.zh.txt) | 演示视频和技术视频脚本：点哪里、旁白、时长 |
 
 ## 致谢
 

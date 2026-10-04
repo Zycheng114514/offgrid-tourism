@@ -32,7 +32,7 @@ What it does: copies the code and data to `~/offgrid-tourism` on the server (cop
 
 ## Connect the Android SMS gateway phone
 
-A teammate does this on an Android phone with a SIM that can stay on and online.
+Do this on an Android phone with a SIM that can stay on and online.
 
 1. Install "SMS Gateway for Android" (open source, docs at docs.sms-gate.app). Turn on **Cloud server** mode; the app shows a username and password.
 2. Register our webhook (replace the values; run from any computer):
